@@ -20,4 +20,4 @@ DTO 已在同包定义。`deploy` 必须取得真实交易回执，`deployBlock`
 
 当前已核对 YZH 代币地址 `0xE48d6b8037972C2D056ef4aEd4352C6027dE88ee`，精度 18，owner 是 YZH，DHT 买家钱包余额为 0。创建订单前请和 YZH 完成至少 60 个代币的本人签名转账或铸币。**本次必须由后端专用账户部署新的 Escrow**，不使用实验 3 的旧地址。
 
-构建现状：Java 编译和 YZH 的事件查询测试通过；完整 Gradle 任务链停在下载 Solidity 0.8.35。你接入合约源码后需核实 Web3j 插件的 Solidity 版本及下载方式，再跑完整 `generateContractWrappers` 和 `test`。不要修改生成的 Java 文件代替生成步骤。
+构建现状：Java 编译和 YZH 的事件查询测试通过；完整 Solidity 编译曾停在下载 0.8.35。因此基线默认跳过 Solidity/Node 任务链。你接入合约源码后需核实 Web3j 插件的 Solidity 版本及下载方式，然后用 `bash gradlew generateContractWrappers -PcompileContracts=true` 和 `bash gradlew test -PcompileContracts=true` 完成最终构建。不要修改生成的 Java 文件代替生成步骤，也不要把默认基线测试写成封装已生成。

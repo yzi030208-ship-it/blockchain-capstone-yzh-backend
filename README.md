@@ -28,20 +28,21 @@ bash gradlew bootRun
 
 ## 构建与当前验证状态
 
-通常使用：
+当前基线可直接使用：
 
 ```bash
 bash gradlew test
-bash gradlew generateContractWrappers
+bash gradlew bootRun
 ```
 
-在这台 WSL 上，Gradle 8.13 的 Wrapper 已运行；Java 源码编译和事件查询测试已经通过。Web3j 插件的完整任务链目前在下载 Solidity 0.8.35 编译器时停住，**不能宣称完整 `generateContractWrappers` 已成功**。需要 DHT 把最终 Escrow 源码接入后，检查插件使用的编译器版本和下载路径，再完成完整构建。临时仅验证 Java/现有 SimpleStorage 封装时可跳过 Solidity 下载任务：
+Gradle 8.13 的 Wrapper 已运行；Java 源码编译和事件查询测试已经通过。基线默认关闭 Solidity 编译，因为尚未加入 DHT 的最终 Escrow 源码，而且这台 WSL 下载 Solidity 0.8.35 编译器时停住。DHT 接入最终源码后，请先核对编译器版本及下载路径，再使用：
 
 ```bash
-bash gradlew test --no-daemon -x nodeSetup -x npmSetup -x npmInstall -x resolveSolidity -x compileSolidity -x generateContractWrappers
+bash gradlew generateContractWrappers -PcompileContracts=true
+bash gradlew test -PcompileContracts=true
 ```
 
-这条跳过命令**不能替代最终完整构建**。若要运行当前基线的 HTTP 服务作接口形状检查，可用同样的 `-x` 参数执行 `bootRun`。
+默认的基线 `test` **不能替代最终 Solidity 编译与封装生成**。最终验收必须保存带 `-PcompileContracts=true` 的成功输出。
 
 ## 路线 A 接口
 

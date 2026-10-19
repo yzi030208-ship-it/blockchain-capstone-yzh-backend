@@ -40,6 +40,17 @@ node {
     download = false
 }
 
+// The YZH baseline can build before DHT has added the final Escrow source.
+// This Web3j plugin release does not expose SolidityExtension.compilerEnabled,
+// so disable its compiler task chain until DHT explicitly opts in.
+def compileContracts = (findProperty('compileContracts') ?: 'false').toBoolean()
+tasks.matching { it.name in [
+        'extractSolidityImports', 'nodeSetup', 'npmSetup', 'npmInstall',
+        'resolveSolidity', 'compileSolidity', 'generateContractWrappers'
+] }.configureEach {
+    enabled = compileContracts
+}
+
 sourceSets {
     main {
         solidity {
