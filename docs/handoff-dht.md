@@ -18,6 +18,6 @@ DTO 已在同包定义。`deploy` 必须取得真实交易回执，`deployBlock`
 
 `MissingEscrowGateway` 只在核心 Service 缺失时给出 503；你的实现被 Spring 扫描后应替代它。若出现两个 Gateway bean，请优先检查扫描和条件注解，不要删掉接口边界。
 
-当前已核对 YZH 代币地址 `0xE48d6b8037972C2D056ef4aEd4352C6027dE88ee`，精度 18，owner 是 YZH，DHT 买家钱包余额为 0。创建订单前请和 YZH 完成至少 60 个代币的本人签名转账或铸币。**本次必须由后端专用账户部署新的 Escrow**，不使用实验 3 的旧地址。
+当前已核对 YZH 代币地址 `0xE48d6b8037972C2D056ef4aEd4352C6027dE88ee`，精度 18，owner 是 YZH，DHT 买家钱包余额为 0。创建订单前请和 YZH 完成至少 60 个代币的本人签名转账或铸币。后端专用账户公开地址为 `0x6717496Fe22477B41e6Ca07353C308fF38A61797`，2026-10-19 在 POTOS Testnet 查询余额为 0 POT，部署前需由 YZH 充值少量测试币。**本次必须由该账户部署新的 Escrow 并担任 arbiter**，不使用实验 3 的旧地址；部署后读取链上 `arbiter()` 与该地址核对。私钥仅由 YZH 在本机环境变量中注入。
 
 构建现状：Java 编译和 YZH 的事件查询测试通过；完整 Solidity 编译曾停在下载 0.8.35。因此基线默认跳过 Solidity/Node 任务链。你接入合约源码后需核实 Web3j 插件的 Solidity 版本及下载方式，然后用 `bash gradlew generateContractWrappers -PcompileContracts=true` 和 `bash gradlew test -PcompileContracts=true` 完成最终构建。不要修改生成的 Java 文件代替生成步骤，也不要把默认基线测试写成封装已生成。

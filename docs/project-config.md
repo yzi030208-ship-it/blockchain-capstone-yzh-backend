@@ -18,7 +18,7 @@
 | TOKEN_SOURCE | `packages/hardhat/contracts/YZHToken.sol` | YZH 实验 3 仓库 `blockchain-lab3-yzh`；已核对 ABI 包含 `balanceOf`、`transfer`、`approve`、`transferFrom`、`mint` |
 | DHT 代币余额 | `0`（2026-10-19 查询时） | 两单前至少补足 60 个 |
 | YZH 代币余额 | `70`（2026-10-19 查询时） | owner 可本人转账或 mint；交易需本人签名 |
-| BACKEND_ADDRESS | 待 YZH 创建独立测试账户 | **只登记公开地址** |
+| BACKEND_ADDRESS | `0x6717496Fe22477B41e6Ca07353C308fF38A61797` | YZH 新建的 Backend Arbiter；2026-10-19 在 POTOS Testnet 查询余额为 0 POT，部署前需充值少量测试币 |
 | ESCROW_ADDRESS | 待后端新部署 | 不沿用实验 3 地址 |
 | DEPLOY_TX_HASH / DEPLOY_BLOCK | 待真实部署回执 | 不预填 |
 | 后端端口 | `127.0.0.1:8080` | 本地监听，暂未提供认证 |
