@@ -1,6 +1,8 @@
 package com.wetech.demo.web3j.escrow;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -71,6 +73,37 @@ class EscrowEventQueryServiceTest {
             List<TimelineEvent> timeline = service.timeline(BigInteger.ZERO);
             assertEquals(List.of("OrderCreated", "OrderPaid"), timeline.stream().map(TimelineEvent::eventName).toList());
             assertEquals(List.of("0x64-0x6d", "0x6e-0x70", "0x64-0x6d", "0x6e-0x70"), ranges);
+        } finally {
+            server.stop(0);
+        }
+    }
+
+    @Test
+    void reportsRpcErrorsInsteadOfReturningAnEmptyOrderList() throws Exception {
+        ObjectMapper json = new ObjectMapper();
+        HttpServer server = HttpServer.create(new InetSocketAddress("127.0.0.1", 0), 0);
+        server.createContext("/", exchange -> {
+            JsonNode request = json.readTree(exchange.getRequestBody());
+            String payload = request.get("method").asText().equals("eth_blockNumber")
+                    ? "\"0x64\""
+                    : null;
+            String bodyText = "{\"jsonrpc\":\"2.0\",\"id\":" + request.get("id")
+                    + (payload == null
+                        ? ",\"error\":{\"code\":-32000,\"message\":\"range unavailable\"}}"
+                        : ",\"result\":" + payload + "}");
+            byte[] body = bodyText.getBytes(StandardCharsets.UTF_8);
+            exchange.getResponseHeaders().set("Content-Type", "application/json");
+            exchange.sendResponseHeaders(200, body.length);
+            try (var out = exchange.getResponseBody()) { out.write(body); }
+        });
+        server.start();
+        try (Web3j web3j = Web3j.build(new HttpService("http://127.0.0.1:" + server.getAddress().getPort()))) {
+            EscrowGateway gateway = new MissingEscrowGateway() {
+                @Override public EscrowContext current() { return new EscrowContext(ESCROW, BUYER, "100"); }
+            };
+            EscrowRpcException error = assertThrows(EscrowRpcException.class,
+                    () -> new EscrowEventQueryService(web3j, gateway).listOrders());
+            assertTrue(error.getMessage().contains("range unavailable"));
         } finally {
             server.stop(0);
         }
