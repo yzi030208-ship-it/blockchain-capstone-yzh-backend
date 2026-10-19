@@ -1,6 +1,6 @@
 # 区块链大作业 路线 A 后端
 
-本组使用 Spring Boot 3.2.3、Web3j 4.14.0、Java 21，在 POTOS Testnet 上演示两笔 ERC20 托管订单。该项目以课程 [spring-boot-web3j 示例](https://github.com/kyonRay/spring-boot-web3j) 为起点。当前是 **YZH 的本地集成基线**：SimpleStorage 示例和 YZH 负责的 HTTP/事件查询代码已放入项目；Escrow 合约封装与核心业务 Service 待 DHT 接入。没有核心 Service 时，Escrow 接口返回 503，不产生虚构交易或部署结果。
+本组使用 Spring Boot 3.2.3、Web3j 4.14.0、Java 21，在 POTOS Testnet 上演示两笔 ERC20 托管订单。该项目以课程 [spring-boot-web3j 示例](https://github.com/kyonRay/spring-boot-web3j) 为起点。当前是**已推送的 YZH 集成基线**：SimpleStorage 示例和 YZH 负责的 HTTP/事件查询代码已放入项目；Escrow 合约封装与核心业务 Service 待 DHT 接入。没有核心 Service 时，Escrow 接口返回 503，不产生虚构交易或部署结果。
 
 ## 开发分工
 
@@ -8,7 +8,7 @@
 - YZH：Controller、订单创建事件列表、订单时间线、错误处理、公开配置、集成和报告。
 - ZZL：独立重入挑战、主业务验收与交易证据索引。
 
-接口边界及交接要求见 [`docs/handoff-dht.md`](docs/handoff-dht.md)。链上公开参数见 [`docs/project-config.md`](docs/project-config.md)。
+第一次参与协作请先读 [`docs/team-workflow.md`](docs/team-workflow.md)：项目目标、三人角色、分支/PR、链上验收与交接顺序均在此。DHT 的逐项任务见 [`docs/tasks-dht.md`](docs/tasks-dht.md)，ZZL 的逐项任务见 [`docs/tasks-zzl.md`](docs/tasks-zzl.md)。接口边界及交接要求见 [`docs/handoff-dht.md`](docs/handoff-dht.md)，链上公开参数见 [`docs/project-config.md`](docs/project-config.md)。
 
 ## 本地准备
 
