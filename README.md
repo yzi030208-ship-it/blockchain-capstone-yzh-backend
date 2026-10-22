@@ -11,6 +11,7 @@
 第一次参与协作请先读 [`docs/team-workflow.md`](docs/team-workflow.md)：项目目标、三人角色、分支/PR、链上验收与交接顺序均在此。DHT 的逐项任务见 [`docs/tasks-dht.md`](docs/tasks-dht.md)，ZZL 的逐项任务见 [`docs/tasks-zzl.md`](docs/tasks-zzl.md)。接口边界及交接要求见 [`docs/handoff-dht.md`](docs/handoff-dht.md)，链上公开参数见 [`docs/project-config.md`](docs/project-config.md)。
 
 开始真实测试网操作时请打开 [`docs/experiment-runbook.md`](docs/experiment-runbook.md)，逐步记录公开数据、交易回执及报告截图编号。
+三人截图的编号、具体画面、责任人、建议文件名及 GitHub 归档目录见 [`docs/evidence-capture-guide.md`](docs/evidence-capture-guide.md)。
 
 ## 本地准备
 
