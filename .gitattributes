@@ -1,3 +1,4 @@
 * text=auto eol=lf
 *.bat text eol=crlf
 *.jar binary
+src/main/java/com/wetech/demo/web3j/contracts/** whitespace=-trailing-space

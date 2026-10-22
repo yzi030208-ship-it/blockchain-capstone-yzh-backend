@@ -1,6 +1,6 @@
 # 区块链大作业 路线 A 后端
 
-本组使用 Spring Boot 3.2.3、Web3j 4.14.0、Java 21，在 POTOS Testnet 上演示两笔 ERC20 托管订单。该项目以课程 [spring-boot-web3j 示例](https://github.com/kyonRay/spring-boot-web3j) 为起点。当前是**已推送的 YZH 集成基线**：SimpleStorage 示例和 YZH 负责的 HTTP/事件查询代码已放入项目；Escrow 合约封装与核心业务 Service 待 DHT 接入。没有核心 Service 时，Escrow 接口返回 503，不产生虚构交易或部署结果。
+本组使用 Spring Boot 3.2.3、Web3j 4.14.0、Java 21，在 POTOS Testnet 上演示两笔 ERC20 托管订单。该项目以课程 [spring-boot-web3j 示例](https://github.com/kyonRay/spring-boot-web3j) 为起点。YZH 已建立 HTTP/事件查询基线，DHT 交接包已接入 Escrow 合约封装与核心 Service；本地测试和测试网验收状态须分别查看 [实验执行记录](docs/experiment-runbook.md) 与 [DHT 验证记录](docs/dht-verification.md)，不能把本地测试写成测试网交易完成。
 
 ## 开发分工
 
@@ -9,6 +9,8 @@
 - ZZL：独立重入挑战、主业务验收与交易证据索引。
 
 第一次参与协作请先读 [`docs/team-workflow.md`](docs/team-workflow.md)：项目目标、三人角色、分支/PR、链上验收与交接顺序均在此。DHT 的逐项任务见 [`docs/tasks-dht.md`](docs/tasks-dht.md)，ZZL 的逐项任务见 [`docs/tasks-zzl.md`](docs/tasks-zzl.md)。接口边界及交接要求见 [`docs/handoff-dht.md`](docs/handoff-dht.md)，链上公开参数见 [`docs/project-config.md`](docs/project-config.md)。
+
+开始真实测试网操作时请打开 [`docs/experiment-runbook.md`](docs/experiment-runbook.md)，逐步记录公开数据、交易回执及报告截图编号。
 
 ## 本地准备
 
@@ -28,21 +30,21 @@ bash gradlew bootRun
 
 ## 构建与当前验证状态
 
-当前基线可直接使用：
+已提交的 Java 源码和生成类可直接运行：
 
 ```bash
 bash gradlew test
 bash gradlew bootRun
 ```
 
-Gradle 8.13 的 Wrapper 已运行；Java 源码编译和事件查询测试已经通过。基线默认关闭 Solidity 编译，因为尚未加入 DHT 的最终 Escrow 源码，而且这台 WSL 下载 Solidity 0.8.35 编译器时停住。DHT 接入最终源码后，请先核对编译器版本及下载路径，再使用：
+Gradle 8.13 的 Wrapper 已运行。DHT 已接入 Escrow 与 YZHToken 源码，固定 Solidity 0.8.20、EVM Paris；2026-10-22 在 YZH 的 WSL 重新执行完整编译、封装生成及本地 EVM 测试，5 项测试通过。默认 `test` 仍跳过 Solidity 编译和本地 EVM 场景。完整生成使用：
 
 ```bash
 bash gradlew generateContractWrappers -PcompileContracts=true
 bash gradlew test -PcompileContracts=true
 ```
 
-默认的基线 `test` **不能替代最终 Solidity 编译与封装生成**。最终验收必须保存带 `-PcompileContracts=true` 的成功输出。
+若本机已有原生 solc 0.8.20，给命令附加 `-PsolcExecutable=/absolute/path/to/solc`；不要提交个人绝对路径。本地 EVM 复测方法见 [DHT 交接](docs/dht-handoff.md)。默认 `test` **不能替代最终 Solidity 编译与封装生成**，本地测试也不能替代 POTOS Testnet 部署截图。
 
 ## 路线 A 接口
 

@@ -18,9 +18,11 @@
 | TOKEN_SOURCE | `packages/hardhat/contracts/YZHToken.sol` | YZH 实验 3 仓库 `blockchain-lab3-yzh`；已核对 ABI 包含 `balanceOf`、`transfer`、`approve`、`transferFrom`、`mint` |
 | DHT 代币余额 | `0`（2026-10-19 查询时） | 两单前至少补足 60 个 |
 | YZH 代币余额 | `70`（2026-10-19 查询时） | owner 可本人转账或 mint；交易需本人签名 |
-| BACKEND_ADDRESS | `0x6717496Fe22477B41e6Ca07353C308fF38A61797` | YZH 新建的 Backend Arbiter；2026-10-19 在 POTOS Testnet 查询余额为 0 POT，部署前需充值少量测试币 |
+| BACKEND_ADDRESS | `0x6717496Fe22477B41e6Ca07353C308fF38A61797` | YZH 新建的 Backend Arbiter；2026-10-22 已收到 0.0001 POT 测试币，充值交易见下文 |
 | ESCROW_ADDRESS | 待后端新部署 | 不沿用实验 3 地址 |
 | DEPLOY_TX_HASH / DEPLOY_BLOCK | 待真实部署回执 | 不预填 |
 | 后端端口 | `127.0.0.1:8080` | 本地监听，暂未提供认证 |
 
 后端私钥仅从本机 `WEB3J_PRIVATE_KEY` 环境变量读取；本表、Git 和报告中均不保存其值。
+
+2026-10-22 充值核对：YZH 钱包 `0xa508c9Ff372C40F1f109EdA1F8DB532fB556c30A` 向后端账户转入 `0.0001 POT`，交易哈希 `0xda990292aedba2361a4679c950f22510f511d02c7a673d2dec4bf857df681cfb`，区块 `2672654`，回执状态 `0x1`。同日重新查询 DHT 买家 YZHToken 余额仍为 `0`，需在两笔订单前补足至少 60 个并记录真实转账/铸币交易。

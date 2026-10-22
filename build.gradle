@@ -34,6 +34,16 @@ web3j {
     generatedFilesBaseDir = 'src'
 }
 
+// Pin the course compiler rather than resolving the newest 0.8.x release.
+// A local native compiler can be supplied without changing the shared build.
+solidity {
+    version = '0.8.20'
+    evmVersion = org.web3j.solidity.gradle.plugin.EVMVersion.PARIS
+    if (findProperty('solcExecutable')) {
+        executable = file(findProperty('solcExecutable')).absolutePath
+    }
+}
+
 // The course WSL image already supplies Node.js and npm. Avoid downloading
 // a second Node distribution during every fresh checkout.
 node {
