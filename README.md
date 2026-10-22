@@ -8,7 +8,7 @@
 - YZH：Controller、订单创建事件列表、订单时间线、错误处理、公开配置、集成和报告。
 - ZZL：独立重入挑战、主业务验收与交易证据索引。
 
-第一次参与协作请先读 [`docs/team-workflow.md`](docs/team-workflow.md)：项目目标、三人角色、分支/PR、链上验收与交接顺序均在此。DHT 的逐项任务见 [`docs/tasks-dht.md`](docs/tasks-dht.md)，ZZL 的逐项任务见 [`docs/tasks-zzl.md`](docs/tasks-zzl.md)。接口边界及交接要求见 [`docs/handoff-dht.md`](docs/handoff-dht.md)，链上公开参数见 [`docs/project-config.md`](docs/project-config.md)。
+三人共用的当前阶段、职责、下一位操作者和每阶段更新格式统一见 [`docs/team-handoff.md`](docs/team-handoff.md)。链上公开参数见 [`docs/project-config.md`](docs/project-config.md)。旧阶段的交接不覆盖当前状态。
 
 开始真实测试网操作时请打开 [`docs/experiment-runbook.md`](docs/experiment-runbook.md)，逐步记录公开数据、交易回执及报告截图编号。
 三人截图的编号、具体画面、责任人、建议文件名及 GitHub 归档目录见 [`docs/evidence-capture-guide.md`](docs/evidence-capture-guide.md)。
@@ -45,7 +45,7 @@ bash gradlew generateContractWrappers -PcompileContracts=true
 bash gradlew test -PcompileContracts=true
 ```
 
-若本机已有原生 solc 0.8.20，给命令附加 `-PsolcExecutable=/absolute/path/to/solc`；不要提交个人绝对路径。本地 EVM 复测方法见 [DHT 交接](docs/dht-handoff.md)。默认 `test` **不能替代最终 Solidity 编译与封装生成**，本地测试也不能替代 POTOS Testnet 部署截图。
+若本机已有原生 solc 0.8.20，给命令附加 `-PsolcExecutable=/absolute/path/to/solc`；不要提交个人绝对路径。本地 EVM 复测方法与真实执行结果见 [DHT 验证记录](docs/dht-verification.md) 和 `scripts/dht/run-local-tests.sh`。默认 `test` **不能替代最终 Solidity 编译与封装生成**，本地测试也不能替代 POTOS Testnet 部署截图。
 
 ## 路线 A 接口
 
@@ -73,8 +73,8 @@ curl -sS -X GET http://127.0.0.1:8080/api/escrow/orders/1/events
 
 ## SimpleStorage 示例
 
-课程示例保留在 `/api/storage`。它的地址和交易**独立于**本次 Escrow。待后端测试账户有少量 POT 后，按 `POST /api/storage/deploy`、`POST /api/storage/value/set?value=42`、`GET /api/storage/value/get` 顺序实测，并截图编号 4A-3。不能把这三步标成已完成。
+课程示例保留在 `/api/storage`。它的地址和交易**独立于**本次 Escrow。2026-10-22 已按 `POST /api/storage/deploy`、`POST /api/storage/value/set?value=42`、`GET /api/storage/value/get` 顺序在测试网完成并留存 4A-3 截图；实际地址、哈希和区块见 [实验执行记录](docs/experiment-runbook.md)。
 
 ## 验收和报告
 
-真实两单流程、交易索引及截图编号以分工文档为准。YZH 的待实测报告片段见 [`docs/report-parts/YZH.md`](docs/report-parts/YZH.md)。不要把旧实验 3 交易哈希填进本次大作业。
+真实两单流程、交易索引及截图编号以[共用阶段交接](docs/team-handoff.md)、[实验执行记录](docs/experiment-runbook.md)和[截图指南](docs/evidence-capture-guide.md)为准。YZH 的报告片段见 [`docs/report-parts/YZH.md`](docs/report-parts/YZH.md)。不要把旧实验 3 交易哈希填进本次大作业。

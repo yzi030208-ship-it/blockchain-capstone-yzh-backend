@@ -1,6 +1,6 @@
 # 路线 A 实验执行与证据记录（YZH 主持）
 
-状态：DHT 交接包已导入集成分支；后端账户充值、买家代币准备、SimpleStorage 示例和新 Escrow 部署已在测试网完成；**两笔订单主业务尚待真实执行**。本文件是现场清单，不能用本地 Hardhat 的地址、交易哈希或截图代替 POTOS Testnet 证据。交易记录统一交 ZZL 填入 `docs/transactions.md`，截图索引交 ZZL 填入 `docs/evidence-index.md`；文件尚未建立时先保留原始截图和哈希。
+状态：DHT 交接包已接入主分支；后端账户充值、买家代币准备、SimpleStorage 示例和新 Escrow 部署已在测试网完成；**两笔订单主业务尚待真实执行**。本文件是现场操作清单，三人的当前交接以 [team-handoff.md](team-handoff.md) 为准。不能用本地 Hardhat 的地址、交易哈希或截图代替 POTOS Testnet 证据。交易记录统一交 ZZL 填入 `docs/transactions.md`，截图索引交 ZZL 填入 `docs/evidence-index.md`；文件尚未建立时先保留原始截图和哈希。
 
 ## 现场共同规则
 
@@ -55,4 +55,4 @@ DHT 对**新 Escrow 地址**执行代币 `approve` 共 60 个（原始整数 `60
 
 ## 6. ZZL 独立加分挑战及报告
 
-ZZL 按 [tasks-zzl.md](tasks-zzl.md) 完成自身 VulnerableVault、Attacker、FixedVault 的测试网演示，保存 **4C-1 至 4C-3**。挑战使用原生 POT 和独立合约，不混入本次 Escrow 交易表。三人分别把本人报告片段、真实截图和问题记录交 YZH；YZH 收齐后再制作最终报告副本。
+ZZL 按 [三人共用交接](team-handoff.md) 完成自身 VulnerableVault、Attacker、FixedVault 的测试网演示，保存 **4C-1 至 4C-3**。挑战使用原生 POT 和独立合约，不混入本次 Escrow 交易表。三人分别把本人报告片段、真实截图和问题记录交 YZH；YZH 收齐后再制作最终报告副本。
