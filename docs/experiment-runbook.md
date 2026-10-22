@@ -1,6 +1,6 @@
 # 路线 A 实验执行与证据记录（YZH 主持）
 
-状态：DHT 交接包已导入集成分支；**仅后端账户充值已在测试网完成，其余交易待真实执行**。本文件是现场清单，不能用本地 Hardhat 的地址、交易哈希或截图代替 POTOS Testnet 证据。交易记录统一交 ZZL 填入 `docs/transactions.md`，截图索引交 ZZL 填入 `docs/evidence-index.md`；文件尚未建立时先保留原始截图和哈希。
+状态：DHT 交接包已导入集成分支；后端账户充值、买家代币准备和 SimpleStorage 示例已在测试网完成；**新 Escrow 主业务尚待真实执行**。本文件是现场清单，不能用本地 Hardhat 的地址、交易哈希或截图代替 POTOS Testnet 证据。交易记录统一交 ZZL 填入 `docs/transactions.md`，截图索引交 ZZL 填入 `docs/evidence-index.md`；文件尚未建立时先保留原始截图和哈希。
 
 ## 现场共同规则
 
@@ -17,11 +17,17 @@
 - [x] 同日发现 MetaMask 中另一个**同名同符号**代币：合约 `0x7640f3dee667Ea05CA6c9450cF35b596577025A6`，YZH 钱包余额为 `36000000000000000000`（36 枚）。它不是本项目指定的 `0xE48d6b8037972C2D056ef4aEd4352C6027dE88ee`。钱包资产列表中的“36 枚”与指定合约的“70 枚”分别属不同合约；所有正式交易按**完整合约地址**核对，不能凭名称、符号或钱包列表选代币。两笔订单所需 60 枚可由指定合约中的 70 枚提供，无需因此铸币。
 - [x] YZH 已用本人钱包给后端专用账户 `0x6717496Fe22477B41e6Ca07353C308fF38A61797` 转入 `0.0001 POT`：哈希 `0xda990292aedba2361a4679c950f22510f511d02c7a673d2dec4bf857df681cfb`，区块 `2672654`，回执 `0x1`；截图可作为账户准备的补充证据。
 - [x] YZH 已用本人钱包从正确的 YZHToken 合约 `0xE48d6b8037972C2D056ef4aEd4352C6027dE88ee` 向 DHT 买家 `0x5FeDaeB4369432aD2A9929EaFFA9762C46050d4C` 转入 60 枚：交易哈希 `0x698aa6302106bfe33a9a71ed0e421fead150ccf84b6519883cbfda2c20935f30`，区块 `2672655`，回执 `0x1`。转后读取 DHT `balanceOf` 为 `60000000000000000000`，YZH 为 `10000000000000000000`。保存转账回执截图 `4A-PREP-02` 及买家余额截图 `4A-PREP-03`。代币和 POT 是两种资产。
-- [ ] YZH 仅在本机 WSL 临时注入 `WEB3J_PRIVATE_KEY`，启动 `bash gradlew bootRun`；使用公开地址或本机自查方式确认凭据对应上述后端地址。无需把私钥或包含私钥的截图交给任何人。
+- [x] YZH 仅在本机 WSL 临时注入 `WEB3J_PRIVATE_KEY`，公开地址自查与后端账户相符；`bash gradlew bootRun` 启动成功，Tomcat 监听 8080。无需把私钥或包含私钥的截图交给任何人。
 
 ## 1. 先验证课程 SimpleStorage 示例（YZH，报告 4A-3）
 
-在运行后端的同一 WSL 中调用 `POST /api/storage/deploy`，记录真实部署地址、交易哈希和回执；再调用 `POST /api/storage/value/set?value=42`，记录 set 交易；最后 `GET /api/storage/value/get`，核对实际返回 42。保存三次接口响应和 set 的区块浏览器详情，截图统一标 **4A-3**。SimpleStorage 与主业务 Escrow 是不同合约，地址不能混用。
+2026-10-22，YZH 在运行后端的 WSL 中完成实际调用：
+
+- `POST /api/storage/deploy` 返回 SimpleStorage 地址 `0xD18efF885dc9F65273F1B76E2ad9ACEEce650b3A`。该示例接口只返回地址，部署哈希尚未记录。
+- `POST /api/storage/value/set?value=42` 返回交易哈希 `0x0563cf0ddcbbc739071ffa15c07e76b0b13cd8b4cacc72cbb3f88c5aff835584`，区块 `2672663`，gasUsed `27267`，回执状态 `0x1`。
+- `GET /api/storage/value/get` 返回同一合约地址和 `value: "42"`。
+
+保存三次接口响应和 set 的区块浏览器详情，截图统一标 **4A-3**。SimpleStorage 与主业务 Escrow 是不同合约，地址不能混用。
 
 ## 2. 后端部署新的 Escrow（YZH，4A-5）
 
