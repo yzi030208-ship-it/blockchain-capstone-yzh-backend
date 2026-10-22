@@ -1,6 +1,6 @@
 # 路线 A 实验执行与证据记录（YZH 主持）
 
-状态：DHT 交接包已导入集成分支；后端账户充值、买家代币准备和 SimpleStorage 示例已在测试网完成；**新 Escrow 主业务尚待真实执行**。本文件是现场清单，不能用本地 Hardhat 的地址、交易哈希或截图代替 POTOS Testnet 证据。交易记录统一交 ZZL 填入 `docs/transactions.md`，截图索引交 ZZL 填入 `docs/evidence-index.md`；文件尚未建立时先保留原始截图和哈希。
+状态：DHT 交接包已导入集成分支；后端账户充值、买家代币准备、SimpleStorage 示例和新 Escrow 部署已在测试网完成；**两笔订单主业务尚待真实执行**。本文件是现场清单，不能用本地 Hardhat 的地址、交易哈希或截图代替 POTOS Testnet 证据。交易记录统一交 ZZL 填入 `docs/transactions.md`，截图索引交 ZZL 填入 `docs/evidence-index.md`；文件尚未建立时先保留原始截图和哈希。
 
 ## 现场共同规则
 
@@ -31,7 +31,7 @@
 
 ## 2. 后端部署新的 Escrow（YZH，4A-5）
 
-调用 `POST /api/escrow/deploy`，再调 `GET /api/escrow/address`。记录 Escrow 地址 `________`、部署哈希 `________`、部署区块 `________`、链上 arbiter `________`。核对 arbiter 等于后端账户 `0x6717496Fe22477B41e6Ca07353C308fF38A61797`；截图 **4A-5 部署**。只有此步成功后，才把这四项**公开数据**发给 DHT、ZZL。
+2026-10-22，YZH 后端调用 `POST /api/escrow/deploy`，返回新 Escrow 地址 `0xDb666Df58291D7d49cea35eE36929dCcD37e2ea5`、部署哈希 `0x4f61670afea0a4714f89c02e177f14b7d2737fa1cad9cac797727344ec187372`、部署区块 `2672683`。RPC 部署回执 `status=0x1`，`from=0x6717496Fe22477B41e6Ca07353C308fF38A61797`，`contractAddress` 与返回地址相同。随后只读查询 `GET /api/escrow/address` 返回同一地址和区块，链上 arbiter `0x6717496fe22477b41e6ca07353c308ff38a61797`，与后端专用账户一致（地址比较忽略大小写）。不要再次部署；服务重启时使用 `load` 和原部署区块。保存 **4A-5 部署**截图。把这四项**公开数据**发给 DHT、ZZL 后才能开始两笔订单。
 
 ## 3. 买家两单创建并付款（DHT 本人签名，4A-5）
 
