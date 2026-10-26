@@ -31,7 +31,7 @@
 | 4A-5 卖家 | YZH 钱包对订单 1 执行 `dispute(1)`，回执和订单状态 | 截图 `evidence/4A/4A-5-05_YZH_卖家dispute成功_订单1Disputed.png`；完整哈希见交接记录 |
 | T-1 | `GET /api/escrow/orders/0/events`，确认后应有三条真实事件 | 确认前两条已存 `evidence/timeline/T-1_YZH_正常单确认前时间线.json`；第三条待 DHT 操作 |
 | T-2 | `GET /api/escrow/orders/1/events` 四条真实事件，`sellerWins=false` | JSON 已存 `evidence/timeline/T-2_YZH_争议单时间线.json`；PNG 待补 |
-| T-3 | 与区块浏览器 Logs 对照，并展示跨 10 区块查询及重启 load 结果 | 待实测 |
+| T-3 | 与链上 Logs 对照，并展示跨 10 区块查询及重启 load 结果 | 实测过程和真实 JSON 见 `evidence/timeline/T-3_YZH_跨十区块与链上日志核对.md`；浏览器及报告 PNG 待补 |
 
 ## 本人问题与 AI 使用记录
 
