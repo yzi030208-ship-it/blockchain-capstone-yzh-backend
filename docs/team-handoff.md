@@ -9,7 +9,7 @@
 | 成员 | 当前负责 | 只能由本人完成的签名 |
 | --- | --- | --- |
 | DHT（买家） | 已交付 Escrow 合约、Java 封装与核心 Service；已创建两单、授权并付款；等待 YZH 仲裁退款后确认正常单；买家截图和交易哈希已归档 | 买家钱包 `createOrder`、`approve`、`deposit`、`confirm` |
-| YZH（组长、卖家） | 已交付 Controller、事件查询、时间线、集成、SimpleStorage 和新 Escrow 部署；已完成订单 1 争议及退款、订单 0 失败仲裁验证；继续处理列表查询耗时、截图、时间线和重启复查 | 卖家钱包 `dispute`；后端专用账户在本人本机签名 `deploy`、`resolve` |
+| YZH（组长、卖家） | 已交付 Controller、事件查询、时间线、集成、SimpleStorage 和新 Escrow 部署；已完成订单 1 争议及退款、订单 0 失败仲裁验证；列表查询优化和重启 load 已实测，继续补报告截图与正常单完成后的时间线 | 卖家钱包 `dispute`；后端专用账户在本人本机签名 `deploy`、`resolve` |
 | ZZL（验收） | 建立交易表和截图索引，逐笔核对公开回执；独立完成重入挑战、修复复测和本人报告材料 | 仅自己的挑战合约交易；不代替 DHT/YZH 主业务签名 |
 
 ## 当前阶段：订单 1 仲裁退款已核验，补证、正常单确认和时间线待完成
@@ -21,8 +21,8 @@
 | 3. SimpleStorage 示例 | YZH | `deploy → set(42) → get=42` 已在测试网完成；set 交易 `0x0563cf0ddcbbc739071ffa15c07e76b0b13cd8b4cacc72cbb3f88c5aff835584` 成功，区块 `2672663`。 | `evidence/4A/4A-3-01*`、`4A-3-02*`；用于报告 4A-3 |
 | 4. 新 Escrow 部署 | YZH | 新地址 `0xDb666Df58291D7d49cea35eE36929dCcD37e2ea5`，部署哈希 `0x4f61670afea0a4714f89c02e177f14b7d2737fa1cad9cac797727344ec187372`，区块 `2672683`，回执 `0x1`；链上 arbiter 与后端专用账户 `0x6717496Fe22477B41e6Ca07353C308fF38A61797` 一致。**不再 deploy。** | `evidence/4A/4A-5-01*`；DHT、ZZL 使用该公开地址 |
 | 5. 两单创建、授权、付款 | DHT | **2026-10-26 已完成。** 正常单 id=0、争议单 id=1，每单 30 枚；approve 共 60 枚；两笔 deposit 成功，截图中两单 status=1（Paid）。五笔交易均已只读查询 RPC 回执核对成功。 | 10 张原图副本已归档到 evidence/4A/；见下方 2026-10-26 更新、交易表和截图索引；YZH 接手争议 |
-| 6. 争议、列表、失败与成功仲裁 | YZH，ZZL 核对 | **争议、失败仲裁及退款已核验。** 订单 1 的 dispute 成功；订单 0 的 resolve 回执为 `0x0`；订单 1 的 `resolve(false)` 回执为 `0x1`，含向 DHT 转出 30 枚指定代币的日志。4A-6 列表此前超时，优化后的实测结果和 4A-6/7/8 截图仍待补齐。 | YZH 交 4A-5/6/7，ZZL 截 4A-8 并登记实际失败类型和成功交易 |
-| 7. 正常完成、时间线、重启恢复 | DHT、YZH、ZZL | **尚未核验完成。** DHT 核对退款到账后确认正常单 0，并提供真实回执；YZH 查两单时间线和余额，服务重启后用原地址/区块 load 复查；ZZL 核对浏览器 Logs。 | 4A-S1/S2、T-1/T-2/T-3 与交易索引；YZH 最终汇总 |
+| 6. 争议、列表、失败与成功仲裁 | YZH，ZZL 核对 | **争议、失败仲裁及退款已核验。** 订单 1 的 dispute 成功；订单 0 的 resolve 回执为 `0x0`；订单 1 的 `resolve(false)` 回执为 `0x1`，含向 DHT 转出 30 枚指定代币的日志。优化后的 `GET /orders` 约 40 秒返回两单，退款前 Paid/Disputed 详情与回执 JSON 已归档；4A-6/7/8 的 PNG 截图仍待补齐。 | YZH 交 4A-5/6/7，ZZL 截 4A-8 并登记实际失败类型和成功交易 |
+| 7. 正常完成、时间线、重启恢复 | DHT、YZH、ZZL | **尚未核验完成。** 服务重启并按原地址/区块 load 已复查；争议单四事件 T-2 JSON 已归档，正常单确认前只有创建和付款两事件。DHT 核对退款到账后确认正常单 0，并提供真实回执；YZH 补完整 T-1、T-3 与截图，ZZL 核对浏览器 Logs。 | 4A-S1/S2、T-1/T-2/T-3 与交易索引；YZH 最终汇总 |
 | 8. 独立重入挑战与报告 | ZZL、三人 | ZZL 挑战和最终报告证据**未在本仓库核实**；与主业务可并行。 | ZZL 交 4C-1/2/3、报告片段；三人核对贡献比例和 AI 使用后由 YZH 制作报告副本 |
 
 ## DHT 已完成阶段的操作参考 请勿重复创建或付款
@@ -105,3 +105,10 @@ ZZL 的独立加分挑战放在 `bonus/reentrancy/`：只在本组自建合约�
 - 后续真实记录：卖家争议交易 `0xe394176ba8ee598af750fc5cf9528dd1062bbf365cf3728df9ac0a7027e4db91`，区块 `2689118`，回执 `0x1`；订单 0 的失败仲裁 `0x07c6c39d408ad1d599cb4b2e1039f4630f2c5d12dd052e92032111e169aab3ed`，区块 `2689253`，回执 `0x0`；订单 1 的退款仲裁 `0x86b5d80b974abd153f5b40a4e08f72f0d5657bf1fd048289eb621878fbbf9a92`，区块 `2689270`，回执 `0x1`，含指定 ERC20 向 DHT 退款 30 枚及 `OrderResolved(false)` 日志。这些为已核验的后续进度，不重复 dispute 或 resolve。
 - YZH 另一个本地任务仍在处理列表扫描耗时、截图和时间线；其本地代码、截图和回执文件尚未随本次 PR 发布。此次远端合并未改动该任务的本地工作文件。不能把 JSON 回执文件当成报告所需的界面截图，也不能将待完成的列表、时间线或重启恢复标为通过。
 - 下一位：DHT 核对退款余额，按主流程交接安排确认订单 0 并交真实回执；ZZL 保存成功仲裁浏览器 4A-8、补交易表与截图索引；YZH 完成列表优化验证、4A-6/7 及 T-1 至 T-3。订单 0 的确认回执尚未在本次核验材料中取得。
+
+### 2026-10-26 YZH 后端列表、时间线与证据更新
+
+- 卖家订单 1 争议前后的真实 Remix 原图及仓库副本：[争议前 Paid](../evidence/4A/4A-5-05a_YZH_订单1争议前Paid.png)、[争议成功和 Disputed](../evidence/4A/4A-5-05_YZH_卖家dispute成功_订单1Disputed.png)。后端恢复加载原 Escrow 的截图见 [4A-5-01c](../evidence/4A/4A-5-01c_YZH_原Escrow恢复加载核对.png)。卖家争议完整哈希 `0xe394176ba8ee598af750fc5cf9528dd1062bbf365cf3728df9ac0a7027e4db91`，区块 `2689118`，回执 `0x1`。
+- 退款前保存后端实际响应：[订单 0 Paid](../evidence/4A/4A-6-02a_YZH_订单0_Paid.json)、[订单 1 Disputed](../evidence/4A/4A-6-02b_YZH_订单1_Disputed.json)。`resolve(0,true)` 真实失败回执 `0x07c6c39d408ad1d599cb4b2e1039f4630f2c5d12dd052e92032111e169aab3ed`，区块 `2689253`，`status=0x0`、gasUsed `25889`，后端 HTTP 502，见[失败回执 JSON](../evidence/4A/4A-7-01_YZH_未争议resolve失败回执.json)；订单 0 保持 Paid。`resolve(1,false)` 成功哈希 `0x86b5d80b974abd153f5b40a4e08f72f0d5657bf1fd048289eb621878fbbf9a92`，区块 `2689270`，`status=0x1`，ERC20 日志显示新 Escrow 向 DHT 退 30 枚，见[成功回执 JSON](../evidence/4A/4A-7-02_YZH_争议订单退款成功回执.json)与[订单 1 Refunded 响应](../evidence/4A/4A-7-03_YZH_订单1_Refunded.json)。指定代币 `balanceOf(DHT)` 读到退款后余额 30 枚；DHT 本人仍需截图核对。
+- 10 区块顺序扫链曾超过 240 秒未返回。YZH 改为最多 8 个窗口并发，每个窗口仍最多 10 区块；原有事件测试通过。重启后以原地址和部署区块 `2672683` 成功 `load`，`GET /api/escrow/orders` 约 40 秒返回 HTTP 200 和[两笔真实订单](../evidence/4A/4A-6-01_YZH_订单列表.json)。[争议单 T-2](../evidence/timeline/T-2_YZH_争议单时间线.json)包含创建、付款、争议、`OrderResolved(false)` 四事件，不虚构 `OrderRefunded` 日志。[正常单确认前时间线](../evidence/timeline/T-1_YZH_正常单确认前时间线.json)只有创建、付款两事件；DHT `confirm(0)` 尚未发生。
+- 以上 JSON 是真实后端/RPC 响应存档，**不是报告要求的 PNG 截图**。YZH/ZZL 仍须补 4A-6/7、T-1/2/3 可读画面和 4A-8 浏览器详情；DHT 核对买家退款余额后，再按交接确认订单 0，并保存正常完成回执。

@@ -17,6 +17,8 @@
 
 在 WSL/Ubuntu 中使用 JDK 21、Node.js 20 和 Gradle Wrapper。主业务必须使用 **本组新部署的 Escrow**，仲裁人是由后端控制的独立测试账户；实验 3 的旧 Escrow 和旧仲裁钱包不能代替它。私钥仅保存在本机环境变量，不填入聊天、源码、`.env`、截图或报告。后端默认仅监听 `127.0.0.1:8080`；此设置不等于完整认证。
 
+YZH 在仓库根目录可运行 `bash scripts/yzh/start-backend.sh`。脚本会隐藏输入、检查私钥格式并启动后端；输入内容不要粘贴到命令行或聊天。服务启动后在另一个 WSL 终端调用 `POST /api/escrow/load?address=0xDb666Df58291D7d49cea35eE36929dCcD37e2ea5&fromBlock=2672683` 恢复本组 Escrow，不再次部署。
+
 ```bash
 cd /path/to/blockchain-capstone-backend
 java -version

@@ -2,12 +2,17 @@ package com.wetech.demo.web3j.escrow;
 
 import java.io.IOException;
 import java.math.BigInteger;
+import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 import org.springframework.stereotype.Service;
 import org.web3j.abi.EventEncoder;
 import org.web3j.abi.FunctionReturnDecoder;
@@ -27,6 +32,7 @@ import org.web3j.protocol.core.methods.response.Log;
 /** Rebuilds the order list and timelines from the actual Escrow event logs. */
 @Service
 public class EscrowEventQueryService {
+    private static final int MAX_IN_FLIGHT_WINDOWS = 8;
     private static final Event CREATED = new Event("OrderCreated", List.of(
             new TypeReference<Uint256>(true) {}, new TypeReference<Address>(true) {},
             new TypeReference<Address>(true) {}, new TypeReference<Address>() {},
@@ -129,33 +135,32 @@ public class EscrowEventQueryService {
             throw new EscrowRpcException("eth_blockNumber request failed", error);
         }
 
+        // Keep the provider's ten-block limit while overlapping bounded network waits.
         List<Log> raw = new ArrayList<>();
-        BigInteger start = fromBlock;
-        while (start.compareTo(latest) <= 0) {
-            BigInteger end = start.add(BigInteger.valueOf(9)).min(latest);
-            EthFilter filter = new EthFilter(
-                    DefaultBlockParameter.valueOf(start), DefaultBlockParameter.valueOf(end), address);
-            filter.addOptionalTopics(topic0.toArray(String[]::new));
-            if (id != null) filter.addSingleTopic("0x" + String.format("%064x", id));
-            try {
-                EthLog response = web3j.ethGetLogs(filter).send();
-                if (response.hasError()) {
-                    throw new EscrowRpcException("eth_getLogs failed for blocks " + start + "-" + end
-                            + ": " + response.getError().getMessage());
+        ArrayDeque<Future<List<Log>>> pending = new ArrayDeque<>();
+        ExecutorService workers = Executors.newFixedThreadPool(MAX_IN_FLIGHT_WINDOWS);
+        try {
+            BigInteger next = fromBlock;
+            while (next.compareTo(latest) <= 0 || !pending.isEmpty()) {
+                while (next.compareTo(latest) <= 0 && pending.size() < MAX_IN_FLIGHT_WINDOWS) {
+                    BigInteger start = next;
+                    BigInteger end = start.add(BigInteger.valueOf(9)).min(latest);
+                    pending.addLast(workers.submit(() -> scanWindow(address, topic0, id, start, end)));
+                    next = end.add(BigInteger.ONE);
                 }
-                if (response.getLogs() == null) {
-                    throw new EscrowRpcException("eth_getLogs returned no result for blocks " + start + "-" + end);
+                try {
+                    raw.addAll(pending.removeFirst().get());
+                } catch (InterruptedException error) {
+                    Thread.currentThread().interrupt();
+                    throw new EscrowRpcException("eth_getLogs scan interrupted", error);
+                } catch (ExecutionException error) {
+                    if (error.getCause() instanceof EscrowRpcException rpcError) throw rpcError;
+                    throw new EscrowRpcException("eth_getLogs scan failed", error.getCause());
                 }
-                for (EthLog.LogResult<?> result : response.getLogs()) {
-                    if (!(result.get() instanceof Log log)) {
-                        throw new EscrowRpcException("eth_getLogs returned an unexpected log type");
-                    }
-                    if (!log.isRemoved()) raw.add(log);
-                }
-            } catch (IOException error) {
-                throw new EscrowRpcException("eth_getLogs request failed for blocks " + start + "-" + end, error);
             }
-            start = end.add(BigInteger.ONE);
+        } finally {
+            pending.forEach(job -> job.cancel(true));
+            workers.shutdownNow();
         }
         raw.sort(LOG_ORDER);
         Map<String, Log> distinct = new LinkedHashMap<>();
@@ -167,6 +172,34 @@ public class EscrowEventQueryService {
             distinct.putIfAbsent(log.getTransactionHash().toLowerCase(Locale.ROOT) + ":" + log.getLogIndex(), log);
         }
         return List.copyOf(distinct.values());
+    }
+
+    private List<Log> scanWindow(String address, List<String> topic0, BigInteger id,
+                                 BigInteger start, BigInteger end) {
+        EthFilter filter = new EthFilter(
+                DefaultBlockParameter.valueOf(start), DefaultBlockParameter.valueOf(end), address);
+        filter.addOptionalTopics(topic0.toArray(String[]::new));
+        if (id != null) filter.addSingleTopic("0x" + String.format("%064x", id));
+        try {
+            EthLog response = web3j.ethGetLogs(filter).send();
+            if (response.hasError()) {
+                throw new EscrowRpcException("eth_getLogs failed for blocks " + start + "-" + end
+                        + ": " + response.getError().getMessage());
+            }
+            if (response.getLogs() == null) {
+                throw new EscrowRpcException("eth_getLogs returned no result for blocks " + start + "-" + end);
+            }
+            List<Log> found = new ArrayList<>();
+            for (EthLog.LogResult<?> result : response.getLogs()) {
+                if (!(result.get() instanceof Log log)) {
+                    throw new EscrowRpcException("eth_getLogs returned an unexpected log type");
+                }
+                if (!log.isRemoved()) found.add(log);
+            }
+            return found;
+        } catch (IOException error) {
+            throw new EscrowRpcException("eth_getLogs request failed for blocks " + start + "-" + end, error);
+        }
     }
 
     private static List<Type> decode(Log log, Event event) {
