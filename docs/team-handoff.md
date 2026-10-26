@@ -8,11 +8,11 @@
 
 | 成员 | 当前负责 | 只能由本人完成的签名 |
 | --- | --- | --- |
-| DHT（买家） | 已交付 Escrow 合约、Java 封装与核心 Service；下一阶段创建两单、授权、付款，最后确认正常单；交买家截图和交易哈希 | 买家钱包 `createOrder`、`approve`、`deposit`、`confirm` |
+| DHT（买家） | 已交付 Escrow 合约、Java 封装与核心 Service；已创建两单、授权并付款；等待 YZH 仲裁退款后确认正常单；买家截图和交易哈希已归档 | 买家钱包 `createOrder`、`approve`、`deposit`、`confirm` |
 | YZH（组长、卖家） | 已交付 Controller、事件查询、时间线、集成、SimpleStorage 和新 Escrow 部署；下一阶段在争议单付款后 `dispute`，再做后端查询、仲裁、重启复查和报告 | 卖家钱包 `dispute`；后端专用账户在本人本机签名 `deploy`、`resolve` |
 | ZZL（验收） | 建立交易表和截图索引，逐笔核对公开回执；独立完成重入挑战、修复复测和本人报告材料 | 仅自己的挑战合约交易；不代替 DHT/YZH 主业务签名 |
 
-## 当前阶段：等待 DHT 买家创建和付款
+## 当前阶段：DHT 两单付款已完成 等待 YZH 争议和仲裁
 
 | 阶段 | 负责人 | 已核实结果 / 尚需结果 | 证据与下一位 |
 | --- | --- | --- | --- |
@@ -20,17 +20,19 @@
 | 2. 账户与代币准备 | YZH | 后端账户获 0.0001 POT；YZH 从**正确代币合约**给 DHT 转 60 枚，转后读到 DHT 60、YZH 10。DHT 操作前仍须复查 POT 和代币余额。 | 充值哈希、转币哈希见 [公开配置](project-config.md)；DHT 接手 |
 | 3. SimpleStorage 示例 | YZH | `deploy → set(42) → get=42` 已在测试网完成；set 交易 `0x0563cf0ddcbbc739071ffa15c07e76b0b13cd8b4cacc72cbb3f88c5aff835584` 成功，区块 `2672663`。 | `evidence/4A/4A-3-01*`、`4A-3-02*`；用于报告 4A-3 |
 | 4. 新 Escrow 部署 | YZH | 新地址 `0xDb666Df58291D7d49cea35eE36929dCcD37e2ea5`，部署哈希 `0x4f61670afea0a4714f89c02e177f14b7d2737fa1cad9cac797727344ec187372`，区块 `2672683`，回执 `0x1`；链上 arbiter 与后端专用账户 `0x6717496Fe22477B41e6Ca07353C308fF38A61797` 一致。**不再 deploy。** | `evidence/4A/4A-5-01*`；DHT、ZZL 使用该公开地址 |
-| 5. 两单创建、授权、付款 | DHT | **待本人实测。** 本次 Escrow 的订单 id、创建/approve/deposit 哈希均待取得。 | DHT 交每笔真实哈希、区块、两单 id 和 4A-5 截图给 YZH/ZZL；付款后 YZH 接手争议 |
-| 6. 争议、列表、失败与成功仲裁 | YZH，ZZL 核对 | **待两单付款。** YZH 卖家争议一单；后端查询 Paid/Disputed；未争议单 resolve 失败、争议单 `sellerWins=false` 成功并退款。 | YZH 交 4A-5/6/7，ZZL 截 4A-8 并登记实际失败类型和成功交易 |
+| 5. 两单创建、授权、付款 | DHT | **2026-10-26 已完成。** 正常单 id=0、争议单 id=1，每单 30 枚；approve 共 60 枚；两笔 deposit 成功，截图中两单 status=1（Paid）。五笔交易均已只读查询 RPC 回执核对成功。 | 10 张原图副本已归档到 evidence/4A/；见下方 2026-10-26 更新、交易表和截图索引；YZH 接手争议 |
+| 6. 争议、列表、失败与成功仲裁 | YZH，ZZL 核对 | **两单已付款，待 YZH 本人操作。** YZH 卖家对订单 1 发起争议；后端查询 Paid/Disputed；未争议单 resolve 失败、争议单 `sellerWins=false` 成功并退款。 | YZH 交 4A-5/6/7，ZZL 截 4A-8 并登记实际失败类型和成功交易 |
 | 7. 正常完成、时间线、重启恢复 | DHT、YZH、ZZL | **待阶段 6。** DHT 确认正常单；YZH 查两单时间线和余额，服务重启后用原地址/区块 load 复查；ZZL 核对浏览器 Logs。 | 4A-S1/S2、T-1/T-2/T-3 与交易索引；YZH 最终汇总 |
 | 8. 独立重入挑战与报告 | ZZL、三人 | ZZL 挑战和最终报告证据**未在本仓库核实**；与主业务可并行。 | ZZL 交 4C-1/2/3、报告片段；三人核对贡献比例和 AI 使用后由 YZH 制作报告副本 |
 
-## 现在由 DHT 做的具体操作
+## DHT 已完成阶段的操作参考 请勿重复创建或付款
 
 1. 更新到最新仓库，核对 POTOS Testnet `chainId=60600`、本人买家地址 `0x5FeDaeB4369432aD2A9929EaFFA9762C46050d4C`、指定 YZHToken `0xE48d6b8037972C2D056ef4aEd4352C6027dE88ee` 的余额至少 60，且有足够 POT。钱包里另一个同名代币不能代替。
 2. 在 Remix 使用本仓库 `src/main/resources/contracts/Escrow.sol`，以 **At Address** 附加阶段 4 的新 Escrow，不再次部署。读取 `arbiter` 和 `orderCount`；订单 id 以实际链上结果为准。
 3. 用买家钱包创建两单，各 `amount=30000000000000000000`（18 位精度），`seller=0xa508c9Ff372C40F1f109EdA1F8DB532fB556c30A`，`token` 为上述指定合约。`deadline` 在操作当时计算未来约 30 分钟的 Unix 秒，description 区分正常单/争议单。逐笔记录哈希、区块、id。
 4. 在指定 YZHToken 上对**新 Escrow** `approve(60000000000000000000)`，读取 `allowance`，再分别 `deposit` 两单并核对 Paid。完成后把哈希、id 和截图交 YZH/ZZL；**等争议与退款完成后才 confirm 正常单**。
+
+当前 DHT 已完成上述创建、授权和两笔付款，证据见文末；不要重复上述发送步骤。等待 YZH 对订单 1 争议及仲裁退款后，DHT 再核对退款并确认订单 0。
 
 ## ZZL 与 YZH 的并行工作
 
@@ -61,3 +63,35 @@ ZZL 的独立加分挑战放在 `bonus/reentrancy/`：只在本组自建合约�
 ## 阶段更新记录
 
 - 2026-10-22，YZH：已核对新 Escrow 部署回执与 `/api/escrow/address`，阶段 4 完成；交 DHT 在新 Escrow 创建两单、批准与付款，交 ZZL 跟踪公开交易。阶段 5 结果待 DHT 本人补入。
+
+
+### 2026-10-26 DHT 买家创建授权付款完成并归档
+
+- 操作人：DHT；核验时间（Asia/Shanghai）：2026-10-26T15:40:37.376339+08:00。交易由 DHT 本人通过 MetaMask 签名；Codex 只读查询公开 RPC 核验并归档截图，没有代签交易。
+- 本次 Escrow：`0xDb666Df58291D7d49cea35eE36929dCcD37e2ea5`；代币：`0xE48d6b8037972C2D056ef4aEd4352C6027dE88ee`；买卖家沿用公开配置。
+- 实际创建正常单 0、争议单 1；每单金额 `30000000000000000000`，批准额度 `60000000000000000000`。付款后原始 getOrder 截图中两单 status 均为 1（Paid）。这是截图时点的状态，不预断后续链上状态。
+
+| 操作 | 交易哈希 | 区块 | 回执 | gasUsed |
+| --- | --- | --- | --- | --- |
+| createOrder(0) 正常订单 | `0x782a3aa446b05827ba109dbd3502edec6b60f2b93d72488011e4e6d55f6524b6` | 2688642 | 0x1 | 80531 |
+| createOrder(1) 争议订单 | `0xd2246b70a7f676b33c70fcf31f2f25baf5c1d0fd61e1ef9f111f921e2555a333` | 2688698 | 0x1 | 80531 |
+| approve 新 Escrow 共 60 枚 | `0x279498c462501f23a680cacaf7b82a68771a47456a3c8cce1a43e5032d3f1014` | 2688760 | 0x1 | 28423 |
+| deposit(0) 付款 30 枚 | `0xe4e6c4089b9dde7fef35832cd2020f649ac5cad5842ccdc2df080f28d8247b46` | 2688806 | 0x1 | 70217 |
+| deposit(1) 付款 30 枚 | `0xdcfa559d8fed107287dbab3d29e6efd1b09872c0932f6d6d7371b35423287db7` | 2688820 | 0x1 | 70217 |
+
+- 原图保留在 DHT 本机 `微众银行实验/大作业/screenshots/`，未移动或改写；逐字节一致的仓库副本为：
+
+- [`4A-5-02_DHT_两单创建_1.png`](../evidence/4A/4A-5-02_DHT_两单创建_1.png)
+- [`4A-5-02_DHT_两单创建_2.png`](../evidence/4A/4A-5-02_DHT_两单创建_2.png)
+- [`4A-5-02_DHT_两单创建_3.png`](../evidence/4A/4A-5-02_DHT_两单创建_3.png)
+- [`4A-5-02_DHT_两单创建_4.png`](../evidence/4A/4A-5-02_DHT_两单创建_4.png)
+- [`4A-5-03_DHT_approve新Escrow_1.png`](../evidence/4A/4A-5-03_DHT_approve新Escrow_1.png)
+- [`4A-5-03_DHT_approve新Escrow_2.png`](../evidence/4A/4A-5-03_DHT_approve新Escrow_2.png)
+- [`4A-5-04_DHT_两单deposit_1.png`](../evidence/4A/4A-5-04_DHT_两单deposit_1.png)
+- [`4A-5-04_DHT_两单deposit_2.png`](../evidence/4A/4A-5-04_DHT_两单deposit_2.png)
+- [`4A-5-04_DHT_两单deposit_3_1.png`](../evidence/4A/4A-5-04_DHT_两单deposit_3_1.png)
+- [`4A-5-04_DHT_两单deposit_3_2.png`](../evidence/4A/4A-5-04_DHT_两单deposit_3_2.png)
+
+- 详细索引：[截图索引](evidence-index.md)；浏览器链接及交易表：[交易记录](transactions.md)。截图不含私钥、助记词或访问令牌；参数图与对应回执图分开保留，不拼接或改写画面。
+- 尚未完成：YZH 的 dispute(1)、后端列表/详情、resolve(0,true) 失败验收、resolve(1,false) 退款、DHT confirm(0)、最终余额及时间线、重启复查。没有预填这些交易的哈希或结果。DHT 的 4A-1、4A-2、4A-4 代码截图也仍需补齐。
+- 下一位：YZH 用卖家钱包 dispute(1)，取得 Paid/Disputed 查询证据，再完成未争议单失败裁决及争议单退款。ZZL 核对回执并补浏览器证据。DHT 等退款完成后再核对退款及 confirm(0)。无需重新 deploy、createOrder、approve 或 deposit。

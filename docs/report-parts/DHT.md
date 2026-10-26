@@ -1,6 +1,6 @@
 # DHT 大作业报告片段
 
-本片段对应报告 4.4 的 DHT 部分及本人 4.6、AI 使用说明。状态：代码和本地验证已完成并接入主分支；新 Escrow 已由 YZH 部署，DHT 本人的两单交易、真人截图和相关数值待补。实际进度以 [三人共用交接](../team-handoff.md) 为准。所有“待补”必须在正式提交前替换为真实证据，不能直接把本文作为已完成报告。
+本片段对应报告 4.4 的 DHT 部分及本人 4.6、AI 使用说明。状态：代码和本地验证已完成并接入主分支；新 Escrow 已由 YZH 部署，DHT 已在 2026-10-26 完成两单创建、60 枚授权与两单付款，10 张真实截图已归档；争议、仲裁退款、最终确认及其数值仍待补。实际进度以 [三人共用交接](../team-handoff.md) 为准。所有“待补”必须在正式提交前替换为真实证据，不能直接把本文作为已完成报告。
 
 ## 分工与实现
 
@@ -42,16 +42,16 @@ Solidity 的 `Order memory` 在本次生成封装中映射为静态内部类 `Es
 
 ## 截图 4A-5 买家操作材料
 
-【待本人操作并截图】按 [三人共用交接](../team-handoff.md) 与 [实验执行记录](../experiment-runbook.md) 在本组新 Escrow 完成两笔 createOrder、一笔 approve 共 60 个代币、两笔 deposit，等待组长执行争议和仲裁，再确认正常订单。每笔哈希、区块和金额交给 ZZL。
+【买家创建及付款已完成】2026-10-26 在本组新 Escrow 完成两笔 createOrder、一笔 approve 共 60 枚、两笔 deposit。两单原始 getOrder 截图均为 status=1（Paid）；五笔实际交易及事件经只读 RPC 核对。10 张截图见 [证据索引](../evidence-index.md)，哈希、区块和金额见 [交易记录](../transactions.md)。目前等待 YZH 对争议单退款，之后再确认正常单，不把待执行结果写成已完成。
 
 | 待填项 | 真实值 |
 | --- | --- |
 | 本次新 Escrow / 部署区块 | `0xDb666Df58291D7d49cea35eE36929dCcD37e2ea5` / `2672683`；详见公开配置 |
 | 链上 arbiter / resolve From | arbiter 为 `0x6717496Fe22477B41e6Ca07353C308fF38A61797`；实际 resolve From 待交易后核对 |
-| 买家地址 / 卖家地址 | 待本人本次钱包核对 |
-| 正常单 id / 创建、付款、确认哈希 | 待测试网操作 |
-| 争议单 id / 创建、付款、退款哈希 | 待测试网操作 |
-| approve spender / 金额 / 哈希 | 待测试网操作；spender 必须为新 Escrow |
+| 买家地址 / 卖家地址 | `0x5FeDaeB4369432aD2A9929EaFFA9762C46050d4C` / `0xa508c9Ff372C40F1f109EdA1F8DB532fB556c30A`；创建回执事件及钱包截图已核对 |
+| 正常单 id / 创建、付款、确认哈希 | id=0；创建 `0x782a3aa446b05827ba109dbd3502edec6b60f2b93d72488011e4e6d55f6524b6`；付款 `0xe4e6c4089b9dde7fef35832cd2020f649ac5cad5842ccdc2df080f28d8247b46`；confirm 待执行 |
+| 争议单 id / 创建、付款、退款哈希 | id=1；创建 `0xd2246b70a7f676b33c70fcf31f2f25baf5c1d0fd61e1ef9f111f921e2555a333`；付款 `0xdcfa559d8fed107287dbab3d29e6efd1b09872c0932f6d6d7371b35423287db7`；仲裁退款待执行 |
+| approve spender / 金额 / 哈希 | 新 Escrow `0xDb666Df58291D7d49cea35eE36929dCcD37e2ea5` / `60000000000000000000` / `0x279498c462501f23a680cacaf7b82a68771a47456a3c8cce1a43e5032d3f1014` |
 | 仲裁前后买家与托管的 ERC20 余额 | 待真实读取 |
 
 ### 解释 4A-5 草稿 待结合本组交易定稿
