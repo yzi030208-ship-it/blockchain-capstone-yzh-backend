@@ -51,7 +51,23 @@
 | --- | --- | --- |
 | [4A-S1-01_DHT_正常单确认前Paid.png](../evidence/4A/4A-S1-01_DHT_正常单确认前Paid.png) | 本组 Escrow 的 getOrder(0) 显示 status=1、正常订单 | 确认前只读状态，不产生交易哈希 |
 | [4A-S1-02_DHT_confirm订单0参数.png](../evidence/4A/4A-S1-02_DHT_confirm订单0参数.png) | confirm(uint256) 输入 `0` | 参数图，不单独证明交易成功 |
-| [4A-S1-03_DHT_confirm订单0成功回执.png](../evidence/4A/4A-S1-03_DHT_confirm订单0成功回执.png) | Remix 显示交易已挖出且执行完成；From DHT、To 新 Escrow；哈希 `0x4d1ab17ee3ede2c696944a2ace7d0f8e195949cdb6928b5883b1b3c162cd8f46`，区块 2689699，gas 62549 | 原始日志 2 条；截图本身未代替独立 RPC/浏览器复核 |
+| [4A-S1-03_DHT_confirm订单0成功回执.png](../evidence/4A/4A-S1-03_DHT_confirm订单0成功回执.png) | Remix 显示交易已挖出且执行完成；From DHT、To 新 Escrow；正确哈希 `0x4d1ab17ee3ede2c696944a2ace7d0f8e195949cdb6928b5883b1b3c162cd6f46`，区块 2689699，gas 62549 | 原始日志 2 条；YZH 按区块查询、DHT 交接侧再次通过课程 RPC 查询，均确认回执 `0x1` |
 | [4A-S1-04_DHT_正常单Completed.png](../evidence/4A/4A-S1-04_DHT_正常单Completed.png) | 后续 getOrder(0) 显示 status=2（Completed）、正常订单 | 只读状态，与前一张成功回执合并证明正常单完成 |
 
-原有 [退款余额图](../evidence/4A/4A-S2-02_DHT_买家退款_1.png) 与 [订单 1 Refunded 图](../evidence/4A/4A-S2-02_DHT_买家退款_2.png)仍是争议单退款证据，不把订单 0 确认误写为订单 1 的操作。4A-6/7 的后端 PNG 和 ZZL 浏览器图由相应负责人继续补。
+原有 [退款余额图](../evidence/4A/4A-S2-02_DHT_买家退款_1.png) 与 [订单 1 Refunded 图](../evidence/4A/4A-S2-02_DHT_买家退款_2.png)仍是争议单退款证据，不把订单 0 确认误写为订单 1 的操作。YZH 的 4A-6/7 后端 PNG 已归档，见下节；ZZL 浏览器图仍待补。
+
+## YZH 后端与仲裁截图（2026-10-26）
+
+以下 PNG 是 YZH 桌面“大作业”文件夹原图的仓库副本。4A-6 的 JSON 文件画面是退款前响应存档；实时接口画面另列。订单列表接口展示创建事件，不包含当前状态，Paid/Disputed 以两份详情响应为准。
+
+| 编号 | 截图 | 证明内容 |
+| --- | --- | --- |
+| 4A-6-01 | [订单列表存档](../evidence/4A/4A-6-01_YZH_订单列表.png) | 两笔创建事件响应 JSON 的可读画面，辅助证据 |
+| 4A-6-01b | [订单列表实时接口](../evidence/4A/4A-6-01b_YZH_订单列表实时接口.png) | WSL 中实际调用 `GET /api/escrow/orders`，返回订单 0、1 |
+| 4A-6-02a | [订单 0 退款前 Paid](../evidence/4A/4A-6-02a_YZH_订单0退款前Paid.png) | 退款前详情响应存档，订单 0 状态 Paid |
+| 4A-6-02b | [订单 1 退款前 Disputed](../evidence/4A/4A-6-02b_YZH_订单1退款前Disputed.png) | 退款前详情响应存档，订单 1 状态 Disputed |
+| 4A-7-01 | [未争议订单失败回执](../evidence/4A/4A-7-01_YZH_未争议resolve失败回执.png) | `resolve(0,true)` 已发生交易，回执 `status=0x0`；完整哈希在同名 JSON 中 |
+| 4A-7-02 | [争议订单退款成功回执](../evidence/4A/4A-7-02_YZH_争议订单退款成功回执.png) | `resolve(1,false)` 回执 `status=0x1`，含代币 Transfer 与 `OrderResolved(false)` 日志 |
+| 4A-7-03 | [订单 1 Refunded](../evidence/4A/4A-7-03_YZH_订单1_Refunded.png) | 退款后详情响应状态 Refunded |
+
+失败与成功回执画面是 RPC 响应存档，不是区块浏览器截图。ZZL 的 4A-8 浏览器证据仍需另拍；DHT 的退款余额及订单 0 确认截图已在上节归档。

@@ -18,6 +18,6 @@
 
 | 操作 | 订单 id | 交易哈希 | 浏览器链接 | 区块 | 截图显示状态 | 截图显示 gasUsed |
 | --- | --- | --- | --- | --- | --- | --- |
-| confirm(0) 正常完成 | 0 | `0x4d1ab17ee3ede2c696944a2ace7d0f8e195949cdb6928b5883b1b3c162cd8f46` | [交易详情](https://scan-testnet.potos.hk/tx/0x4d1ab17ee3ede2c696944a2ace7d0f8e195949cdb6928b5883b1b3c162cd8f46) | 2689699 | Remix 显示已挖出且执行完成；随后 getOrder(0) 为 Completed(2) | 62549 |
+| confirm(0) 正常完成 | 0 | `0x4d1ab17ee3ede2c696944a2ace7d0f8e195949cdb6928b5883b1b3c162cd6f46` | [交易详情](https://scan-testnet.potos.hk/tx/0x4d1ab17ee3ede2c696944a2ace7d0f8e195949cdb6928b5883b1b3c162cd6f46) | 2689699 | YZH 按区块独立查询回执 `0x1`；DHT 后续 getOrder(0) 为 Completed(2) | 62549 |
 
-来源：[DHT 成功回执截图](../evidence/4A/4A-S1-03_DHT_confirm订单0成功回执.png)及[确认后状态截图](../evidence/4A/4A-S1-04_DHT_正常单Completed.png)。成功画面显示 From 为 DHT、To 为本组 Escrow，含两条原始日志。当前执行环境的课程 RPC 请求超时，未在此处宣称独立 RPC 复核或浏览器详情已打开；上述链接按公开浏览器 URL 与截图中的真实哈希构成，待 YZH/ZZL 在可访问网络环境再次核对。订单 1 已退款，不重复确认。
+来源：[DHT 成功回执截图](../evidence/4A/4A-S1-03_DHT_confirm订单0成功回执.png)及[确认后状态截图](../evidence/4A/4A-S1-04_DHT_正常单Completed.png)。YZH 按区块查询到正确哈希后，DHT 交接侧再次通过课程 RPC 的 `eth_getTransactionReceipt` 读取同一哈希，确认区块 `2689699`、回执 `0x1`、From 为 DHT、To 为本组 Escrow、gasUsed `62549`、日志 2 条。先前错误哈希来自截图转录失误，已更正。浏览器链接按公开浏览器 URL 与核实哈希构成，浏览器截图仍由 ZZL 负责。订单 1 已退款，不重复确认。
