@@ -1,6 +1,6 @@
 # 路线 A 实验执行与证据记录（YZH 主持）
 
-状态：DHT 报告新 Escrow 的两笔 30 枚代币订单均已付款；2026-10-26 YZH 的卖家争议、失败仲裁验证与争议单退款均有真实测试网回执。订单 0 仍为 Paid，等待 DHT 核对退款后确认；买家各笔哈希待 DHT 补录。后端列表优化后已返回两单，4A-6/7 的 PNG 截图待补。本文件是现场操作清单，三人的当前交接以 [team-handoff.md](team-handoff.md) 为准。不能用本地 Hardhat 的地址、交易哈希或截图代替 POTOS Testnet 证据。交易记录统一交 ZZL 填入 `docs/transactions.md`，截图索引交 ZZL 填入 `docs/evidence-index.md`；文件尚未建立时先保留原始截图和哈希。
+状态：DHT 在新 Escrow 的两笔 30 枚代币订单均已付款；2026-10-26 YZH 的卖家争议、失败仲裁验证与争议单退款均有真实测试网回执。DHT 已按本人 Remix 截图核对退款到账 30 枚、订单 1 Refunded，又本人签名确认订单 0；其截图显示确认交易成功与订单 0 Completed，确认哈希见 [交易记录](transactions.md)。确认交易的独立 RPC/浏览器复核及卖家收款截图待组内补齐。后端列表优化后已返回两单，4A-6/7 的 PNG 截图待补。本文件是现场操作清单，三人的当前交接以 [team-handoff.md](team-handoff.md) 为准。不能用本地 Hardhat 的地址、交易哈希或截图代替 POTOS Testnet 证据。交易记录及截图索引由 ZZL 最终汇总，DHT 已先登记本人真实材料。
 
 ## 现场共同规则
 
@@ -45,7 +45,7 @@ DHT 对**新 Escrow 地址**执行代币 `approve` 共 60 个（原始整数 `60
 - [ ] YZH 后端已保存两笔 `GET /api/escrow/orders/{id}` 在退款前的真实响应：订单 0 Paid、订单 1 Disputed。按 10 区块、最多 8 窗口并发查询后，`GET /api/escrow/orders` 在约 40 秒返回两单，JSON 存于 `evidence/4A/4A-6-01_YZH_订单列表.json`。4A-6 PNG 图待补，ZZL 核对归档。
 - [x] YZH 后端对订单 0 调用 `POST /api/escrow/orders/0/resolve?sellerWins=true`；链上失败哈希 `0x07c6c39d408ad1d599cb4b2e1039f4630f2c5d12dd052e92032111e169aab3ed`，区块 `2689253`，回执 `0x0`、gasUsed `25889`，后端 HTTP 502；订单 0 仍为 Paid。JSON 回执存 `evidence/4A/4A-7-01_YZH_未争议resolve失败回执.json`；4A-7 截图待补。
 - [x] YZH 后端对订单 1 调用 `POST /api/escrow/orders/1/resolve?sellerWins=false`；成功哈希 `0x86b5d80b974abd153f5b40a4e08f72f0d5657bf1fd048289eb621878fbbf9a92`，区块 `2689270`，回执 `0x1`。后端订单 1 已为 Refunded；RPC Logs 显示指定 ERC20 从新 Escrow 向 DHT 转出 30 枚及 `OrderResolved(false)`，未虚构 `OrderRefunded` 事件。JSON 回执存 `evidence/4A/4A-7-02_YZH_争议订单退款成功回执.json`；DHT 余额核对、4A-7/8 截图待补。
-- [ ] DHT 对正常单 `confirm`；保存回执，核对 Completed 和 YZH 卖家余额增加 30；DHT/YZH 分别提供本人钱包及余额截图（4A-S1/4A-S2）。
+- [x] DHT 本人对正常单 `confirm(0)` 并保存 Remix 成功回执及 `getOrder(0)=Completed(2)` 截图；哈希、区块和截图核对范围见 [交易记录](transactions.md)、[截图索引](evidence-index.md)。本次执行环境 RPC 超时，独立链上复核及 YZH 卖家余额增加 30 的本人截图待 YZH/ZZL 补齐；不得重复 confirm(0)。
 
 ## 5. 时间线与重启恢复（YZH，4.5 的 T-1 至 T-3）
 

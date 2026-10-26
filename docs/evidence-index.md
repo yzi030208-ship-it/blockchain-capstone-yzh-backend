@@ -41,3 +41,16 @@
 | [4A-S2-02_DHT_买家退款_2.png](../evidence/4A/4A-S2-02_DHT_买家退款_2.png) | 4A-S2-02 | getOrder(1) 返回 status=3（Refunded），争议订单；只读查询不是新退款交易 |
 
 退款余额截图的目标为指定代币 `0xE48d6b8037972C2D056ef4aEd4352C6027dE88ee`，买家 `0x5FeDaeB4369432aD2A9929EaFFA9762C46050d4C`；状态截图对应新 Escrow `0xDb666Df58291D7d49cea35eE36929dCcD37e2ea5`。退款链上交易引用 YZH 已核验的 `0x86b5d80b974abd153f5b40a4e08f72f0d5657bf1fd048289eb621878fbbf9a92`，不是给只读截图另造哈希。截图时间以实际捕获为准，归档日期不代替交易时间。
+
+## DHT 正常单确认新增截图
+
+以下四张均由 DHT 本人提供，保留在本机 `screenshots/`，仓库副本逐字节 SHA-256 一致。按截图所见登记；确认交易在此处尚未通过独立 RPC 复核。
+
+| 文件 | 画面实际内容 | 核对说明 |
+| --- | --- | --- |
+| [4A-S1-01_DHT_正常单确认前Paid.png](../evidence/4A/4A-S1-01_DHT_正常单确认前Paid.png) | 本组 Escrow 的 getOrder(0) 显示 status=1、正常订单 | 确认前只读状态，不产生交易哈希 |
+| [4A-S1-02_DHT_confirm订单0参数.png](../evidence/4A/4A-S1-02_DHT_confirm订单0参数.png) | confirm(uint256) 输入 `0` | 参数图，不单独证明交易成功 |
+| [4A-S1-03_DHT_confirm订单0成功回执.png](../evidence/4A/4A-S1-03_DHT_confirm订单0成功回执.png) | Remix 显示交易已挖出且执行完成；From DHT、To 新 Escrow；哈希 `0x4d1ab17ee3ede2c696944a2ace7d0f8e195949cdb6928b5883b1b3c162cd8f46`，区块 2689699，gas 62549 | 原始日志 2 条；截图本身未代替独立 RPC/浏览器复核 |
+| [4A-S1-04_DHT_正常单Completed.png](../evidence/4A/4A-S1-04_DHT_正常单Completed.png) | 后续 getOrder(0) 显示 status=2（Completed）、正常订单 | 只读状态，与前一张成功回执合并证明正常单完成 |
+
+原有 [退款余额图](../evidence/4A/4A-S2-02_DHT_买家退款_1.png) 与 [订单 1 Refunded 图](../evidence/4A/4A-S2-02_DHT_买家退款_2.png)仍是争议单退款证据，不把订单 0 确认误写为订单 1 的操作。4A-6/7 的后端 PNG 和 ZZL 浏览器图由相应负责人继续补。

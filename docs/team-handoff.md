@@ -124,3 +124,9 @@ ZZL 的独立加分挑战放在 `bonus/reentrancy/`：只在本组自建合约�
 - 保存与推送范围：13 张副本全部位于 `evidence/4A/`，与原图逐字节一致；代码截图指南和可复现生成脚本一并交付。未修改合约或 Java 业务源码。
 - **当前保持暂停正常单确认。** 按 YZH 最新直接交接消息，DHT 先核对到账并归档，等 YZH 主任务明确已保存所需当前状态证据、通知可以确认后，DHT 才执行 confirm(0)。本记录不自动授权该步骤，也不以退款成功替代放行消息。
 - 下一位：YZH/ZZL 核对本次截图，继续保存后端状态、仲裁浏览器 4A-8 等证据；YZH 明确放行后由 DHT 本人签名确认并追加成功回执与 Completed 截图。不得重复 deposit、dispute、resolve 或重新部署。
+
+### 2026-10-26 DHT 已签名确认正常单 0（更新以上暂停状态）
+
+- DHT 本人提供了确认前 `getOrder(0)` 为 Paid(1)、`confirm(0)` 参数、Remix 成功回执与确认后 `getOrder(0)` 为 Completed(2) 的四张原始截图；副本见 [截图索引](evidence-index.md)。确认交易哈希为 `0x4d1ab17ee3ede2c696944a2ace7d0f8e195949cdb6928b5883b1b3c162cd8f46`，截图显示区块 `2689699`、From DHT `0x5FeDaeB4369432aD2A9929EaFFA9762C46050d4C`、To 新 Escrow `0xDb666Df58291D7d49cea35eE36929dCcD37e2ea5`、gas `62549`、两条日志。截图原图仍在 DHT 本机 `screenshots/`。
+- 本次依本人截图核对交易和 Completed 状态；当前执行环境访问课程 RPC 超时，没有把它写成独立链上 RPC 复核。交易浏览器链接和核对范围见 [交易记录](transactions.md)。此前“暂停确认”的记录是当时状态，现已由 DHT 本人实际完成，不应再指示他重复 confirm。
+- 下一位：YZH/ZZL 在可访问网络环境复核该公开哈希、补卖家收款及 T-1 的 `OrderCompleted` 时间线，并继续补 4A-6/7 PNG、4A-8 浏览器图。订单 1 保持 Refunded，不再操作；DHT 不重复 confirm(0)。
