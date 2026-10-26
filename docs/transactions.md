@@ -1,15 +1,26 @@
-# 实际交易记录
+# 主流程真实交易登记
 
-先登记 DHT 本人已完成的五笔交易，2026-10-26 使用课程 RPC 核对 chainId=60600、From、To、区块、回执状态和事件金额/订单编号。后续由 ZZL 追加组长部署、准备转币、争议、仲裁、确认与独立挑战等实际交易；不要将本表理解为整组已全部完成。
+本表只登记已由交接文档、RPC 回执或浏览器公开页面核对的真实记录。订单创建、授权、付款、争议、仲裁和确认等待 DHT/YZH 提供实际信息后追加；未知字段保持“待提供”，不预填订单号或哈希。浏览器基址为 [POTOS Testnet Scan](https://scan-testnet.potos.hk)。
 
-发起账户均为 DHT `0x5FeDaeB4369432aD2A9929EaFFA9762C46050d4C`。前两笔及两次 deposit 的目标为新 Escrow；approve 的目标为指定代币合约，spender 为新 Escrow。
+| 时间（Asia/Shanghai） | 操作人 | 操作 | 合约 / 地址 | 订单号 | 交易哈希 | 区块 | 回执状态 | 浏览器链接 | 核对结果 |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| 2026-10-22 | YZH | 向后端账户转入 0.0001 POT | `0xa508c9Ff372C40F1f109EdA1F8DB532fB556c30A` → `0x6717496Fe22477B41e6Ca07353C308fF38A61797` | — | [`0xda990292aedba2361a4679c950f22510f511d02c7a673d2dec4bf857df681cfb`](https://scan-testnet.potos.hk/tx/0xda990292aedba2361a4679c950f22510f511d02c7a673d2dec4bf857df681cfb) | 2672654 | `0x1` | [打开交易](https://scan-testnet.potos.hk/tx/0xda990292aedba2361a4679c950f22510f511d02c7a673d2dec4bf857df681cfb) | 交接记录与配置一致；仅账户准备 |
+| 2026-10-22 | YZH | 指定 YZHToken 转给 DHT 60 枚 | `0xE48d6b8037972C2D056ef4aEd4352C6027dE88ee` | — | [`0x698aa6302106bfe33a9a71ed0e421fead150ccf84b6519883cbfda2c20935f30`](https://scan-testnet.potos.hk/tx/0x698aa6302106bfe33a9a71ed0e421fead150ccf84b6519883cbfda2c20935f30) | 2672655 | `0x1` | [打开交易](https://scan-testnet.potos.hk/tx/0x698aa6302106bfe33a9a71ed0e421fead150ccf84b6519883cbfda2c20935f30) | 转后 DHT=60、YZH=10（指定合约） |
+| 2026-10-22 | YZH | SimpleStorage 部署 | `0xD18efF885dc9F65273F1B76E2ad9ACEEce650b3A` | — | 未记录（接口仅返回地址） | 未记录 | 未记录 | — | 地址已由接口记录；不把地址当交易哈希 |
+| 2026-10-22 | YZH | SimpleStorage 写入 `42` | `0xD18efF885dc9F65273F1B76E2ad9ACEEce650b3A` | — | [`0x0563cf0ddcbbc739071ffa15c07e76b0b13cd8b4cacc72cbb3f88c5aff835584`](https://scan-testnet.potos.hk/tx/0x0563cf0ddcbbc739071ffa15c07e76b0b13cd8b4cacc72cbb3f88c5aff835584) | 2672663 | `0x1` | [打开交易](https://scan-testnet.potos.hk/tx/0x0563cf0ddcbbc739071ffa15c07e76b0b13cd8b4cacc72cbb3f88c5aff835584) | `get=42`，gasUsed=27267 |
+| 2026-10-22 | YZH | 部署本次主流程 Escrow | `0xDb666Df58291D7d49cea35eE36929dCcD37e2ea5` | — | [`0x4f61670afea0a4714f89c02e177f14b7d2737fa1cad9cac797727344ec187372`](https://scan-testnet.potos.hk/tx/0x4f61670afea0a4714f89c02e177f14b7d2737fa1cad9cac797727344ec187372) | 2672683 | `0x1` | [打开交易](https://scan-testnet.potos.hk/tx/0x4f61670afea0a4714f89c02e177f14b7d2737fa1cad9cac797727344ec187372) | arbiter=`0x6717496Fe22477B41e6Ca07353C308fF38A61797`；后续不得再次部署 |
+| 2026-10-26 | DHT | 创建正常订单 | 新 Escrow | 0 | [`0x782a3aa446b05827ba109dbd3502edec6b60f2b93d72488011e4e6d55f6524b6`](https://scan-testnet.potos.hk/tx/0x782a3aa446b05827ba109dbd3502edec6b60f2b93d72488011e4e6d55f6524b6) | 2688642 | `0x1` | [打开交易](https://scan-testnet.potos.hk/tx/0x782a3aa446b05827ba109dbd3502edec6b60f2b93d72488011e4e6d55f6524b6) | DHT 买家地址发起；gasUsed=80531 |
+| 2026-10-26 | DHT | 创建争议订单 | 新 Escrow | 1 | [`0xd2246b70a7f676b33c70fcf31f2f25baf5c1d0fd61e1ef9f111f921e2555a333`](https://scan-testnet.potos.hk/tx/0xd2246b70a7f676b33c70fcf31f2f25baf5c1d0fd61e1ef9f111f921e2555a333) | 2688698 | `0x1` | [打开交易](https://scan-testnet.potos.hk/tx/0xd2246b70a7f676b33c70fcf31f2f25baf5c1d0fd61e1ef9f111f921e2555a333) | DHT 买家地址发起；gasUsed=80531 |
+| 2026-10-26 | DHT | `approve(60)` 给新 Escrow | 指定 YZHToken | — | [`0x279498c462501f23a680cacaf7b82a68771a47456a3c8cce1a43e5032d3f1014`](https://scan-testnet.potos.hk/tx/0x279498c462501f23a680cacaf7b82a68771a47456a3c8cce1a43e5032d3f1014) | 2688760 | `0x1` | [打开交易](https://scan-testnet.potos.hk/tx/0x279498c462501f23a680cacaf7b82a68771a47456a3c8cce1a43e5032d3f1014) | spender=新 Escrow；gasUsed=28423 |
+| 2026-10-26 | DHT | 正常单 `deposit` 付款 30 枚 | 新 Escrow | 0 | [`0xe4e6c4089b9dde7fef35832cd2020f649ac5cad5842ccdc2df080f28d8247b46`](https://scan-testnet.potos.hk/tx/0xe4e6c4089b9dde7fef35832cd2020f649ac5cad5842ccdc2df080f28d8247b46) | 2688806 | `0x1` | [打开交易](https://scan-testnet.potos.hk/tx/0xe4e6c4089b9dde7fef35832cd2020f649ac5cad5842ccdc2df080f28d8247b46) | Paid；gasUsed=70217 |
+| 2026-10-26 | DHT | 争议单 `deposit` 付款 30 枚 | 新 Escrow | 1 | [`0xdcfa559d8fed107287dbab3d29e6efd1b09872c0932f6d6d7371b35423287db7`](https://scan-testnet.potos.hk/tx/0xdcfa559d8fed107287dbab3d29e6efd1b09872c0932f6d6d7371b35423287db7) | 2688820 | `0x1` | [打开交易](https://scan-testnet.potos.hk/tx/0xdcfa559d8fed107287db3d29e6efd1b09872c0932f6d6d7371b35423287db7) | Paid；gasUsed=70217 |
+| 2026-10-26 | YZH | 卖家 `dispute(1)` | 新 Escrow | 1 | [`0xe394176ba8ee598af750fc5cf9528dd1062bbf365cf3728df9ac0a7027e4db91`](https://scan-testnet.potos.hk/tx/0xe394176ba8ee598af750fc5cf9528dd1062bbf365cf3728df9ac0a7027e4db91) | 2689118 | `0x1` | [打开交易](https://scan-testnet.potos.hk/tx/0xe394176ba8ee598af750fc5cf9528dd1062bbf365cf3728df9ac0a7027e4db91) | Disputed；卖家本人签名 |
+| 2026-10-26 | YZH 后端账户 | 未争议单 `resolve(0,true)` 失败 | 新 Escrow | 0 | [`0x07c6c39d408ad1d599cb4b2e1039f4630f2c5d12dd052e92032111e169aab3ed`](https://scan-testnet.potos.hk/tx/0x07c6c39d408ad1d599cb4b2e1039f4630f2c5d12dd052e92032111e169aab3ed) | 2689253 | `0x0` | [打开交易](https://scan-testnet.potos.hk/tx/0x07c6c39d408ad1d599cb4b2e1039f4630f2c5d12dd052e92032111e169aab3ed) | 已上链失败；gasUsed=25889；订单仍 Paid |
+| 2026-10-26 | YZH 后端账户 | 争议单 `resolve(1,false)` 成功退款 | 新 Escrow | 1 | [`0x86b5d80b974abd153f5b40a4e08f72f0d5657bf1fd048289eb621878fbbf9a92`](https://scan-testnet.potos.hk/tx/0x86b5d80b974abd153f5b40a4e08f72f0d5657bf1fd048289eb621878fbbf9a92) | 2689270 | `0x1` | [打开交易](https://scan-testnet.potos.hk/tx/0x86b5d80b974abd153f5b40a4e08f72f0d5657bf1fd048289eb621878fbbf9a92) | Refunded；Transfer 30 枚给 DHT；含 OrderResolved(false) |
+| 待 DHT 提供 | DHT | 正常单 `confirm` | 新 Escrow | 0 | 待提供 | 待提供 | 待提供 | 待提供 | 等待退款余额核对后由 DHT 本人签名 |
 
-| 操作 | 订单 id | 交易哈希 | 浏览器链接 | 区块 | 回执 | gasUsed |
-| --- | --- | --- | --- | --- | --- | --- |
-| createOrder(0) 正常订单 | 0 | `0x782a3aa446b05827ba109dbd3502edec6b60f2b93d72488011e4e6d55f6524b6` | [交易详情](https://scan-testnet.potos.hk/tx/0x782a3aa446b05827ba109dbd3502edec6b60f2b93d72488011e4e6d55f6524b6) | 2688642 | 0x1 | 80531 |
-| createOrder(1) 争议订单 | 1 | `0xd2246b70a7f676b33c70fcf31f2f25baf5c1d0fd61e1ef9f111f921e2555a333` | [交易详情](https://scan-testnet.potos.hk/tx/0xd2246b70a7f676b33c70fcf31f2f25baf5c1d0fd61e1ef9f111f921e2555a333) | 2688698 | 0x1 | 80531 |
-| approve 新 Escrow 共 60 枚 | 两单合计授权 | `0x279498c462501f23a680cacaf7b82a68771a47456a3c8cce1a43e5032d3f1014` | [交易详情](https://scan-testnet.potos.hk/tx/0x279498c462501f23a680cacaf7b82a68771a47456a3c8cce1a43e5032d3f1014) | 2688760 | 0x1 | 28423 |
-| deposit(0) 付款 30 枚 | 0 | `0xe4e6c4089b9dde7fef35832cd2020f649ac5cad5842ccdc2df080f28d8247b46` | [交易详情](https://scan-testnet.potos.hk/tx/0xe4e6c4089b9dde7fef35832cd2020f649ac5cad5842ccdc2df080f28d8247b46) | 2688806 | 0x1 | 70217 |
-| deposit(1) 付款 30 枚 | 1 | `0xdcfa559d8fed107287dbab3d29e6efd1b09872c0932f6d6d7371b35423287db7` | [交易详情](https://scan-testnet.potos.hk/tx/0xdcfa559d8fed107287dbab3d29e6efd1b09872c0932f6d6d7371b35423287db7) | 2688820 | 0x1 | 70217 |
+## 登记规则
 
-所有 gasUsed 是 gas 数量，不是 POT 金额。浏览器详情 URL 按仓库已登记的浏览器地址及真实交易哈希构成；本次已核验的是 RPC 回执。截图路径和对应关系见 [截图索引](evidence-index.md)。
+- 交易哈希、区块和回执状态以实际回执或浏览器页面为准；发送前失败写明“无交易哈希”。
+- 主流程只使用 `0xDb666Df58291D7d49cea35eE36929dCcD37e2ea5`；独立重入挑战另行登记，不混入本表。
+- DHT 每提供一笔真实交易，ZZL 逐笔核对 From、To、链、合约、订单状态和浏览器链接后再把“待提供”替换为事实。

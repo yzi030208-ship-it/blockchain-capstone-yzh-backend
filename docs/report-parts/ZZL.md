@@ -1,0 +1,37 @@
+# ZZL 路线 A 验收与独立重入挑战报告片段
+
+状态：已从 GitHub 最新提交同步路线 A 的 DHT/后端真实回执与证据文件；主流程成功退款和 4A-8 浏览器详情/日志截图已完成，DHT 退款余额核对、订单 0 confirm 和独立重入挑战仍待完成。未完成内容保持“待完成”，不把计划写成结果。
+
+## 实际工作
+
+- 阅读大作业要求、路线 A 交接、公开配置和截图指南，确认主流程只使用本组新 Escrow `0xDb666Df58291D7d49cea35eE36929dCcD37e2ea5`。
+- 建立并维护 [`docs/transactions.md`](../transactions.md)，登记已核对的账户充值、指定代币转账、SimpleStorage 写入和新 Escrow 部署；等待 DHT 提供订单交易后逐笔补录。
+- 建立并维护 [`docs/evidence-index.md`](../evidence-index.md)，核对 YZH 已有截图并登记 DHT、YZH、ZZL 的后续证据编号、命名和仓库目录。
+- 负责成功 `resolve(false)` 的浏览器详情与日志截图，核对 From、To、状态、区块、日志和订单对应关系。
+
+## 已验证结果
+
+- 公开配置中的链为 POTOS Testnet，chainId=60600；指定 YZHToken、买家、卖家、后端 arbiter 和新 Escrow 地址已写入交接文档。
+- 已登记的历史交易均保留真实哈希和回执状态；SimpleStorage 部署接口没有返回哈希，表中明确标为未记录。
+- 已核对 DHT 的订单 0/1 创建、approve、两笔 deposit，YZH 的 dispute(1)、订单 0 失败 resolve 和订单 1 成功退款；真实哈希、区块、回执和链接已登记在 [`docs/transactions.md`](../transactions.md)。
+- 成功退款 `resolve(1,false)` 哈希为 `0x86b5d80b974abd153f5b40a4e08f72f0d5657bf1fd048289eb621878fbbf9a92`，区块 `2689270`，回执 `0x1`；回执包含 30 枚代币从 Escrow 转给 DHT 及 `OrderResolved(false)`。
+- 远端新增的 4A-6/4A-7 JSON 和 T-1/T-2/T-3 记录已同步；它们是原始响应存档，不能直接代替报告 PNG 截图。
+- 已保存 `4A-8-01_ZZL_resolve浏览器详情.png` 和 `4A-8-02_ZZL_resolve日志.png`。详情图核对成功状态、区块、From、To 和 30 枚转账；日志图核对 YZHToken 从 Escrow 向 DHT 转账 30 枚。原图保存在本机 `ZZL-evidence-originals/4A/`，仓库副本位于 `evidence/4A/`。
+
+## 独立重入挑战
+
+待在 `bonus/reentrancy/` 建立独立的 `VulnerableVault`、`Attacker`、`FixedVault`，使用本人签名的独立测试网交易完成：
+
+1. 记录漏洞版受害者存款、攻击交易、攻击前后金库与攻击合约余额，并保存 `4C-1-01`、`4C-1-02`、`4C-2-01`。
+2. 在新部署的 FixedVault 上用同一攻击思路复测，记录真实失败或受阻结果与保护余额，保存 `4C-3-01`。
+3. 保留本机原图并复制到 `evidence/4C/`；浏览器未索引内部交易时，如实保存空列表并以余额或日志补证。
+
+具体金额、交易哈希、区块、余额和失败原因待本人实测后补入，不能从本地链或他人账户推断。
+
+## 遇到的问题
+
+当前发现仓库副本没有 Git 元数据，无法在本地确认分支、提交、推送或发起 PR；待取得带 Git 的工作副本后再按组内流程提交，交 YZH 核对合并。除此之外，尚未发生的主流程与重入交易不作推断。
+
+## AI 使用情况
+
+使用 Codex 阅读仓库和课程要求、整理公开交易与截图登记模板、核对地址和证据口径。真实钱包签名、交易、浏览器截图、余额变化和最终结论由本人或对应账户持有人完成；没有索取或保存其他成员私钥。
