@@ -24,7 +24,7 @@ DHT 负责接入 Escrow 及代币源码、生成 Web3j Java 封装、实现 `Esc
 
 ## 截图 4A-2 生成 Java 封装
 
-【已取得本人截图】终端原图显示真实生成命令、Solidity 编译、四个封装生成与 BUILD SUCCESSFUL in 4s；生成类关键结构各有截图，见 [截图索引](../evidence-index.md)。事件定义第 72 行右侧裁切，建议补充完整参数图。生成文件不手改。
+【已取得本人截图】终端原图显示真实生成命令、Solidity 编译、四个封装生成与 BUILD SUCCESSFUL in 4s；生成类关键结构各有截图，见 [截图索引](../evidence-index.md)。原事件定义截图第 72 行右侧裁切，现已用 [4A-2-02b 补图](../../evidence/4A/4A-2-02b_DHT_OrderCreated事件定义.png)完整显示六个参数的类型和 indexed 标记。生成文件不手改。
 
 ### 解释 4A-2 草稿 待结合生成代码截图定稿
 

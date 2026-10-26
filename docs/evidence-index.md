@@ -28,7 +28,8 @@
 | --- | --- | --- |
 | [4A-1-01_DHT_配置环境变量.png](../evidence/4A/4A-1-01_DHT_配置环境变量.png) | 4A-1 | RPC、私钥环境变量占位符、gas 配置完整，无实际密钥值 |
 | [4A-2-01_DHT_封装生成成功与生成文件列表.png](../evidence/4A/4A-2-01_DHT_封装生成成功与生成文件列表.png) | 4A-2 | 真实终端生成命令、Solidity 0.8.20、编译成功、四个封装、BUILD SUCCESSFUL in 4s 及生成文件列表 |
-| [4A-2-02_DHT_部署字节码与函数常量.png](../evidence/4A/4A-2-02_DHT_部署字节码与函数常量.png) | 4A-2 | 43—73 行包含 BINARY、FUNC_ 及事件定义；72 行事件参数右侧裁切，建议另补开启自动换行后的 67—73 行，不因此否认已有生成证据 |
+| [4A-2-02_DHT_部署字节码与函数常量.png](../evidence/4A/4A-2-02_DHT_部署字节码与函数常量.png) | 4A-2 | 43—73 行包含 BINARY、FUNC_ 及事件定义；此图第 72 行右侧裁切，完整参数见下方 4A-2-02b 补图 |
+| [4A-2-02b_DHT_OrderCreated事件定义.png](../evidence/4A/4A-2-02b_DHT_OrderCreated事件定义.png) | 4A-2 补图 | 67—74 行，开启自动换行后完整显示 `ORDERCREATED_EVENT` 六个参数的类型及 indexed 标记；原图与副本 SHA-256 一致 |
 | [4A-2-03_DHT_事件解码方法.png](../evidence/4A/4A-2-03_DHT_事件解码方法.png) | 4A-2 | 完整 getOrderCreatedEventFromLog，163—174 行 |
 | [4A-2-04_DHT_Order结构.png](../evidence/4A/4A-2-04_DHT_Order结构.png) | 4A-2 | Order 字段与两个构造函数完整，454—498 行 |
 | [4A-2-05_DHT_创建事件响应.png](../evidence/4A/4A-2-05_DHT_创建事件响应.png) | 4A-2 | OrderCreatedEventResponse 完整，504—516 行 |
