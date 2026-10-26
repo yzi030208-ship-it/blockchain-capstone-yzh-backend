@@ -114,3 +114,13 @@ ZZL 的独立加分挑战放在 `bonus/reentrancy/`：只在本组自建合约�
 - 以上 JSON 是真实后端/RPC 响应存档，**不是报告要求的 PNG 截图**。YZH/ZZL 仍须补 4A-6/7、T-1/2/3 可读画面和 4A-8 浏览器详情；DHT 核对买家退款余额后，再按交接确认订单 0，并保存正常完成回执。
 
 - T-3 的实际跨十区块数量、成功退款的后端事件与 RPC Logs 对照、以及重启后原地址 `load` 响应已整理在 [T-3 核对记录](../evidence/timeline/T-3_YZH_跨十区块与链上日志核对.md) 和 [load JSON](../evidence/timeline/T-3_YZH_重启load原Escrow.json)。浏览器画面及报告 PNG 仍待补。
+
+
+### 2026-10-26 DHT 退款到账核对及代码截图归档
+
+- DHT 本人通过 Remix 查询指定 YZHToken 的 balanceOf，截图返回 `30000000000000000000`，即 30 枚；getOrder(1) 为 `status=3`（Refunded），getOrder(0) 仍为 `status=1`（Paid）。这三项为所提供截图时点的核对结果，未新发送退款、仲裁或确认交易。
+- 退款与状态原图：[买家余额](../evidence/4A/4A-S2-02_DHT_买家退款_1.png)、[订单 1 Refunded](../evidence/4A/4A-S2-02_DHT_买家退款_2.png)、[订单 0 确认前 Paid](../evidence/4A/4A-S1_DHT_正常单确认前Paid.png)。本地原图仍保存在 DHT 的 `微众银行实验/大作业/screenshots/`。
+- 同时归档 DHT 的 4A-1 配置 1 张、4A-2 封装 5 张、4A-4 Service 4 张。Service 四张连续覆盖第 1—180 行，不要求为凑数再截六张；封装事件定义第 72 行右侧仍建议补充清晰完整参数图。完整文件及核对状态见 [截图索引](evidence-index.md)。
+- 保存与推送范围：13 张副本全部位于 `evidence/4A/`，与原图逐字节一致；代码截图指南和可复现生成脚本一并交付。未修改合约或 Java 业务源码。
+- **当前保持暂停正常单确认。** 按 YZH 最新直接交接消息，DHT 先核对到账并归档，等 YZH 主任务明确已保存所需当前状态证据、通知可以确认后，DHT 才执行 confirm(0)。本记录不自动授权该步骤，也不以退款成功替代放行消息。
+- 下一位：YZH/ZZL 核对本次截图，继续保存后端状态、仲裁浏览器 4A-8 等证据；YZH 明确放行后由 DHT 本人签名确认并追加成功回执与 Completed 截图。不得重复 deposit、dispute、resolve 或重新部署。

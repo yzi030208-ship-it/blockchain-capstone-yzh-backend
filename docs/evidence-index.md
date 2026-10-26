@@ -18,3 +18,26 @@
 | 4A-5-04_DHT_两单deposit_3_2 | [原图](../evidence/4A/4A-5-04_DHT_两单deposit_3_2.png) | getOrder(1) 返回 status=1，争议订单 | 1 | `0xdcfa559d8fed107287dbab3d29e6efd1b09872c0932f6d6d7371b35423287db7` | 原图与副本 SHA-256 一致；对应交易 RPC 回执成功 |
 
 参数截图本身不是成功回执，需要与同单回执截图结合。allowance/getOrder 是只读调用，不产生新的交易哈希；表中列的是所对应的授权/付款交易。金额与订单 id 已按回执事件核对。
+
+
+## 2026-10-26 DHT 补齐代码截图与退款核对
+
+本次新增 13 张原始截图副本，均与 DHT 本机 screenshots 原图 SHA-256 一致，未移动、改写原图。仅核对截图中实际可见内容；读取调用不产生新交易哈希。
+
+| 文件 | 归属 | 实际可见内容与核对结果 |
+| --- | --- | --- |
+| [4A-1-01_DHT_配置环境变量.png](../evidence/4A/4A-1-01_DHT_配置环境变量.png) | 4A-1 | RPC、私钥环境变量占位符、gas 配置完整，无实际密钥值 |
+| [4A-2-01_DHT_封装生成成功与生成文件列表.png](../evidence/4A/4A-2-01_DHT_封装生成成功与生成文件列表.png) | 4A-2 | 真实终端生成命令、Solidity 0.8.20、编译成功、四个封装、BUILD SUCCESSFUL in 4s 及生成文件列表 |
+| [4A-2-02_DHT_部署字节码与函数常量.png](../evidence/4A/4A-2-02_DHT_部署字节码与函数常量.png) | 4A-2 | 43—73 行包含 BINARY、FUNC_ 及事件定义；72 行事件参数右侧裁切，建议另补开启自动换行后的 67—73 行，不因此否认已有生成证据 |
+| [4A-2-03_DHT_事件解码方法.png](../evidence/4A/4A-2-03_DHT_事件解码方法.png) | 4A-2 | 完整 getOrderCreatedEventFromLog，163—174 行 |
+| [4A-2-04_DHT_Order结构.png](../evidence/4A/4A-2-04_DHT_Order结构.png) | 4A-2 | Order 字段与两个构造函数完整，454—498 行 |
+| [4A-2-05_DHT_创建事件响应.png](../evidence/4A/4A-2-05_DHT_创建事件响应.png) | 4A-2 | OrderCreatedEventResponse 完整，504—516 行 |
+| [4A-4-01_DHT_EscrowService_1.png](../evidence/4A/4A-4-01_DHT_EscrowService_1.png) | 4A-4 Service | 约 1—35 行，包、依赖、状态、构造函数 |
+| [4A-4-01_DHT_EscrowService_2.png](../evidence/4A/4A-4-01_DHT_EscrowService_2.png) | 4A-4 Service | 35—83 行，deploy 和 load |
+| [4A-4-01_DHT_EscrowService_3.png](../evidence/4A/4A-4-01_DHT_EscrowService_3.png) | 4A-4 Service | 84—129 行，current、只读访问器、getOrder、resolve、签名管理器及仲裁账户检查 |
+| [4A-4-01_DHT_EscrowService_4.png](../evidence/4A/4A-4-01_DHT_EscrowService_4.png) | 4A-4 Service | 129—180 行，状态、字段转换、参数、回执与错误处理；四张连续覆盖完整 Service |
+| [4A-S1_DHT_正常单确认前Paid.png](../evidence/4A/4A-S1_DHT_正常单确认前Paid.png) | 4A-S1 前置补图 | getOrder(0) 返回 status=1（Paid），正常单尚未确认；不可标成 Completed |
+| [4A-S2-02_DHT_买家退款_1.png](../evidence/4A/4A-S2-02_DHT_买家退款_1.png) | 4A-S2-02 | 指定 YZHToken 的 balanceOf(买家) 返回 30000000000000000000，即 30 枚 |
+| [4A-S2-02_DHT_买家退款_2.png](../evidence/4A/4A-S2-02_DHT_买家退款_2.png) | 4A-S2-02 | getOrder(1) 返回 status=3（Refunded），争议订单；只读查询不是新退款交易 |
+
+退款余额截图的目标为指定代币 `0xE48d6b8037972C2D056ef4aEd4352C6027dE88ee`，买家 `0x5FeDaeB4369432aD2A9929EaFFA9762C46050d4C`；状态截图对应新 Escrow `0xDb666Df58291D7d49cea35eE36929dCcD37e2ea5`。退款链上交易引用 YZH 已核验的 `0x86b5d80b974abd153f5b40a4e08f72f0d5657bf1fd048289eb621878fbbf9a92`，不是给只读截图另造哈希。截图时间以实际捕获为准，归档日期不代替交易时间。
