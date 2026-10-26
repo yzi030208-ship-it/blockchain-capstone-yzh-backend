@@ -114,3 +114,9 @@ ZZL 的独立加分挑战放在 `bonus/reentrancy/`：只在本组自建合约�
 - 以上 JSON 是真实后端/RPC 响应存档，**不是报告要求的 PNG 截图**。YZH/ZZL 仍须补 4A-6/7、T-1/2/3 可读画面和 4A-8 浏览器详情；DHT 核对买家退款余额后，再按交接确认订单 0，并保存正常完成回执。
 
 - T-3 的实际跨十区块数量、成功退款的后端事件与 RPC Logs 对照、以及重启后原地址 `load` 响应已整理在 [T-3 核对记录](../evidence/timeline/T-3_YZH_跨十区块与链上日志核对.md) 和 [load JSON](../evidence/timeline/T-3_YZH_重启load原Escrow.json)。浏览器画面及报告 PNG 仍待补。
+
+### 2026-10-26 YZH 4A-6/7 截图归档更新
+
+- YZH 已把订单列表实时接口、退款前订单 0 Paid/订单 1 Disputed 响应存档，以及失败仲裁、成功退款、订单 1 Refunded 的七张原始截图同时保存到本机桌面“大作业”文件夹与仓库 `evidence/4A/`。逐张文件名和证明范围见[截图索引](evidence-index.md)。订单列表存档截图另作辅助材料；所有截图不含私钥。
+- 4A-7 是已完成交易的回执和状态截图，不需要再次执行 `resolve`。订单 1 的退款回执 `status=0x1`，订单 1 详情 `Refunded`；订单 0 仍保留 Paid，等待 DHT 确认。
+- 下一位 DHT：用本人买家钱包核对指定代币退回 30 枚并保存余额证据，然后按主流程 `confirm(0)` 并提交成功回执及订单 0 Completed 状态。ZZL：用交易哈希补 4A-8 区块浏览器截图。YZH：待 DHT 确认后更新 T-1 与卖家到账证据。

@@ -18,3 +18,19 @@
 | 4A-5-04_DHT_两单deposit_3_2 | [原图](../evidence/4A/4A-5-04_DHT_两单deposit_3_2.png) | getOrder(1) 返回 status=1，争议订单 | 1 | `0xdcfa559d8fed107287dbab3d29e6efd1b09872c0932f6d6d7371b35423287db7` | 原图与副本 SHA-256 一致；对应交易 RPC 回执成功 |
 
 参数截图本身不是成功回执，需要与同单回执截图结合。allowance/getOrder 是只读调用，不产生新的交易哈希；表中列的是所对应的授权/付款交易。金额与订单 id 已按回执事件核对。
+
+## YZH 后端与仲裁截图（2026-10-26）
+
+以下 PNG 是 YZH 桌面“大作业”文件夹原图的仓库副本。4A-6 的 JSON 文件画面是退款前响应存档；实时接口画面另列。订单列表接口展示创建事件，不包含当前状态，Paid/Disputed 以两份详情响应为准。
+
+| 编号 | 截图 | 证明内容 |
+| --- | --- | --- |
+| 4A-6-01 | [订单列表存档](../evidence/4A/4A-6-01_YZH_订单列表.png) | 两笔创建事件响应 JSON 的可读画面，辅助证据 |
+| 4A-6-01b | [订单列表实时接口](../evidence/4A/4A-6-01b_YZH_订单列表实时接口.png) | WSL 中实际调用 `GET /api/escrow/orders`，返回订单 0、1 |
+| 4A-6-02a | [订单 0 退款前 Paid](../evidence/4A/4A-6-02a_YZH_订单0退款前Paid.png) | 退款前详情响应存档，订单 0 状态 Paid |
+| 4A-6-02b | [订单 1 退款前 Disputed](../evidence/4A/4A-6-02b_YZH_订单1退款前Disputed.png) | 退款前详情响应存档，订单 1 状态 Disputed |
+| 4A-7-01 | [未争议订单失败回执](../evidence/4A/4A-7-01_YZH_未争议resolve失败回执.png) | `resolve(0,true)` 已发生交易，回执 `status=0x0`；完整哈希在同名 JSON 中 |
+| 4A-7-02 | [争议订单退款成功回执](../evidence/4A/4A-7-02_YZH_争议订单退款成功回执.png) | `resolve(1,false)` 回执 `status=0x1`，含代币 Transfer 与 `OrderResolved(false)` 日志 |
+| 4A-7-03 | [订单 1 Refunded](../evidence/4A/4A-7-03_YZH_订单1_Refunded.png) | 退款后详情响应状态 Refunded |
+
+失败与成功回执画面是 RPC 响应存档，不是区块浏览器截图。ZZL 的 4A-8 浏览器证据仍需另拍；DHT 退款余额及订单 0 确认仍需本人核对。
