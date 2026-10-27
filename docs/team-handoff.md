@@ -144,3 +144,9 @@ ZZL 的独立加分挑战放在 `bonus/reentrancy/`：只在本组自建合约�
 - 后端当前 `getOrder(0)=Completed`，YZH 的[T-1 实时接口图](../evidence/timeline/T-1_YZH_正常单完整时间线_实时接口.png)显示 `OrderCreated → OrderPaid → OrderCompleted` 三事件；[完整响应](../evidence/timeline/T-1_YZH_正常单完整时间线.json)已留存。[T-2 实时接口图](../evidence/timeline/T-2_YZH_争议单完整时间线_实时接口.png)显示四事件和 `sellerWins=false`。
 - YZH 对指定代币 `balanceOf` 的[卖家余额图](../evidence/4A/4A-S2-01_YZH_卖家指定代币余额40枚.png)为 40 枚；[此前已核对的 10 枚](project-config.md)加上此次 Transfer 的 30 枚。T-3 的[分批代码图](../evidence/timeline/T-3-02_YZH_十区块分批并发与排序去重代码.png)及[原合约 load 响应存档图](../evidence/timeline/T-3-01_YZH_重启load原Escrow响应存档.png)已保存。桌面“大作业”保留 YZH 原图，仓库 `evidence/` 保留副本。
 - 下一位：ZZL 补 4A-8 和确认交易的区块浏览器 Logs 图；YZH 补完整 4A-4 截图并汇总最终报告。
+
+### 2026-10-27 YZH 4A-4 代码截图补齐
+
+- YZH 已交付 Controller 上下两图和 EventQuery 两图，桌面“大作业”与仓库 `evidence/4A/` 各保留一份；文件路径与代码范围见[截图索引](evidence-index.md)。分批并发、排序去重代码复用已有 T-3-02 图。
+- 本轮 YZH 截图清单已完成，无需重复链上操作。本批四张代码图与索引、报告片段、交接记录统一提交。
+- 后续：ZZL 完成 4A-8、浏览器 Logs 对照和本人挑战材料；YZH 收齐后三人共同核对并汇总最终报告。不能据此把整个项目标为已完成。

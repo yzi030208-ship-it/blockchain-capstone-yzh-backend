@@ -26,7 +26,7 @@
 | 编号 | 待截图内容 | 实际文件 / 交易哈希 |
 |---|---|---|
 | 4A-3 | SimpleStorage 后端 deploy、set、get 的真实响应及 set 交易浏览器详情 | 已取得 `evidence/4A/4A-3-01*`、`4A-3-02*`；set 哈希见实验执行记录 |
-| 4A-4 | `EscrowController.java`、`EscrowEventQueryService.java` 可读代码画面 | 事件查询分批代码已有 T-3-02 截图；Controller 及完整 4A-4 仍待补 |
+| 4A-4 | `EscrowController.java`、`EscrowEventQueryService.java` 可读代码画面 | 已归档 Controller 上下两图、事件列表/时间线及分段查询/解码两图；分批并发与排序去重复用 T-3-02，见截图索引 |
 | 4A-5 部署 | 本次新 Escrow 部署响应、链上 arbiter | 已取得 `evidence/4A/4A-5-01*`、`4A-5-01b*`；地址和哈希见公开配置 |
 | 4A-5 卖家 | YZH 钱包对订单 1 执行 `dispute(1)`，回执和订单状态 | 截图 `evidence/4A/4A-5-05_YZH_卖家dispute成功_订单1Disputed.png`；完整哈希见交接记录 |
 | T-1 | `GET /api/escrow/orders/0/events` 三条真实事件 | 完整 JSON 与实时接口 PNG 已存 `evidence/timeline/` |
