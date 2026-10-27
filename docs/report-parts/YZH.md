@@ -1,6 +1,6 @@
 # YZH 路线 A 报告片段（阶段更新）
 
-本片段供最终报告副本汇总。SimpleStorage、新 Escrow 部署、两单后端查询、争议单仲裁退款和争议单时间线已有真实测试网结果；正常单仍为 Paid，等待 DHT 核对退款后确认。4A-6/7 的报告 PNG、T-1 完整三事件和 ZZL 浏览器验收仍待补。当前交接以 [三人共用交接](../team-handoff.md) 为准。
+本片段供最终报告副本汇总。SimpleStorage、新 Escrow 部署、两单后端查询、争议单仲裁退款、正常单确认及两单时间线已有真实测试网结果。4A-6/7 和 T-1/T-2/T-3 的 YZH PNG 已归档；ZZL 的区块浏览器验收仍待补。当前交接以 [三人共用交接](../team-handoff.md) 为准。
 
 ## 我的开发内容
 
@@ -19,19 +19,19 @@
 
 ## 时间线实现与待测结论
 
-正常单 0 在买家确认前实际有 `OrderCreated → OrderPaid` 两条日志；待 DHT `confirm(0)` 后再核对 `OrderCompleted` 并形成完整 T-1。争议单 1 实际有 `OrderCreated → OrderPaid → OrderDisputed → OrderResolved(sellerWins=false)` 四条日志，见 `evidence/timeline/T-2_YZH_争议单时间线.json`，按区块和交易/日志索引排序。`resolve(false)` 的业务结果是 Refunded，但合约只发 `OrderResolved`，**没有 `OrderRefunded` 日志**。后端重启后已用相同地址和原部署区块 `2672683` 成功 `load`，T-3 的浏览器 Logs 对照及报告图仍待补。
+正常单 0 在 DHT `confirm(0)` 后实际有 `OrderCreated → OrderPaid → OrderCompleted` 三条日志，见[完整 T-1](../../evidence/timeline/T-1_YZH_正常单完整时间线.json)及[实时接口截图](../../evidence/timeline/T-1_YZH_正常单完整时间线_实时接口.png)。确认交易位于区块 `2689699`，正确哈希 `0x4d1ab17ee3ede2c696944a2ace7d0f8e195949cdb6928b5883b1b3c162cd6f46`，课程 RPC 回执 `status=0x1`。争议单 1 实际有 `OrderCreated → OrderPaid → OrderDisputed → OrderResolved(sellerWins=false)` 四条日志，见 `evidence/timeline/T-2_YZH_争议单时间线.json` 和[实时接口截图](../../evidence/timeline/T-2_YZH_争议单完整时间线_实时接口.png)，按区块和交易/日志索引排序。`resolve(false)` 的业务结果是 Refunded，但合约只发 `OrderResolved`，**没有 `OrderRefunded` 日志**。后端重启后已用相同地址和原部署区块 `2672683` 成功 `load`；[T-3 代码图](../../evidence/timeline/T-3-02_YZH_十区块分批并发与排序去重代码.png)及[load 响应存档图](../../evidence/timeline/T-3-01_YZH_重启load原Escrow响应存档.png)已归档，ZZL 浏览器 Logs 对照仍待补。
 
 ## YZH 本人截图清单
 
 | 编号 | 待截图内容 | 实际文件 / 交易哈希 |
 |---|---|---|
 | 4A-3 | SimpleStorage 后端 deploy、set、get 的真实响应及 set 交易浏览器详情 | 已取得 `evidence/4A/4A-3-01*`、`4A-3-02*`；set 哈希见实验执行记录 |
-| 4A-4 | `EscrowController.java`、`EscrowEventQueryService.java` 可读代码画面 | 文件已写；待截图 |
+| 4A-4 | `EscrowController.java`、`EscrowEventQueryService.java` 可读代码画面 | 事件查询分批代码已有 T-3-02 截图；Controller 及完整 4A-4 仍待补 |
 | 4A-5 部署 | 本次新 Escrow 部署响应、链上 arbiter | 已取得 `evidence/4A/4A-5-01*`、`4A-5-01b*`；地址和哈希见公开配置 |
 | 4A-5 卖家 | YZH 钱包对订单 1 执行 `dispute(1)`，回执和订单状态 | 截图 `evidence/4A/4A-5-05_YZH_卖家dispute成功_订单1Disputed.png`；完整哈希见交接记录 |
-| T-1 | `GET /api/escrow/orders/0/events`，确认后应有三条真实事件 | 确认前两条已存 `evidence/timeline/T-1_YZH_正常单确认前时间线.json`；第三条待 DHT 操作 |
-| T-2 | `GET /api/escrow/orders/1/events` 四条真实事件，`sellerWins=false` | JSON 已存 `evidence/timeline/T-2_YZH_争议单时间线.json`；PNG 待补 |
-| T-3 | 与链上 Logs 对照，并展示跨 10 区块查询及重启 load 结果 | 实测过程和真实 JSON 见 `evidence/timeline/T-3_YZH_跨十区块与链上日志核对.md`；浏览器及报告 PNG 待补 |
+| T-1 | `GET /api/escrow/orders/0/events` 三条真实事件 | 完整 JSON 与实时接口 PNG 已存 `evidence/timeline/` |
+| T-2 | `GET /api/escrow/orders/1/events` 四条真实事件，`sellerWins=false` | JSON 与实时接口 PNG 已存 `evidence/timeline/` |
+| T-3 | 与链上 Logs 对照，并展示跨 10 区块查询及重启 load 结果 | 分批代码 PNG、原合约 load 响应存档 PNG 已存；Logs 对照可结合 T-2 实时接口与 4A-7-02 回执，ZZL 浏览器图待补 |
 
 ## 本人问题与 AI 使用记录
 

@@ -71,3 +71,17 @@
 | 4A-7-03 | [订单 1 Refunded](../evidence/4A/4A-7-03_YZH_订单1_Refunded.png) | 退款后详情响应状态 Refunded |
 
 失败与成功回执画面是 RPC 响应存档，不是区块浏览器截图。ZZL 的 4A-8 浏览器证据仍需另拍；DHT 的退款余额及订单 0 确认截图已在上节归档。
+
+## YZH 卖家余额与时间线截图（2026-10-27）
+
+下表是 YZH 桌面“大作业”原图的仓库副本。T-1/T-2 为实时后端接口画面；T-3-01 为此前真实 `load` 响应的文件画面，不能单独证明当前后端进程仍在运行。T-3-02 为代码画面。
+
+| 编号 | 截图 | 证明内容 |
+| --- | --- | --- |
+| 4A-S2-01 | [卖家指定代币余额 40 枚](../evidence/4A/4A-S2-01_YZH_卖家指定代币余额40枚.png) | 指定 YZHToken `balanceOf(YZH)=40000000000000000000`；[先前余额 10 枚](project-config.md)加上确认交易 ERC20 Transfer 的 30 枚，不能把当前 40 枚写成本次转入 40 枚 |
+| T-1 | [正常单完整时间线实时接口](../evidence/timeline/T-1_YZH_正常单完整时间线_实时接口.png) | 订单 0 的 `OrderCreated → OrderPaid → OrderCompleted` 三事件；[完整 JSON](../evidence/timeline/T-1_YZH_正常单完整时间线.json)保留参数和正确确认哈希 `0x4d1ab17ee3ede2c696944a2ace7d0f8e195949cdb6928b5883b1b3c162cd6f46` |
+| T-2 | [争议单完整时间线实时接口](../evidence/timeline/T-2_YZH_争议单完整时间线_实时接口.png) | 订单 1 四事件，最后 `OrderResolved` 的 `sellerWins=false`；不虚构 `OrderRefunded` 日志 |
+| T-3-01 | [重启 load 原 Escrow 响应存档](../evidence/timeline/T-3-01_YZH_重启load原Escrow响应存档.png) | 原合约地址、arbiter 和部署区块 `2672683` 与[存档 JSON](../evidence/timeline/T-3_YZH_重启load原Escrow.json)一致 |
+| T-3-02 | [十区块分批与并发代码](../evidence/timeline/T-3-02_YZH_十区块分批并发与排序去重代码.png) | `scan` 函数每窗口结束于 `start+9`，并发抓取后按日志顺序排序、去重 |
+
+`confirm(0)` 区块 `2689699` 的实际哈希末尾是 `cd6f46`，经课程 RPC 回执 `status=0x1` 核对；PR #3 初稿中的 `cd8f46` 为文字记录错误，合并前已更正。ZZL 的区块浏览器 Logs 对照图仍待补。

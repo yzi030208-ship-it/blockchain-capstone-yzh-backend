@@ -137,3 +137,10 @@ ZZL 的独立加分挑战放在 `bonus/reentrancy/`：只在本组自建合约�
 - YZH 已把订单列表实时接口、退款前订单 0 Paid/订单 1 Disputed 响应存档，以及失败仲裁、成功退款、订单 1 Refunded 的七张原始截图同时保存到本机桌面“大作业”文件夹与仓库 `evidence/4A/`。逐张文件名和证明范围见[截图索引](evidence-index.md)。订单列表存档截图另作辅助材料；所有截图不含私钥。
 - 4A-7 是已完成交易的回执和状态截图，不需要再次执行 `resolve`。订单 1 的退款回执 `status=0x1`，订单 1 详情 `Refunded`；截图保存时订单 0 尚为 Paid，此后 DHT 已确认完成，见上方 DHT 阶段记录。
 - 后续：ZZL 用交易哈希补 4A-8 区块浏览器截图；YZH 更新 T-1 与卖家到账证据。DHT 已提供确认回执及订单 0 Completed 状态，不需重复操作。
+
+### 2026-10-27 YZH 正常单完成、卖家余额及时间线证据
+
+- DHT 已对订单 0 执行 `confirm(0)`。YZH 重新从课程 RPC 核对区块 `2689699` 的交易，正确哈希 `0x4d1ab17ee3ede2c696944a2ace7d0f8e195949cdb6928b5883b1b3c162cd6f46`、`status=0x1`、From DHT、To 本组 Escrow；ERC20 Transfer 日志显示 Escrow 向 YZH 转出 30 枚。PR #3 初稿曾误写末尾为 `cd8f46`，合并前已更正；不重复 `confirm(0)`。
+- 后端当前 `getOrder(0)=Completed`，YZH 的[T-1 实时接口图](../evidence/timeline/T-1_YZH_正常单完整时间线_实时接口.png)显示 `OrderCreated → OrderPaid → OrderCompleted` 三事件；[完整响应](../evidence/timeline/T-1_YZH_正常单完整时间线.json)已留存。[T-2 实时接口图](../evidence/timeline/T-2_YZH_争议单完整时间线_实时接口.png)显示四事件和 `sellerWins=false`。
+- YZH 对指定代币 `balanceOf` 的[卖家余额图](../evidence/4A/4A-S2-01_YZH_卖家指定代币余额40枚.png)为 40 枚；[此前已核对的 10 枚](project-config.md)加上此次 Transfer 的 30 枚。T-3 的[分批代码图](../evidence/timeline/T-3-02_YZH_十区块分批并发与排序去重代码.png)及[原合约 load 响应存档图](../evidence/timeline/T-3-01_YZH_重启load原Escrow响应存档.png)已保存。桌面“大作业”保留 YZH 原图，仓库 `evidence/` 保留副本。
+- 下一位：ZZL 补 4A-8 和确认交易的区块浏览器 Logs 图；YZH 补完整 4A-4 截图并汇总最终报告。
