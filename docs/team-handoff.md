@@ -21,8 +21,8 @@
 | 3. SimpleStorage 示例 | YZH | `deploy → set(42) → get=42` 已在测试网完成；set 交易 `0x0563cf0ddcbbc739071ffa15c07e76b0b13cd8b4cacc72cbb3f88c5aff835584` 成功，区块 `2672663`。 | `evidence/4A/4A-3-01*`、`4A-3-02*`；用于报告 4A-3 |
 | 4. 新 Escrow 部署 | YZH | 新地址 `0xDb666Df58291D7d49cea35eE36929dCcD37e2ea5`，部署哈希 `0x4f61670afea0a4714f89c02e177f14b7d2737fa1cad9cac797727344ec187372`，区块 `2672683`，回执 `0x1`；链上 arbiter 与后端专用账户 `0x6717496Fe22477B41e6Ca07353C308fF38A61797` 一致。**不再 deploy。** | `evidence/4A/4A-5-01*`；DHT、ZZL 使用该公开地址 |
 | 5. 两单创建、授权、付款 | DHT | **2026-10-26 已完成。** 正常单 id=0、争议单 id=1，每单 30 枚；approve 共 60 枚；两笔 deposit 成功，截图中两单 status=1（Paid）。五笔交易均已只读查询 RPC 回执核对成功。 | 10 张原图副本已归档到 evidence/4A/；见下方 2026-10-26 更新、交易表和截图索引；YZH 接手争议 |
-| 6. 争议、列表、失败与成功仲裁 | YZH，ZZL 核对 | **争议、失败仲裁及退款已核验。** 订单 1 的 dispute 成功；订单 0 的 resolve 回执为 `0x0`；订单 1 的 `resolve(false)` 回执为 `0x1`，含向 DHT 转出 30 枚指定代币的日志。优化后的 `GET /orders` 约 40 秒返回两单，退款前 Paid/Disputed 详情与回执 JSON 已归档；4A-6/7/8 的 PNG 截图仍待补齐。 | YZH 交 4A-5/6/7，ZZL 截 4A-8 并登记实际失败类型和成功交易 |
-| 7. 正常完成、时间线、重启恢复 | DHT、YZH、ZZL | **尚未核验完成。** 服务重启并按原地址/区块 load 已复查；争议单四事件 T-2 JSON 已归档，正常单确认前只有创建和付款两事件。DHT 核对退款到账后确认正常单 0，并提供真实回执；YZH 补完整 T-1、T-3 与截图，ZZL 核对浏览器 Logs。 | 4A-S1/S2、T-1/T-2/T-3 与交易索引；YZH 最终汇总 |
+| 6. 争议、列表、失败与成功仲裁 | YZH，ZZL 核对 | **争议、失败仲裁及退款已核验。** 订单 1 的 dispute 成功；订单 0 的 resolve 回执为 `0x0`；订单 1 的 `resolve(false)` 回执为 `0x1`，含向 DHT 转出 30 枚指定代币的日志。优化后的 `GET /orders` 约 40 秒返回两单；退款前详情与回执 JSON、YZH 的 4A-6/7 PNG 均已归档。 | YZH 已交 4A-5/6/7；ZZL 截 4A-8 浏览器图并登记实际失败类型和成功交易 |
+| 7. 正常完成、时间线、重启恢复 | DHT、YZH、ZZL | **正常单确认已核验，时间线截图仍待补。** 服务重启并按原地址/区块 load 已复查；争议单四事件 T-2 JSON 已归档。DHT 的退款余额、confirm(0) 成功回执与 Completed(2) 截图已归档；YZH 按区块查到正确确认哈希、回执 `0x1`。YZH 继续补完整 T-1、T-3 与卖家收款截图，ZZL 核对浏览器 Logs。 | 4A-S1/S2、T-1/T-2/T-3 与交易索引；YZH 最终汇总 |
 | 8. 独立重入挑战与报告 | ZZL、三人 | ZZL 挑战和最终报告证据**未在本仓库核实**；与主业务可并行。 | ZZL 交 4C-1/2/3、报告片段；三人核对贡献比例和 AI 使用后由 YZH 制作报告副本 |
 
 ## DHT 已完成阶段的操作参考 请勿重复创建或付款
@@ -115,8 +115,25 @@ ZZL 的独立加分挑战放在 `bonus/reentrancy/`：只在本组自建合约�
 
 - T-3 的实际跨十区块数量、成功退款的后端事件与 RPC Logs 对照、以及重启后原地址 `load` 响应已整理在 [T-3 核对记录](../evidence/timeline/T-3_YZH_跨十区块与链上日志核对.md) 和 [load JSON](../evidence/timeline/T-3_YZH_重启load原Escrow.json)。浏览器画面及报告 PNG 仍待补。
 
+
+### 2026-10-26 DHT 退款到账核对及代码截图归档
+
+- DHT 本人通过 Remix 查询指定 YZHToken 的 balanceOf，截图返回 `30000000000000000000`，即 30 枚；getOrder(1) 为 `status=3`（Refunded），getOrder(0) 仍为 `status=1`（Paid）。这三项为所提供截图时点的核对结果，未新发送退款、仲裁或确认交易。
+- 退款与状态原图：[买家余额](../evidence/4A/4A-S2-02_DHT_买家退款_1.png)、[订单 1 Refunded](../evidence/4A/4A-S2-02_DHT_买家退款_2.png)、[订单 0 确认前 Paid](../evidence/4A/4A-S1_DHT_正常单确认前Paid.png)。本地原图仍保存在 DHT 的 `微众银行实验/大作业/screenshots/`。
+- 同时归档 DHT 的 4A-1 配置 1 张、4A-2 封装 5 张、4A-4 Service 4 张。Service 四张连续覆盖第 1—180 行，不要求为凑数再截六张；封装事件定义第 72 行右侧仍建议补充清晰完整参数图。完整文件及核对状态见 [截图索引](evidence-index.md)。
+- 保存与推送范围：13 张副本全部位于 `evidence/4A/`，与原图逐字节一致；代码截图指南和可复现生成脚本一并交付。未修改合约或 Java 业务源码。
+- **当前保持暂停正常单确认。** 按 YZH 最新直接交接消息，DHT 先核对到账并归档，等 YZH 主任务明确已保存所需当前状态证据、通知可以确认后，DHT 才执行 confirm(0)。本记录不自动授权该步骤，也不以退款成功替代放行消息。
+- 下一位：YZH/ZZL 核对本次截图，继续保存后端状态、仲裁浏览器 4A-8 等证据；YZH 明确放行后由 DHT 本人签名确认并追加成功回执与 Completed 截图。不得重复 deposit、dispute、resolve 或重新部署。
+
+### 2026-10-26 DHT 已签名确认正常单 0（更新以上暂停状态）
+
+- DHT 本人提供了确认前 `getOrder(0)` 为 Paid(1)、`confirm(0)` 参数、Remix 成功回执与确认后 `getOrder(0)` 为 Completed(2) 的四张原始截图；副本见 [截图索引](evidence-index.md)。确认交易正确哈希为 `0x4d1ab17ee3ede2c696944a2ace7d0f8e195949cdb6928b5883b1b3c162cd6f46`，区块 `2689699`、From DHT `0x5FeDaeB4369432aD2A9929EaFFA9762C46050d4C`、To 新 Escrow `0xDb666Df58291D7d49cea35eE36929dCcD37e2ea5`、gasUsed `62549`、两条日志。YZH 按区块独立查询到同一哈希，DHT 交接侧再次用课程 RPC 查询，回执均为 `0x1`。截图原图仍在 DHT 本机 `screenshots/`。
+- 初次请求课程 RPC 曾超时；随后 YZH 按区块独立查询到正确哈希及成功回执 `0x1`，DHT 交接侧通过 `eth_getTransactionReceipt` 再次核对相同结果。交易浏览器链接和核对范围见 [交易记录](transactions.md)。此前“暂停确认”的记录是当时状态，现已由 DHT 本人实际完成，不应再指示他重复 confirm。
+- 下一位：YZH 补卖家收款及 T-1 的 `OrderCompleted` 时间线；4A-6/7 PNG 已归档，ZZL 继续补 4A-8 浏览器图。订单 1 保持 Refunded，不再操作；DHT 不重复 confirm(0)。
+- DHT 随后补拍了 [4A-2-02b OrderCreated 事件定义](../evidence/4A/4A-2-02b_DHT_OrderCreated事件定义.png)：67—74 行开启自动换行后，六个事件参数和 indexed 标记均完整可读，原图与仓库副本 SHA-256 一致。此前第 72 行右侧裁切的证据缺口现已补齐；截图仍为生成代码画面，不是新链上交易。
+
 ### 2026-10-26 YZH 4A-6/7 截图归档更新
 
 - YZH 已把订单列表实时接口、退款前订单 0 Paid/订单 1 Disputed 响应存档，以及失败仲裁、成功退款、订单 1 Refunded 的七张原始截图同时保存到本机桌面“大作业”文件夹与仓库 `evidence/4A/`。逐张文件名和证明范围见[截图索引](evidence-index.md)。订单列表存档截图另作辅助材料；所有截图不含私钥。
-- 4A-7 是已完成交易的回执和状态截图，不需要再次执行 `resolve`。订单 1 的退款回执 `status=0x1`，订单 1 详情 `Refunded`；订单 0 仍保留 Paid，等待 DHT 确认。
-- 下一位 DHT：用本人买家钱包核对指定代币退回 30 枚并保存余额证据，然后按主流程 `confirm(0)` 并提交成功回执及订单 0 Completed 状态。ZZL：用交易哈希补 4A-8 区块浏览器截图。YZH：待 DHT 确认后更新 T-1 与卖家到账证据。
+- 4A-7 是已完成交易的回执和状态截图，不需要再次执行 `resolve`。订单 1 的退款回执 `status=0x1`，订单 1 详情 `Refunded`；截图保存时订单 0 尚为 Paid，此后 DHT 已确认完成，见上方 DHT 阶段记录。
+- 后续：ZZL 用交易哈希补 4A-8 区块浏览器截图；YZH 更新 T-1 与卖家到账证据。DHT 已提供确认回执及订单 0 Completed 状态，不需重复操作。

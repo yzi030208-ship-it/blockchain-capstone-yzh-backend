@@ -1,6 +1,6 @@
 # 实际交易记录
 
-先登记 DHT 本人已完成的五笔交易，2026-10-26 使用课程 RPC 核对 chainId=60600、From、To、区块、回执状态和事件金额/订单编号。后续由 ZZL 追加组长部署、准备转币、争议、仲裁、确认与独立挑战等实际交易；不要将本表理解为整组已全部完成。
+先登记 DHT 本人完成的五笔创建、授权及付款交易；2026-10-26 使用课程 RPC 核对了这五笔的 chainId=60600、From、To、区块、回执状态和事件金额/订单编号。正常单确认交易随后由 DHT 本人提供真实 Remix 截图，单独列出其核对来源。组长部署、准备转币、争议、仲裁与独立挑战等记录仍由 ZZL 汇总；不要将本表理解为整组已全部完成。
 
 发起账户均为 DHT `0x5FeDaeB4369432aD2A9929EaFFA9762C46050d4C`。前两笔及两次 deposit 的目标为新 Escrow；approve 的目标为指定代币合约，spender 为新 Escrow。
 
@@ -13,3 +13,11 @@
 | deposit(1) 付款 30 枚 | 1 | `0xdcfa559d8fed107287dbab3d29e6efd1b09872c0932f6d6d7371b35423287db7` | [交易详情](https://scan-testnet.potos.hk/tx/0xdcfa559d8fed107287dbab3d29e6efd1b09872c0932f6d6d7371b35423287db7) | 2688820 | 0x1 | 70217 |
 
 所有 gasUsed 是 gas 数量，不是 POT 金额。浏览器详情 URL 按仓库已登记的浏览器地址及真实交易哈希构成；本次已核验的是 RPC 回执。截图路径和对应关系见 [截图索引](evidence-index.md)。
+
+## DHT 正常单确认（按本人 Remix 截图记录）
+
+| 操作 | 订单 id | 交易哈希 | 浏览器链接 | 区块 | 截图显示状态 | 截图显示 gasUsed |
+| --- | --- | --- | --- | --- | --- | --- |
+| confirm(0) 正常完成 | 0 | `0x4d1ab17ee3ede2c696944a2ace7d0f8e195949cdb6928b5883b1b3c162cd6f46` | [交易详情](https://scan-testnet.potos.hk/tx/0x4d1ab17ee3ede2c696944a2ace7d0f8e195949cdb6928b5883b1b3c162cd6f46) | 2689699 | YZH 按区块独立查询回执 `0x1`；DHT 后续 getOrder(0) 为 Completed(2) | 62549 |
+
+来源：[DHT 成功回执截图](../evidence/4A/4A-S1-03_DHT_confirm订单0成功回执.png)及[确认后状态截图](../evidence/4A/4A-S1-04_DHT_正常单Completed.png)。YZH 按区块查询到正确哈希后，DHT 交接侧再次通过课程 RPC 的 `eth_getTransactionReceipt` 读取同一哈希，确认区块 `2689699`、回执 `0x1`、From 为 DHT、To 为本组 Escrow、gasUsed `62549`、日志 2 条。先前错误哈希来自截图转录失误，已更正。浏览器链接按公开浏览器 URL 与核实哈希构成，浏览器截图仍由 ZZL 负责。订单 1 已退款，不重复确认。

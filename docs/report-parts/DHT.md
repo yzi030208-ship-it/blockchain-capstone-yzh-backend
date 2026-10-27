@@ -1,6 +1,6 @@
 # DHT 大作业报告片段
 
-本片段对应报告 4.4 的 DHT 部分及本人 4.6、AI 使用说明。状态：代码和本地验证已完成并接入主分支；新 Escrow 已由 YZH 部署，DHT 已在 2026-10-26 完成两单创建、60 枚授权与两单付款，10 张真实截图已归档；争议、仲裁退款、最终确认及其数值仍待补。实际进度以 [三人共用交接](../team-handoff.md) 为准。所有“待补”必须在正式提交前替换为真实证据，不能直接把本文作为已完成报告。
+本片段对应报告 4.4 的 DHT 部分及本人 4.6、AI 使用说明。状态：代码和本地验证已完成并接入主分支；新 Escrow 已由 YZH 部署。DHT 已完成两单创建、60 枚授权、两单付款、退款余额核对及正常单确认。买家余额截图为 30 枚，订单 1 为 Refunded；订单 0 确认前为 Paid，确认后为 Completed。配置、封装（含 OrderCreated 补图）、Service 与买家操作原图均已归档；确认交易正确哈希见下表，YZH 已核对回执 `0x1`。实际进度以 [三人共用交接](../team-handoff.md) 为准。其他仍标“待补”的内容须在正式提交前以真实证据定稿。
 
 ## 分工与实现
 
@@ -12,7 +12,7 @@ DHT 负责接入 Escrow 及代币源码、生成 Web3j Java 封装、实现 `Esc
 
 ## 截图 4A-1 配置占位符
 
-【待本人截图】打开 `src/main/resources/application.properties`，截取 RPC、`web3j.private-key=${WEB3J_PRIVATE_KEY:}`、gas 参数，不截真实变量值。当前配置为组长基线提供，本次沿用，不把它写成 DHT 独自新写的配置。
+【已取得本人截图】[4A-1 配置环境变量](../../evidence/4A/4A-1-01_DHT_配置环境变量.png) 显示 RPC、`web3j.private-key=${WEB3J_PRIVATE_KEY:}` 和 gas 参数，无真实密钥值。当前配置为组长基线提供，本次沿用，不把它写成 DHT 独自新写的配置。
 
 ### 解释 4A-1 草稿 待结合本组截图定稿
 
@@ -24,7 +24,7 @@ DHT 负责接入 Escrow 及代币源码、生成 Web3j Java 封装、实现 `Esc
 
 ## 截图 4A-2 生成 Java 封装
 
-【待本人截图】生成命令与成功输出、生成的文件列表、Escrow.java 中 BINARY、FUNC_ 常量、Order、OrderCreatedEventResponse、getOrderCreatedEventFromLog。生成文件不得手改。
+【已取得本人截图】终端原图显示真实生成命令、Solidity 编译、四个封装生成与 BUILD SUCCESSFUL in 4s；生成类关键结构各有截图，见 [截图索引](../evidence-index.md)。原事件定义截图第 72 行右侧裁切，现已用 [4A-2-02b 补图](../../evidence/4A/4A-2-02b_DHT_OrderCreated事件定义.png)完整显示六个参数的类型和 indexed 标记。生成文件不手改。
 
 ### 解释 4A-2 草稿 待结合生成代码截图定稿
 
@@ -36,23 +36,23 @@ Solidity 的 `Order memory` 在本次生成封装中映射为静态内部类 `Es
 
 ## 截图 4A-4 核心 Service
 
-【待本人截图】`src/main/java/com/wetech/demo/web3j/service/EscrowService.java` 完整代码分图；Controller 由 YZH 提供。方法签名和异常说明以现有代码与 [三人共用交接](../team-handoff.md) 为准。
+【已取得本人截图】`src/main/java/com/wetech/demo/web3j/service/EscrowService.java` 四张分图连续覆盖第 1—180 行；见 [截图索引](../evidence-index.md)。Controller 由 YZH 提供。方法签名和异常说明以现有代码与 [三人共用交接](../team-handoff.md) 为准。
 
 实现要点：部署成功回执作为地址和区块来源；load 的账户核对和失败不覆盖状态；current 的唯一数据来源；链上枚举转换；resolve 保留真实失败信息。未增加发货状态、多签或路线 B。
 
 ## 截图 4A-5 买家操作材料
 
-【买家创建及付款已完成】2026-10-26 在本组新 Escrow 完成两笔 createOrder、一笔 approve 共 60 枚、两笔 deposit。两单原始 getOrder 截图均为 status=1（Paid）；五笔实际交易及事件经只读 RPC 核对。10 张截图见 [证据索引](../evidence-index.md)，哈希、区块和金额见 [交易记录](../transactions.md)。目前等待 YZH 对争议单退款，之后再确认正常单，不把待执行结果写成已完成。
+【买家创建、付款及正常单确认已完成】2026-10-26 在本组新 Escrow 完成两笔 createOrder、一笔 approve 共 60 枚、两笔 deposit。两单原始 getOrder 截图均为 status=1（Paid）；这五笔交易及事件经只读 RPC 核对。之后本人核对争议单退款：指定代币余额 30 枚、订单 1 Refunded；又对正常单 0 本人签名执行 confirm(0)。Remix 成功回执和后续 getOrder(0)=Completed(2) 均有原图，见 [证据索引](../evidence-index.md)。此前我转录截图哈希时写错一位；YZH 按区块 `2689699` 找到正确哈希，DHT 交接侧再以该哈希读取课程 RPC 回执，核对为 `0x1`、gasUsed `62549`、两条日志，现已更正记录。浏览器截图由 ZZL 继续补。
 
 | 待填项 | 真实值 |
 | --- | --- |
 | 本次新 Escrow / 部署区块 | `0xDb666Df58291D7d49cea35eE36929dCcD37e2ea5` / `2672683`；详见公开配置 |
 | 链上 arbiter / resolve From | arbiter 为 `0x6717496Fe22477B41e6Ca07353C308fF38A61797`；实际 resolve From 待交易后核对 |
 | 买家地址 / 卖家地址 | `0x5FeDaeB4369432aD2A9929EaFFA9762C46050d4C` / `0xa508c9Ff372C40F1f109EdA1F8DB532fB556c30A`；创建回执事件及钱包截图已核对 |
-| 正常单 id / 创建、付款、确认哈希 | id=0；创建 `0x782a3aa446b05827ba109dbd3502edec6b60f2b93d72488011e4e6d55f6524b6`；付款 `0xe4e6c4089b9dde7fef35832cd2020f649ac5cad5842ccdc2df080f28d8247b46`；confirm 待执行 |
-| 争议单 id / 创建、付款、退款哈希 | id=1；创建 `0xd2246b70a7f676b33c70fcf31f2f25baf5c1d0fd61e1ef9f111f921e2555a333`；付款 `0xdcfa559d8fed107287dbab3d29e6efd1b09872c0932f6d6d7371b35423287db7`；仲裁退款待执行 |
+| 正常单 id / 创建、付款、确认哈希 | id=0；创建 `0x782a3aa446b05827ba109dbd3502edec6b60f2b93d72488011e4e6d55f6524b6`；付款 `0xe4e6c4089b9dde7fef35832cd2020f649ac5cad5842ccdc2df080f28d8247b46`；confirm 正确哈希 `0x4d1ab17ee3ede2c696944a2ace7d0f8e195949cdb6928b5883b1b3c162cd6f46`，区块 2689699，YZH 复核回执 `0x1`，后续 Completed(2) |
+| 争议单 id / 创建、付款、退款哈希 | id=1；创建 `0xd2246b70a7f676b33c70fcf31f2f25baf5c1d0fd61e1ef9f111f921e2555a333`；付款 `0xdcfa559d8fed107287dbab3d29e6efd1b09872c0932f6d6d7371b35423287db7`；退款仲裁 `0x86b5d80b974abd153f5b40a4e08f72f0d5657bf1fd048289eb621878fbbf9a92`，由 YZH 交接核验，DHT 另核对到账截图 |
 | approve spender / 金额 / 哈希 | 新 Escrow `0xDb666Df58291D7d49cea35eE36929dCcD37e2ea5` / `60000000000000000000` / `0x279498c462501f23a680cacaf7b82a68771a47456a3c8cce1a43e5032d3f1014` |
-| 仲裁前后买家与托管的 ERC20 余额 | 待真实读取 |
+| 仲裁前后买家与托管的 ERC20 余额 | 本人退款后 balanceOf 截图为 30 枚；退款前与托管余额引用相应真实回执或后续读取，不预填 |
 
 ### 解释 4A-5 草稿 待结合本组交易定稿
 
@@ -74,4 +74,4 @@ Solidity 的 `Order memory` 在本次生成封装中映射为静态内部类 `Es
 
 本次使用 Codex 阅读课程材料、检查组长项目、整理接口边界、接入源码、编写 EscrowService 与验证测试、辅助解决构建错误，并生成本报告片段及操作清单。合约主体沿用已有实验 3 源码；Java 封装由 Gradle Web3j 工具生成，未由 AI 手写替代。
 
-AI 曾误用 HttpService 的资源管理接口，实际编译指出错误，已据此修正并重新验证。真实钱包确认、截图、课程理解和最终报告核对由本人完成。尚未执行的测试网流程与截图保持待补，不写成 AI 已经完成。
+AI 曾误用 HttpService 的资源管理接口，实际编译指出错误，已据此修正并重新验证。AI 辅助转录确认交易哈希时还写错一位；YZH 对照链上区块发现错误，随后以正确哈希读取课程 RPC 回执并更正记录。真实钱包确认、截图、课程理解和最终报告核对由本人完成；浏览器图及其他尚未完成的组内截图仍按实际进度补，不写成 AI 已经完成。
