@@ -1,0 +1,54 @@
+{
+  "providedBy": "ZZL",
+  "command": "gradlew.bat test --rerun-tasks --console=plain",
+  "commandEvidence": "Guided command; screenshot shows task output and BUILD SUCCESSFUL, not the initial command line.",
+  "screenshot": "evidence/timeline/T-4-02_ZZL_Java测试构建成功.png",
+  "result": "BUILD SUCCESSFUL",
+  "screenshotDurationSeconds": 10,
+  "suites": [
+    {
+      "name": "com.wetech.demo.web3j.escrow.EscrowEventQueryServiceTest",
+      "tests": "3",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0",
+      "timestamp": "2026-10-29T15:26:19.946Z",
+      "time": "0.75"
+    },
+    {
+      "name": "com.wetech.demo.web3j.escrow.EscrowTimelineControllerTest",
+      "tests": "3",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0",
+      "timestamp": "2026-10-29T15:26:22.252Z",
+      "time": "0.22"
+    },
+    {
+      "name": "com.wetech.demo.web3j.service.EscrowServiceLocalIntegrationTest",
+      "tests": "1",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "1",
+      "timestamp": "2026-10-29T15:26:22.476Z",
+      "time": "0.0"
+    },
+    {
+      "name": "com.wetech.demo.web3j.service.EscrowServiceTest",
+      "tests": "2",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0",
+      "timestamp": "2026-10-29T15:26:22.477Z",
+      "time": "1.589"
+    }
+  ],
+  "totals": {
+    "tests": 9,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 1,
+    "passed": 8
+  },
+  "scope": "Java tests; Solidity compilation and wrapper generation skipped by project configuration. Existing local EVM integration test skipped; no claim of a fresh local EVM or testnet transaction."
+}

@@ -8,11 +8,11 @@
 
 | 成员 | 当前负责 | 只能由本人完成的签名 |
 | --- | --- | --- |
-| DHT（买家） | 已交付 Escrow 合约、Java 封装与核心 Service；已创建两单、授权并付款；等待 YZH 仲裁退款后确认正常单；买家截图和交易哈希已归档 | 买家钱包 `createOrder`、`approve`、`deposit`、`confirm` |
-| YZH（组长、卖家） | 已交付 Controller、事件查询、时间线、集成、SimpleStorage 和新 Escrow 部署；已完成订单 1 争议及退款、订单 0 失败仲裁验证；列表查询优化和重启 load 已实测，继续补报告截图与正常单完成后的时间线 | 卖家钱包 `dispute`；后端专用账户在本人本机签名 `deploy`、`resolve` |
-| ZZL（验收） | 建立交易表和截图索引，逐笔核对公开回执；独立完成重入挑战、修复复测和本人报告材料 | 仅自己的挑战合约交易；不代替 DHT/YZH 主业务签名 |
+| DHT（买家） | 已交付 Escrow 合约、Java 封装与核心 Service；两单创建、授权、付款和正常单确认均已完成；不需重复 confirm | 买家钱包 `createOrder`、`approve`、`deposit`、`confirm` |
+| YZH（组长、卖家） | 已交付 Controller、事件查询、时间线、集成及链上业务；已有时间线代码和截图供 ZZL 本轮复用，具体见 timeline-delivery.md | 卖家钱包 `dispute`；后端专用账户在本人本机签名 `deploy`、`resolve` |
+| ZZL（验收） | 本轮一人接手时间线验收、补图、归档及报告 4.5；独立重入挑战沿用原分工 | 仅自己的挑战合约交易；不代替 DHT/YZH 主业务签名 |
 
-## 当前阶段：订单 1 仲裁退款已核验，补证、正常单确认和时间线待完成
+## 当前阶段：订单时间线验收及主要截图已完成，待后续正式报告整合
 
 | 阶段 | 负责人 | 已核实结果 / 尚需结果 | 证据与下一位 |
 | --- | --- | --- | --- |
@@ -21,8 +21,8 @@
 | 3. SimpleStorage 示例 | YZH | `deploy → set(42) → get=42` 已在测试网完成；set 交易 `0x0563cf0ddcbbc739071ffa15c07e76b0b13cd8b4cacc72cbb3f88c5aff835584` 成功，区块 `2672663`。 | `evidence/4A/4A-3-01*`、`4A-3-02*`；用于报告 4A-3 |
 | 4. 新 Escrow 部署 | YZH | 新地址 `0xDb666Df58291D7d49cea35eE36929dCcD37e2ea5`，部署哈希 `0x4f61670afea0a4714f89c02e177f14b7d2737fa1cad9cac797727344ec187372`，区块 `2672683`，回执 `0x1`；链上 arbiter 与后端专用账户 `0x6717496Fe22477B41e6Ca07353C308fF38A61797` 一致。**不再 deploy。** | `evidence/4A/4A-5-01*`；DHT、ZZL 使用该公开地址 |
 | 5. 两单创建、授权、付款 | DHT | **2026-10-26 已完成。** 正常单 id=0、争议单 id=1，每单 30 枚；approve 共 60 枚；两笔 deposit 成功，截图中两单 status=1（Paid）。五笔交易均已只读查询 RPC 回执核对成功。 | 10 张原图副本已归档到 evidence/4A/；见下方 2026-10-26 更新、交易表和截图索引；YZH 接手争议 |
-| 6. 争议、列表、失败与成功仲裁 | YZH，ZZL 核对 | **争议、失败仲裁及退款已核验。** 订单 1 的 dispute 成功；订单 0 的 resolve 回执为 `0x0`；订单 1 的 `resolve(false)` 回执为 `0x1`，含向 DHT 转出 30 枚指定代币的日志。优化后的 `GET /orders` 约 40 秒返回两单；退款前详情与回执 JSON、YZH 的 4A-6/7 PNG 均已归档。 | YZH 已交 4A-5/6/7；ZZL 截 4A-8 浏览器图并登记实际失败类型和成功交易 |
-| 7. 正常完成、时间线、重启恢复 | DHT、YZH、ZZL | **正常单确认已核验，时间线截图仍待补。** 服务重启并按原地址/区块 load 已复查；争议单四事件 T-2 JSON 已归档。DHT 的退款余额、confirm(0) 成功回执与 Completed(2) 截图已归档；YZH 按区块查到正确确认哈希、回执 `0x1`。YZH 继续补完整 T-1、T-3 与卖家收款截图，ZZL 核对浏览器 Logs。 | 4A-S1/S2、T-1/T-2/T-3 与交易索引；YZH 最终汇总 |
+| 6. 争议、列表、失败与成功仲裁 | YZH，ZZL 核对 | **争议、失败仲裁及退款已核验。** 订单 1 的 dispute 成功；订单 0 的 resolve 回执为 `0x0`；订单 1 的 `resolve(false)` 回执为 `0x1`，含向 DHT 转出 30 枚指定代币的日志。4A-6/7 PNG 和旧副本中 ZZL 的 4A-8 详情、Transfer 日志图均已归档。 | 4A-8 原图已保留并目视核对；无需重做仲裁 |
+| 7. 正常完成、时间线、重启恢复 | ZZL 本次收尾；YZH/DHT 原贡献保留 | **两单最终状态与时间线已核验。** 正常单 Completed、争议单 Refunded，T-1/T-2 原图、JSON 及旧 load/代码图已归档。本轮八项 Java 测试通过、一项原本地 EVM 测试跳过，七条事件通过实时回执与十区块窗口只读核验。本轮未重启后端。 | [时间线交付说明](timeline-delivery.md)；ZZL 的 OrderResolved、Transfer、RPC 核验和 Java 构建截图已收齐；T-1/T-2 复用原图 |
 | 8. 独立重入挑战与报告 | ZZL、三人 | ZZL 挑战和最终报告证据**未在本仓库核实**；与主业务可并行。 | ZZL 交 4C-1/2/3、报告片段；三人核对贡献比例和 AI 使用后由 YZH 制作报告副本 |
 
 ## DHT 已完成阶段的操作参考 请勿重复创建或付款
@@ -32,7 +32,7 @@
 3. 用买家钱包创建两单，各 `amount=30000000000000000000`（18 位精度），`seller=0xa508c9Ff372C40F1f109EdA1F8DB532fB556c30A`，`token` 为上述指定合约。`deadline` 在操作当时计算未来约 30 分钟的 Unix 秒，description 区分正常单/争议单。逐笔记录哈希、区块、id。
 4. 在指定 YZHToken 上对**新 Escrow** `approve(60000000000000000000)`，读取 `allowance`，再分别 `deposit` 两单并核对 Paid。完成后把哈希、id 和截图交 YZH/ZZL；**等争议与退款完成后才 confirm 正常单**。
 
-当前 DHT 已完成上述创建、授权和两笔付款，证据见文末；不要重复上述发送步骤。YZH 已完成订单 1 争议及仲裁退款；DHT 接下来核对退款到账，按主流程交接安排确认正常单 0 并保留回执。
+当前 DHT 已完成上述创建、授权、两笔付款及正常单 0 确认，证据见文末；YZH 已完成订单 1 争议及仲裁退款。以上仅保留历史操作参考，两单均已结束，不再重复发送这些交易。
 
 ## ZZL 与 YZH 的并行工作
 
@@ -150,3 +150,56 @@ ZZL 的独立加分挑战放在 `bonus/reentrancy/`：只在本组自建合约�
 - YZH 已交付 Controller 上下两图和 EventQuery 两图，桌面“大作业”与仓库 `evidence/4A/` 各保留一份；文件路径与代码范围见[截图索引](evidence-index.md)。分批并发、排序去重代码复用已有 T-3-02 图。
 - 本轮 YZH 截图清单已完成，无需重复链上操作。本批四张代码图与索引、报告片段、交接记录统一提交。
 - 后续：ZZL 完成 4A-8、浏览器 Logs 对照和本人挑战材料；YZH 收齐后三人共同核对并汇总最终报告。不能据此把整个项目标为已完成。
+
+
+### 2026-10-29 从本机旧下载副本保留的 ZZL 记录
+
+以下为旧副本中的历史记录，保留其原有时间与陈述，不代表本轮重新执行；正常单现已完成，以较新记录为准。
+
+- 2026-10-26 14:59（Asia/Shanghai），ZZL：已阅读大作业要求、仓库、公开配置和截图指南；建立 `docs/transactions.md` 与 `docs/evidence-index.md`。已登记并核对当前已知的账户充值、指定代币转账、SimpleStorage 写入和新 Escrow 部署；SimpleStorage 部署哈希因接口未返回而明确记为未记录。已登记现有 4A-3、4A-5 截图及后续 4A/4C 编号、完整文件名和仓库目录。当前仍等待 DHT 提供第一笔创建订单的真实交易信息；收到后 ZZL 逐笔核对交易、订单和截图，再更新本文件与两张登记表。独立重入挑战和 `docs/report-parts/ZZL.md` 已标明待完成内容。因当前仓库副本没有 Git 元数据，分支提交、推送和 PR 待取得带 Git 的工作副本后执行。
+
+- 2026-10-26 16:34（Asia/Shanghai），ZZL：已从 GitHub `main` 最新提交 `c5fb3e2a23457cf533a912609a318e717054c7df` 同步路线 A 新增证据文件。DHT 已完成订单 0/1 创建、approve、两笔 deposit；YZH 已完成 `dispute(1)`、订单 0 的链上失败 `resolve(0,true)`、订单 1 的成功退款 `resolve(1,false)`。已将真实交易与区块浏览器链接补入 `docs/transactions.md`，并将 DHT 原图、4A-6/4A-7 JSON、时间线 JSON 及 T-3 记录同步到 `evidence/`；4A-6/4A-7/4A-8 的报告 PNG 仍需补。成功退款哈希为 `0x86b5d80b974abd153f5b40a4e08f72f0d5657bf1fd048289eb621878fbbf9a92`，区块 `2689270`，回执 `0x1`，含 30 枚代币 Transfer 和 `OrderResolved(false)`。当前下一步是 ZZL 截 4A-8 浏览器详情/日志，DHT 核对退款余额后确认订单 0；独立 6.1 重入挑战仍单独进行，不混入路线 A 交易表。
+
+- 2026-10-26 16:42（Asia/Shanghai），ZZL：已保存并核对 `4A-8-01_ZZL_resolve浏览器详情.png` 与 `4A-8-02_ZZL_resolve日志.png`。详情图显示成功状态、区块 `2689270`、后端账户 From、新 Escrow To 及 30 枚转给 DHT；日志图显示指定 YZHToken 的 Transfer 从 Escrow 到 DHT，原图与仓库副本 SHA-256 一致。4A-8 已完成。下一步交 DHT 核对退款后余额并由本人签名 `confirm(0)`；订单 1 不再操作。6.1 重入挑战仍是独立证据线。
+
+- 2026-10-29（Asia/Shanghai），ZZL / 6.1 环境准备：三份独立教学合约已使用 solc 0.8.20、EVM Paris 编译通过。账户检查遇到 HTTP 403，复现后发现默认 ethers 请求失败，而加上 `User-Agent: ZZL-Course-Lab/1.0` 的请求成功。新增 `bonus/reentrancy/rpc-provider.cjs`，账户检查和部署脚本共用该配置；只读复测返回 `CHAIN_ID=60600`、`BALANCE_QUERY=OK`。本次未使用私钥、未发送交易；ZZL 本人账户余额仍待本人重新运行检查，部署及 4C-1 至 4C-3 实验截图待完成。本次修改仅在本机，尚未提交或推送。
+
+- 2026-10-29（Asia/Shanghai），ZZL / 6.1 账户核对：本人终端返回 `CHAIN_ID=60600`、`ACCOUNT_CHECK=OK`；公开地址为 `0x28D4cD8504A89249087A5b5480e4960aF68d378d`。独立只读查询确认余额为 `0.000999947548489 POT`，不足课程规定的单次 `0.001 POT` 投入及手续费。下一步先补充本人测试账户 POT，再核对余额；尚未执行金库部署或漏洞复现实验，4C 正式截图仍待完成。
+
+- 2026-10-29（Asia/Shanghai），ZZL / 6.1 参数与部署准备：ZZL 明确后续采用十分之一金额方案，DHT 存入 `0.0002 POT`、ZZL 投入 `0.0001 POT`，最终报告如实说明偏离指导金额。已更新截图指南和 ZZL 报告片段；部署脚本增加费用检查、账户核对、防重复部署记录以及公开 JSON 回执保存。使用公开地址只读执行 `--check`，返回链编号 60600、余额 `0.001999946177504 POT`、估算 gas 27392、部署费用上界 `0.000000000690291 POT`、`PREFLIGHT: OK`。未读取本人私钥或发送交易。下一步由 ZZL 在本人终端部署 VulnerableVault，取得真实地址和成功回执后保存 `4C-1-00_ZZL_漏洞金库部署.png`；DHT 存款需等新地址核对完成，暂不操作。修改尚未提交推送。
+
+
+### 2026-10-29 ZZL 接手订单时间线收尾
+
+- 已从 GitHub main a76515a 建立带 Git 的新工作副本，保留旧下载副本独有的挑战、截图和历史记录，未覆盖旧目录。
+- 时间线功能在同步的主分支已实现。本轮补充自动验收：六事件解码、同区块排序、订单过滤、去重、removed 日志排除及 HTTP 参数和错误响应；8 项通过，1 项原本地 EVM 场景跳过。
+- 22:52（Asia/Shanghai）七条存档事件逐条通过实时链上回执和十区块窗口核验；订单 0 Completed、订单 1 Refunded。原始结果见 evidence/timeline/verification/20261029T145204614030Z/。本轮未重启后端或发交易。
+- 本项由 ZZL 一人整理，DHT 无需重复 confirm，YZH 无需新增操作。现有 YZH 的 T-1/T-2 可复用并保留截图人；建议 ZZL 补一张 Escrow OrderResolved 浏览器日志，现有 ZZL 日志图只拍到 Transfer。详细步骤及报告片段见 timeline-delivery.md。
+- 本轮仍为本机修改，未提交或推送。
+
+
+### 当前操作者身份更正
+
+用户本人明确当前操作者为 ZZL。本轮时间线由 ZZL 独立收尾，原分工中误把当前用户当作 YZH 的计划已更正。YZH 原接口代码、原截图与 DHT 的合约、签名操作保留历史署名。截图补图可从公开浏览器完成；无需其他成员再次交易或提供私钥。
+
+
+## ZZL 时间线浏览器补图已归档
+
+本次收到 ZZL 原图两张：T-3-03_OrderResolved 与 T-3-04_退款Transfer，均原样保存在 evidence/timeline/，已比对 SHA256。OrderResolved 订单 1 的原始布尔 data=false，Transfer 为 30 枚退回买家。浏览器将布尔参数命名为 refundToBuyer，与本组源码 sellerWins 不同；报告按源码及原始 data、Transfer 解释。两图未含交易哈希，与已有 4A-8-01 及 RPC 回执组合使用。此前“待补 T-3-03”的记录由本记录更新；截图文件与详细核对说明见时间线索引。本轮未发送交易。
+
+
+### ZZL 本人终端核验遇到 CMD 调用语法问题
+
+收到原始截图并保存至 evidence/timeline/issues/T-I-01_ZZL_CMD误用PowerShell调用符.png。当前 CMD 不接受 PowerShell 的开头调用符 &，脚本尚未执行。已提供去掉 & 的 CMD 命令，等待用户执行并提供成功结果截图；本记录不标记核验完成。
+
+
+## ZZL 本人链上核验已通过
+
+ZZL 在本机 CMD 修正调用语法后，于 2026-10-29 23:20（Asia/Shanghai）实际运行 scripts/verify-timeline.py，RESULT=PASS，订单 0 Completed（3 事件）、订单 1 Refunded（4 事件）。原图 T-4-01 与本轮 verification/20261029T152047601888Z/ 原始结果已对应归档。本轮 chainHead=2728523；模式为存档 API 与实时回执核验，不声称本轮启动后端。CMD 问题已解决。下一步由 ZZL 运行 Java 测试并提供 BUILD SUCCESSFUL 截图。
+
+
+## ZZL 时间线主要验收截图已收齐
+
+ZZL 已提供 T-4-02 Java 构建成功原图，显示 BUILD SUCCESSFUL in 10s。独立读取其本次 23:26（Asia/Shanghai）生成的四份 JUnit XML：9 项中 8 通过、1 项原本地 EVM 场景跳过，0 失败、0 错误；本次 XML 单独存于 evidence/timeline/validation/ZZL-20261029T152619Z/，未覆盖先前验证。Solidity 编译与封装任务按原配置跳过，不将本图称为完整 Solidity/EVM 验证。
+
+时间线已有 T-1/T-2 接口原图可复用，加上 ZZL 的 T-3-03、T-3-04、T-4-01、T-4-02，主要验收截图已齐。截图与原始数据均原样保存、登记哈希；CMD 语法问题已复测解决。下一步是后续将证据插入正式报告与核对组员信息，无需继续为本项重复交易或截图。当前改动仍在本机，未提交推送。

@@ -18,3 +18,8 @@
 2026-10-26 后端重启后调用 `POST /api/escrow/load`，仍传原地址 `0xDb666Df58291D7d49cea35eE36929dCcD37e2ea5` 和原部署区块 `2672683`，返回同一合约地址、链上 arbiter `0x6717496fe22477b41e6ca07353c308ff38a61797` 及部署区块，见 [load JSON](T-3_YZH_重启load原Escrow.json)。之后重新查询列表与争议单时间线成功；没有重新部署。
 
 YZH 的[10 区块分批代码截图](T-3-02_YZH_十区块分批并发与排序去重代码.png)和[重启 load 原响应存档截图](T-3-01_YZH_重启load原Escrow响应存档.png)已保存；ZZL 仍需在区块浏览器对照上述成功交易 Logs 并截图。`load` 文件图只证明此前响应存档，须结合此前重启后的接口调用证据说明。
+
+
+## 2026-10-29 补充核验
+
+ZZL 的既有浏览器详情和 Transfer 日志原图已从旧本机副本保留到 evidence/4A/；该日志图尚未拍到 Escrow 的 OrderResolved。时间线本次七条事件的实时回执和十区块窗口核验为 PASS，见 [总结](verification/20261029T145204614030Z/summary.json)。本次不声称重启后端或重扫完整历史；建议补图及完整证据范围见 [交付说明](../../docs/timeline-delivery.md)。

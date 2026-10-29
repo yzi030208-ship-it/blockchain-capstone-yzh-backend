@@ -98,3 +98,29 @@
 | T-3-02 | [十区块分批与并发代码](../evidence/timeline/T-3-02_YZH_十区块分批并发与排序去重代码.png) | `scan` 函数每窗口结束于 `start+9`，并发抓取后按日志顺序排序、去重 |
 
 `confirm(0)` 区块 `2689699` 的实际哈希末尾是 `cd6f46`，经课程 RPC 回执 `status=0x1` 核对；PR #3 初稿中的 `cd8f46` 为文字记录错误，合并前已更正。ZZL 的区块浏览器 Logs 对照图仍待补。
+
+
+## 2026-10-29 时间线收尾与旧副本补证
+
+时间线单独归档索引见 [evidence/timeline/README.md](../evidence/timeline/README.md)，文件 SHA256 见同目录 manifest.json。T-1/T-2 现有原图已目视核对，并用七条实时 RPC 回执逐条复核事件、订单、区块、参数及索引。原始数据在 verification/20261029T145204614030Z/，本轮未重启后端。
+
+| 编号 | 文件 | 状态与证明范围 |
+| --- | --- | --- |
+| 4A-8-01 | [ZZL 浏览器详情原图](../evidence/4A/4A-8-01_ZZL_resolve浏览器详情.png) | 从旧副本保留；Success、区块 2689270、仲裁账户 From、新 Escrow To、30 枚退款清晰可读 |
+| 4A-8-02 | [ZZL Transfer 原图](../evidence/4A/4A-8-02_ZZL_resolve日志.png) | 从旧副本保留；只拍到 YZHToken Transfer，不宣称已拍到 Escrow OrderResolved |
+| T-3-03 | [ZZL OrderResolved 原图](../evidence/timeline/T-3-03_ZZL_OrderResolved浏览器日志.png) | 已收到，订单 1、原始 false；参数名差异与证据范围见原图核对说明 |
+| T-3-04 | [ZZL Transfer 原图](../evidence/timeline/T-3-04_ZZL_退款Transfer浏览器日志.png) | 已收到，30 枚退款；与 4A-8-01 完整哈希图结合使用 |
+
+以上两张 ZZL 原图与旧副本 SHA256 相同。不重复命名复制进 timeline，通过索引交叉引用供报告复用。
+
+
+| 编号 | 用户提供的原图 | 对应数据与范围 |
+| --- | --- | --- |
+| T-4-01 | [ZZL 本人链上核验 PASS](../evidence/timeline/T-4-01_ZZL_本人链上时间线核验PASS.png) | 对应 verification/20261029T152047601888Z/；23:20 运行成功，7 事件与实时回执匹配，未启动后端 |
+
+
+| 编号 | 用户原图 | 本次结果 |
+| --- | --- | --- |
+| T-4-02 | [ZZL Java 测试成功](../evidence/timeline/T-4-02_ZZL_Java测试构建成功.png) | BUILD SUCCESSFUL in 10s；23:26 JUnit XML 对应 8 通过、1 跳过、0 失败/错误；独立归档 validation/ZZL-20261029T152619Z/ |
+
+订单时间线主要验收截图已齐，详见 [专用索引](../evidence/timeline/README.md)。

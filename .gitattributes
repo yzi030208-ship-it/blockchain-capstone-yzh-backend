@@ -2,3 +2,6 @@
 *.bat text eol=crlf
 *.jar binary
 src/main/java/com/wetech/demo/web3j/contracts/** whitespace=-trailing-space
+# Preserve raw receipt/test evidence bytes so manifest hashes survive a clone.
+evidence/timeline/**/*.json -text whitespace=cr-at-eol
+evidence/timeline/**/*.xml -text whitespace=cr-at-eol
