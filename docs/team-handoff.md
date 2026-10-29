@@ -1,5 +1,7 @@
 # 三人共用阶段交接记录
 
+**GitHub 同步状态：** 已推送至 GitHub 分支 `feat/zzl-timeline-evidence`，并创建 [PR #4](https://github.com/yzi030208-ship-it/blockchain-capstone-yzh-backend/pull/4)；等待 YZH 审查合并至 `main`。订单时间线材料已上传，独立重入挑战代码和 4C 数据仍仅保留本机。
+
 本文件是 DHT、YZH、ZZL **唯一持续更新的交接文档**。每完成一个阶段，由执行人按文末模板追加真实结果，YZH 核对后标明下一位操作者。不要覆盖旧记录、预填未发生的交易，或在文件与截图中写入私钥。当前链上公开参数统一查 [project-config.md](project-config.md)；详细操作与交易留痕查 [experiment-runbook.md](experiment-runbook.md)；截图编号查 [evidence-capture-guide.md](evidence-capture-guide.md)。
 
 ## 项目和职责
@@ -203,3 +205,8 @@ ZZL 在本机 CMD 修正调用语法后，于 2026-10-29 23:20（Asia/Shanghai�
 ZZL 已提供 T-4-02 Java 构建成功原图，显示 BUILD SUCCESSFUL in 10s。独立读取其本次 23:26（Asia/Shanghai）生成的四份 JUnit XML：9 项中 8 通过、1 项原本地 EVM 场景跳过，0 失败、0 错误；本次 XML 单独存于 evidence/timeline/validation/ZZL-20261029T152619Z/，未覆盖先前验证。Solidity 编译与封装任务按原配置跳过，不将本图称为完整 Solidity/EVM 验证。
 
 时间线已有 T-1/T-2 接口原图可复用，加上 ZZL 的 T-3-03、T-3-04、T-4-01、T-4-02，主要验收截图已齐。截图与原始数据均原样保存、登记哈希；CMD 语法问题已复测解决。下一步是后续将证据插入正式报告与核对组员信息，无需继续为本项重复交易或截图。当前改动仍在本机，未提交推送。
+
+
+## 订单时间线已推送 GitHub PR #4
+
+提交 71f9ee7 已推送至 feat/zzl-timeline-evidence，创建 PR #4：https://github.com/yzi030208-ship-it/blockchain-capstone-yzh-backend/pull/4。提交包含本轮时间线测试、核验脚本、报告及交接、截图原图、两次只读核验数据、两次测试数据与哈希清单；发布前已核对 68 个证据文件的 Git 暂存字节与清单一致。作者使用本机已登录 GitHub 账号 xunqiu909 对应的 noreply 身份，显示名 ZZL。等待 YZH 审查合并 main，不代替组长直接合并；旧副本 bonus 和独立 4C 数据未纳入该 PR。原有“未提交/推送”的阶段记录均为历史状态，以本条和文首状态为准。

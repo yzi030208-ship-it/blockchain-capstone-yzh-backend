@@ -1,8 +1,10 @@
 # 2026年10月29日本地同步记录
 
+**GitHub 同步状态：** 已推送至 GitHub 分支 `feat/zzl-timeline-evidence`，并创建 [PR #4](https://github.com/yzi030208-ship-it/blockchain-capstone-yzh-backend/pull/4)；等待 YZH 审查合并至 `main`。订单时间线材料已上传，独立重入挑战代码和 4C 数据仍仅保留本机。
+
 GitHub main 基线：`a76515a1516b0ee354f7b9c996b102f42ce8494d`。
 
-原目录 `../blockchain-capstone-yzh-backend-main/` 是没有 Git 元数据的下载副本，完整保留。当前目录 `blockchain-capstone-yzh-backend/` 为新克隆的 Git 工作副本。两者不同名，后续运行和提交请使用当前目录。未自动提交或推送。
+原目录 `../blockchain-capstone-yzh-backend-main/` 是没有 Git 元数据的下载副本，完整保留。当前目录 `blockchain-capstone-yzh-backend/` 为新克隆的 Git 工作副本。两者不同名，后续运行和提交请使用当前目录。以下是建立副本时的记录；当前发布状态见文首。
 
 以 GitHub 最新代码为基础，额外复制旧副本尚未入库的独立挑战文件、ZZL 报告片段及两张 4A-8 原图。没有用旧文档覆盖新版正常单完成记录；旧副本 ZZL 的历史阶段记录追加到 team-handoff，均标明来源。旧副本其他差异仍可回查。挑战编译产物可能被现有 Git 忽略规则忽略，但已保留在本机。
 

@@ -29,4 +29,4 @@
 
 ## 本项截图收齐状态
 
-订单时间线所用 T-1/T-2 真实接口图（原作者 YZH）可复用。ZZL 补拍的 OrderResolved、Transfer、本人 RPC 核验 PASS、Java BUILD SUCCESSFUL 均已入库，主要验收截图已齐，无需继续补拍。本轮报告说明、原始数据、问题与修正及测试结果均已对应整理。此结论仅针对订单时间线，不代表独立重入挑战或整份课程报告完成。尚未自动提交或推送 GitHub。
+订单时间线所用 T-1/T-2 真实接口图（原作者 YZH）可复用。ZZL 补拍的 OrderResolved、Transfer、本人 RPC 核验 PASS、Java BUILD SUCCESSFUL 均已入库，主要验收截图已齐，无需继续补拍。本轮报告说明、原始数据、问题与修正及测试结果均已对应整理。此结论仅针对订单时间线，不代表独立重入挑战或整份课程报告完成。材料已推送至 `feat/zzl-timeline-evidence`，见 [PR #4](https://github.com/yzi030208-ship-it/blockchain-capstone-yzh-backend/pull/4)；`main` 待 YZH 审查合并。
