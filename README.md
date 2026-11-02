@@ -1,5 +1,9 @@
 # 区块链大作业 路线 A 后端
 
+**GitHub 同步状态：** 已推送至 GitHub 分支 `feat/zzl-timeline-evidence`，并创建 [PR #4](https://github.com/yzi030208-ship-it/blockchain-capstone-yzh-backend/pull/4)；等待 YZH 审查合并至 `main`。订单时间线材料已上传，独立重入挑战代码和 4C 数据仍仅保留本机。
+
+2026-10-29 已同步 GitHub 并完成订单时间线复核。该项由 ZZL 一人收尾，分工、截图步骤与报告片段见 [订单时间线交付说明](docs/timeline-delivery.md)，已归档材料见 [时间线证据索引](evidence/timeline/README.md)。本机旧副本独有文件的保留情况见 [同步清单](docs/local-sync-2026-10-29.md)。
+
 本组使用 Spring Boot 3.2.3、Web3j 4.14.0、Java 21，在 POTOS Testnet 上演示两笔 ERC20 托管订单。该项目以课程 [spring-boot-web3j 示例](https://github.com/kyonRay/spring-boot-web3j) 为起点。YZH 已建立 HTTP/事件查询基线，DHT 交接包已接入 Escrow 合约封装与核心 Service；本地测试和测试网验收状态须分别查看 [实验执行记录](docs/experiment-runbook.md) 与 [DHT 验证记录](docs/dht-verification.md)，不能把本地测试写成测试网交易完成。
 
 ## 开发分工

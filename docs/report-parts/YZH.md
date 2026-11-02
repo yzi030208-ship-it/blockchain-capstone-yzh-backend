@@ -1,6 +1,6 @@
 # YZH 路线 A 报告片段（阶段更新）
 
-本片段供最终报告副本汇总。SimpleStorage、新 Escrow 部署、两单后端查询、争议单仲裁退款、正常单确认及两单时间线已有真实测试网结果。4A-6/7 和 T-1/T-2/T-3 的 YZH PNG 已归档；ZZL 的区块浏览器验收仍待补。当前交接以 [三人共用交接](../team-handoff.md) 为准。
+本片段供最终报告副本汇总。SimpleStorage、新 Escrow 部署、两单后端查询、争议单仲裁退款、正常单确认及两单时间线已有真实测试网结果。4A-6/7 和 T-1/T-2/T-3 的 YZH PNG 已归档。2026-10-29 已保留 ZZL 的 4A-8 浏览器原图；时间线最新核验及建议补图见 [时间线专用片段](timeline.md) 和 [交付说明](../timeline-delivery.md)。当前交接以 [三人共用交接](../team-handoff.md) 为准。
 
 ## 我的开发内容
 
@@ -17,7 +17,7 @@
 
 `resolve` 由服务器持有的仲裁账户签名。若 REST 接口缺少身份认证与操作授权，能访问该接口的人可能让服务器替他提交争议裁决。当前演示服务仅监听 `127.0.0.1`，缩小访问范围，但不构成完整认证。实际系统至少应：①对操作者进行身份认证及按订单授权，并核实裁决依据；②对仲裁请求限流、记录不可篡改审计日志，并将密钥放在专用密钥管理系统或硬件签名环境。若仲裁私钥泄露，攻击者可对符合合约条件的 Disputed 订单发起裁决；资金只能按合约写定的买家或卖家地址转出，不能凭该权限直接提走全部未争议订单的代币。本组真实操作中，未争议的订单 0 调用 `resolve(0,true)` 产生失败回执 `0x07c6c39d408ad1d599cb4b2e1039f4630f2c5d12dd052e92032111e169aab3ed`（`status=0x0`）；争议订单 1 调用 `resolve(1,false)` 成功，哈希 `0x86b5d80b974abd153f5b40a4e08f72f0d5657bf1fd048289eb621878fbbf9a92`，链上将 30 枚指定代币退回买家。
 
-## 时间线实现与待测结论
+## 时间线实现与已核验结果
 
 正常单 0 在 DHT `confirm(0)` 后实际有 `OrderCreated → OrderPaid → OrderCompleted` 三条日志，见[完整 T-1](../../evidence/timeline/T-1_YZH_正常单完整时间线.json)及[实时接口截图](../../evidence/timeline/T-1_YZH_正常单完整时间线_实时接口.png)。确认交易位于区块 `2689699`，正确哈希 `0x4d1ab17ee3ede2c696944a2ace7d0f8e195949cdb6928b5883b1b3c162cd6f46`，课程 RPC 回执 `status=0x1`。争议单 1 实际有 `OrderCreated → OrderPaid → OrderDisputed → OrderResolved(sellerWins=false)` 四条日志，见 `evidence/timeline/T-2_YZH_争议单时间线.json` 和[实时接口截图](../../evidence/timeline/T-2_YZH_争议单完整时间线_实时接口.png)，按区块和交易/日志索引排序。`resolve(false)` 的业务结果是 Refunded，但合约只发 `OrderResolved`，**没有 `OrderRefunded` 日志**。后端重启后已用相同地址和原部署区块 `2672683` 成功 `load`；[T-3 代码图](../../evidence/timeline/T-3-02_YZH_十区块分批并发与排序去重代码.png)及[load 响应存档图](../../evidence/timeline/T-3-01_YZH_重启load原Escrow响应存档.png)已归档，ZZL 浏览器 Logs 对照仍待补。
 

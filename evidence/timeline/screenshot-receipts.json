@@ -1,0 +1,42 @@
+{
+  "receivedAtAsiaShanghai": "2026-10-29T23:18:52+08:00",
+  "images": [
+    {
+      "path": "evidence/timeline/T-3-03_ZZL_OrderResolved浏览器日志.png",
+      "sourceAttachment": "codex-clipboard-709d4cbe-13eb-46f9-a3e4-91371ebc2854.png",
+      "sha256": "b174776b70b3bcfee8b385468f58e793232167c3a7b2590718f4d43c4db9c01b",
+      "bytes": 122892,
+      "providedBy": "ZZL",
+      "observations": "Escrow OrderResolved: orderId=1, bool raw false, topic0 and raw data visible"
+    },
+    {
+      "path": "evidence/timeline/T-3-04_ZZL_退款Transfer浏览器日志.png",
+      "sourceAttachment": "codex-clipboard-6b804283-ca63-4ce4-8b32-add2d91c7fee.png",
+      "sha256": "70e9e175aa08b0104c7dd634519f7426dda36a5b391bb3d4065eca6cef8cbb1f",
+      "bytes": 142286,
+      "providedBy": "ZZL",
+      "observations": "YZHToken Transfer: Escrow to buyer, raw amount=30000000000000000000"
+    },
+    {
+      "path": "evidence/timeline/T-4-01_ZZL_本人链上时间线核验PASS.png",
+      "sourceAttachment": "codex-clipboard-0311cc84-84c3-4e96-8ed5-424077aa27c3.png",
+      "sha256": "9f8c5ace1abb5135f58be2700630df7247c24c97c6e0dc5c2534e1d545c5b3e7",
+      "bytes": 97835,
+      "providedBy": "ZZL",
+      "receivedAtAsiaShanghai": "2026-10-29T23:24:44+08:00",
+      "observations": "CMD successful Python invocation, RESULT PASS, archived-api-and-live-receipts, order0 Completed 3 events, order1 Refunded 4 events; earlier shell syntax error also visible.",
+      "runEvidence": "evidence/timeline/verification/20261029T152047601888Z/"
+    },
+    {
+      "path": "evidence/timeline/T-4-02_ZZL_Java测试构建成功.png",
+      "sourceAttachment": "codex-clipboard-e89a0a7a-f643-4d45-9cec-24a0e7829591.png",
+      "sha256": "6a7762114d7d84974d9b48f08ae820d34b605106bc0917f614f6bd08c1c032a9",
+      "bytes": 116273,
+      "providedBy": "ZZL",
+      "receivedAtAsiaShanghai": "2026-10-29T23:27:52+08:00",
+      "observations": "Gradle Java test task ran; BUILD SUCCESSFUL in 10s; 4 actionable tasks executed. Solidity/wrapper tasks marked SKIPPED. Initial command line not shown.",
+      "runEvidence": "evidence/timeline/validation/ZZL-20261029T152619Z"
+    }
+  ],
+  "note": "Screenshots do not include transaction hash; use together with existing 4A-8-01 and the independently checked RPC receipt."
+}

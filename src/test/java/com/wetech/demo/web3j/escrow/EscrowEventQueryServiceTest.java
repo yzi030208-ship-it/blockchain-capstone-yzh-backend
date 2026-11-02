@@ -12,11 +12,13 @@ import java.net.InetSocketAddress;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Collections;
 import org.junit.jupiter.api.Test;
 import org.web3j.abi.EventEncoder;
 import org.web3j.abi.FunctionEncoder;
 import org.web3j.abi.TypeReference;
 import org.web3j.abi.datatypes.Address;
+import org.web3j.abi.datatypes.Bool;
 import org.web3j.abi.datatypes.Event;
 import org.web3j.abi.datatypes.generated.Uint256;
 import org.web3j.protocol.Web3j;
@@ -37,7 +39,7 @@ class EscrowEventQueryServiceTest {
     @Test
     void scansTenBlockWindowsAndDeduplicatesTimelineLogs() throws Exception {
         ObjectMapper json = new ObjectMapper();
-        List<String> ranges = new ArrayList<>();
+        List<String> ranges = Collections.synchronizedList(new ArrayList<>());
         HttpServer server = HttpServer.create(new InetSocketAddress("127.0.0.1", 0), 0);
         server.createContext("/", exchange -> {
             JsonNode request = json.readTree(exchange.getRequestBody());
@@ -72,10 +74,81 @@ class EscrowEventQueryServiceTest {
             assertEquals("30", orders.get(0).amount());
             List<TimelineEvent> timeline = service.timeline(BigInteger.ZERO);
             assertEquals(List.of("OrderCreated", "OrderPaid"), timeline.stream().map(TimelineEvent::eventName).toList());
-            assertEquals(List.of("0x64-0x6d", "0x6e-0x70", "0x64-0x6d", "0x6e-0x70"), ranges);
+            // Independent windows can reach the RPC server in either order.
+            assertEquals(List.of("0x64-0x6d", "0x64-0x6d", "0x6e-0x70", "0x6e-0x70"),
+                    ranges.stream().sorted().toList());
         } finally {
             server.stop(0);
         }
+    }
+
+    @Test
+    void decodesAllSixEventsAndSortsWithinOneBlockWithoutMixingOrders() throws Exception {
+        ObjectMapper json = new ObjectMapper();
+        List<JsonNode> filters = Collections.synchronizedList(new ArrayList<>());
+        String completed = singleIdTopic("OrderCompleted");
+        String refunded = singleIdTopic("OrderRefunded");
+        String disputed = EventEncoder.encode(new Event("OrderDisputed", List.of(
+                new TypeReference<Uint256>(true) {}, new TypeReference<Address>() {})));
+        String resolved = EventEncoder.encode(new Event("OrderResolved", List.of(
+                new TypeReference<Uint256>(true) {}, new TypeReference<Bool>() {})));
+        // Synthetic ABI fixtures cover every event, not a claimed business sequence.
+        String completion = log(101, 0, 2, "0x" + "d".repeat(64), topics(completed, 0), "0x");
+        String[] logs = {
+            log(102, 0, 0, "0x" + "f".repeat(64), topics(resolved, 0),
+                    FunctionEncoder.encodeConstructor(List.of(new Bool(false)))),
+            log(101, 1, 0, "0x" + "e".repeat(64), topics(disputed, 0),
+                    FunctionEncoder.encodeConstructor(List.of(new Address(SELLER)))),
+            log(101, 0, 3, "0x" + "d".repeat(64), topics(refunded, 0), "0x"),
+            completion, completion, createdLog(),
+            log(101, 0, 1, "0x" + "d".repeat(64), topics(PAID_TOPIC, 0), "0x"),
+            log(100, 0, 4, "0x" + "9".repeat(64), topics(PAID_TOPIC, 1), "0x"),
+            log(100, 0, 5, "0x" + "8".repeat(64), topics(PAID_TOPIC, 0), "0x")
+                    .replace("\"removed\":false", "\"removed\":true")
+        };
+        HttpServer server = HttpServer.create(new InetSocketAddress("127.0.0.1", 0), 0);
+        server.createContext("/", exchange -> {
+            JsonNode request = json.readTree(exchange.getRequestBody());
+            boolean head = request.get("method").asText().equals("eth_blockNumber");
+            if (!head) filters.add(request.get("params").get(0));
+            String result = head ? "\"0x66\"" : "[" + String.join(",", logs) + "]";
+            byte[] body = ("{\"jsonrpc\":\"2.0\",\"id\":" + request.get("id")
+                    + ",\"result\":" + result + "}").getBytes(StandardCharsets.UTF_8);
+            exchange.getResponseHeaders().set("Content-Type", "application/json");
+            exchange.sendResponseHeaders(200, body.length);
+            try (var out = exchange.getResponseBody()) { out.write(body); }
+        });
+        server.start();
+        try (Web3j web3j = Web3j.build(new HttpService("http://127.0.0.1:" + server.getAddress().getPort()))) {
+            EscrowGateway gateway = new MissingEscrowGateway() {
+                @Override public EscrowContext current() { return new EscrowContext(ESCROW, BUYER, "100"); }
+            };
+            var timeline = new EscrowEventQueryService(web3j, gateway).timeline(BigInteger.ZERO);
+            assertEquals(List.of("OrderCreated", "OrderPaid", "OrderCompleted", "OrderRefunded",
+                    "OrderDisputed", "OrderResolved"), timeline.stream().map(TimelineEvent::eventName).toList());
+            assertEquals(BUYER, timeline.get(0).args().get("buyer"));
+            assertEquals(SELLER, timeline.get(0).args().get("seller"));
+            assertEquals(TOKEN, timeline.get(0).args().get("token"));
+            assertEquals("30", timeline.get(0).args().get("amount"));
+            assertEquals("999", timeline.get(0).args().get("deadline"));
+            assertEquals(SELLER, timeline.get(4).args().get("by"));
+            assertEquals("false", timeline.get(5).args().get("sellerWins"));
+            assertTrue(timeline.stream().allMatch(event -> event.orderId().equals("0")));
+            assertEquals(1, filters.size());
+            assertEquals(ESCROW, filters.get(0).get("address").get(0).asText());
+            assertEquals(6, filters.get(0).get("topics").get(0).size());
+            assertEquals(word(0), filters.get(0).get("topics").get(1).asText());
+        } finally {
+            server.stop(0);
+        }
+    }
+
+    private static String singleIdTopic(String name) {
+        return EventEncoder.encode(new Event(name, List.of(new TypeReference<Uint256>(true) {})));
+    }
+
+    private static String topics(String topic, int id) {
+        return "[\"" + topic + "\",\"" + word(id) + "\"]";
     }
 
     @Test

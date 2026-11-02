@@ -1,0 +1,36 @@
+{
+  "checkedAtUtc": "2026-10-29T14:56:55.035007+00:00",
+  "command": ".\\gradlew.bat test --console=plain",
+  "result": "BUILD SUCCESSFUL",
+  "suites": [
+    {
+      "name": "com.wetech.demo.web3j.escrow.EscrowEventQueryServiceTest",
+      "tests": "3",
+      "skipped": "0",
+      "failures": "0",
+      "errors": "0"
+    },
+    {
+      "name": "com.wetech.demo.web3j.escrow.EscrowTimelineControllerTest",
+      "tests": "3",
+      "skipped": "0",
+      "failures": "0",
+      "errors": "0"
+    },
+    {
+      "name": "com.wetech.demo.web3j.service.EscrowServiceLocalIntegrationTest",
+      "tests": "1",
+      "skipped": "1",
+      "failures": "0",
+      "errors": "0"
+    },
+    {
+      "name": "com.wetech.demo.web3j.service.EscrowServiceTest",
+      "tests": "2",
+      "skipped": "0",
+      "failures": "0",
+      "errors": "0"
+    }
+  ],
+  "scope": "Java tests only; Solidity compiler and local EVM scenario were not executed."
+}

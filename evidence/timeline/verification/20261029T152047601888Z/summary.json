@@ -1,0 +1,43 @@
+{
+  "startedAtUtc": "2026-10-29T15:20:47.601888+00:00",
+  "mode": "archived-api-and-live-receipts",
+  "rpcUrl": "https://rpc-testnet.potos.hk",
+  "contractAddress": "0xDb666Df58291D7d49cea35eE36929dCcD37e2ea5",
+  "deployBlock": "2672683",
+  "scope": "Verify the seven recorded events against receipts and ten-block RPC windows; not a full history rescan or restart test.",
+  "result": "PASS",
+  "orders": [
+    {
+      "id": "0",
+      "events": 3,
+      "sequence": [
+        "OrderCreated",
+        "OrderPaid",
+        "OrderCompleted"
+      ],
+      "status": "Completed"
+    },
+    {
+      "id": "1",
+      "events": 4,
+      "sequence": [
+        "OrderCreated",
+        "OrderPaid",
+        "OrderDisputed",
+        "OrderResolved"
+      ],
+      "status": "Refunded"
+    }
+  ],
+  "chainId": "60600",
+  "chainHead": "2728523",
+  "topic0": {
+    "OrderCreated": "0xa4be1e061958d160de04db54668a64922c36d2765b16644ae91acf127708970e",
+    "OrderPaid": "0x15e33efda35e5da2fb096ba49585307ba468af144aea691da964aaff1a7f3a57",
+    "OrderCompleted": "0x02a7d4d9472af7118644884b9a0ee443540c0027e938dd0aa35be8ecbe946c0a",
+    "OrderRefunded": "0x303a31648d19f17852cf82657162c4bdd4a06ab3f36f1e7ae1118f4ca6473e11",
+    "OrderDisputed": "0xde481be1936299e9233634e9f3cd92028f797634de15defa790fb2d7a013c95a",
+    "OrderResolved": "0x649ff37700d4eb8a5bc86ef06a55183597fa5c3c6b53ec4b9ee510cb2089ee26"
+  },
+  "finishedAtUtc": "2026-10-29T15:20:56.860047+00:00"
+}
