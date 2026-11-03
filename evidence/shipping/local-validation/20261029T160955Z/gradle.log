@@ -1,0 +1,62 @@
+> Task :extractSolidityImports
+> Task :nodeSetup SKIPPED
+> Task :npmSetup SKIPPED
+
+> Task :npmInstall
+
+up to date, audited 1 package in 195ms
+
+found 0 vulnerabilities
+
+> Task :resolveSolidity
+
+> Task :compileSolidity
+Compiler run successful. Artifact(s) can be found in directory "build/resources/main/solidity".
+Compiler run successful. Artifact(s) can be found in directory "build/resources/main/solidity".
+Compiler run successful. Artifact(s) can be found in directory "build/resources/main/solidity".
+Compiler run successful. Artifact(s) can be found in directory "build/resources/main/solidity".
+
+> Task :processResources
+> Task :compileTestSolidity NO-SOURCE
+> Task :generateTestContractWrappers NO-SOURCE
+> Task :processTestResources NO-SOURCE
+
+> Task :generateContractWrappers
+Definition of the function transfer returns a value but is not defined as a view function. Please ensure it contains the view modifier if you want to read the return value
+Definition of the function transfer returns a value but is not defined as a view function. Please ensure it contains the view modifier if you want to read the return value
+Definition of the function transferFrom returns a value but is not defined as a view function. Please ensure it contains the view modifier if you want to read the return value
+Definition of the function transferFrom returns a value but is not defined as a view function. Please ensure it contains the view modifier if you want to read the return value
+Definition of the function approve returns a value but is not defined as a view function. Please ensure it contains the view modifier if you want to read the return value
+Definition of the function transfer returns a value but is not defined as a view function. Please ensure it contains the view modifier if you want to read the return value
+Definition of the function createOrder returns a value but is not defined as a view function. Please ensure it contains the view modifier if you want to read the return value
+Definition of the function transferFrom returns a value but is not defined as a view function. Please ensure it contains the view modifier if you want to read the return value
+Definition of the function createOrder returns a value but is not defined as a view function. Please ensure it contains the view modifier if you want to read the return value
+Generating com.wetech.demo.web3j.contracts.simplestorage.SimpleStorage ... File written to /mnt/c/Users/86137/Desktop/blockchain-capstone-yzh-backend-main/blockchain-capstone-yzh-backend/src/main/java
+
+Generating com.wetech.demo.web3j.contracts.ierc20.IERC20 ... File written to /mnt/c/Users/86137/Desktop/blockchain-capstone-yzh-backend-main/blockchain-capstone-yzh-backend/src/main/java
+
+Generating com.wetech.demo.web3j.contracts.ishippingtoken.IShippingToken ... File written to /mnt/c/Users/86137/Desktop/blockchain-capstone-yzh-backend-main/blockchain-capstone-yzh-backend/src/main/java
+
+Generating com.wetech.demo.web3j.contracts.yzhtoken.YZHToken ... File written to /mnt/c/Users/86137/Desktop/blockchain-capstone-yzh-backend-main/blockchain-capstone-yzh-backend/src/main/java
+
+Generating com.wetech.demo.web3j.contracts.escrow.Escrow ... File written to /mnt/c/Users/86137/Desktop/blockchain-capstone-yzh-backend-main/blockchain-capstone-yzh-backend/src/main/java
+
+Generating com.wetech.demo.web3j.contracts.shippingescrow.ShippingEscrow ... File written to /mnt/c/Users/86137/Desktop/blockchain-capstone-yzh-backend-main/blockchain-capstone-yzh-backend/src/main/java
+
+
+> Task :compileJava
+> Task :classes
+> Task :compileTestJava
+> Task :testClasses
+> Task :test
+
+[Incubating] Problems report is available at: file:///mnt/c/Users/86137/Desktop/blockchain-capstone-yzh-backend-main/blockchain-capstone-yzh-backend/build/reports/problems/problems-report.html
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/8.13/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+BUILD SUCCESSFUL in 55s
+9 actionable tasks: 9 executed

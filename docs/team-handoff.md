@@ -1,6 +1,6 @@
 # 三人共用阶段交接记录
 
-**GitHub 同步状态：** 已推送至 GitHub 分支 `feat/zzl-timeline-evidence`，并创建 [PR #4](https://github.com/yzi030208-ship-it/blockchain-capstone-yzh-backend/pull/4)；等待 YZH 审查合并至 `main`。订单时间线材料已上传，独立重入挑战代码和 4C 数据仍仅保留本机。
+**GitHub 同步状态（2026-11-03复核）：** 订单时间线 [PR #4](https://github.com/yzi030208-ship-it/blockchain-capstone-yzh-backend/pull/4) 已于北京时间2026-11-02 17:47:04合并至 `main`，代码和证据清单哈希复核通过。卖家发货状态扩展的代码、27张分类原图和说明已保留本机，但尚未提交/推送、无对应PR；独立重入挑战和4C数据也仍在本机。按ZZL最新安排，全部实验结束并检查后再统一上传。详见 [同步核查](github-sync-check-2026-11-03.md)。
 
 本文件是 DHT、YZH、ZZL **唯一持续更新的交接文档**。每完成一个阶段，由执行人按文末模板追加真实结果，YZH 核对后标明下一位操作者。不要覆盖旧记录、预填未发生的交易，或在文件与截图中写入私钥。当前链上公开参数统一查 [project-config.md](project-config.md)；详细操作与交易留痕查 [experiment-runbook.md](experiment-runbook.md)；截图编号查 [evidence-capture-guide.md](evidence-capture-guide.md)。
 

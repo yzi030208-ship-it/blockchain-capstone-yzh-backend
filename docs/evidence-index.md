@@ -124,3 +124,18 @@
 | T-4-02 | [ZZL Java 测试成功](../evidence/timeline/T-4-02_ZZL_Java测试构建成功.png) | BUILD SUCCESSFUL in 10s；23:26 JUnit XML 对应 8 通过、1 跳过、0 失败/错误；独立归档 validation/ZZL-20261029T152619Z/ |
 
 订单时间线主要验收截图已齐，详见 [专用索引](../evidence/timeline/README.md)。
+
+
+## ZZL 卖家发货状态加分项（2026-10-30实验，2026-11-03发布整理）
+
+本项使用独立ShippingEscrow，各1枚的A/B两单均已结束，不能与原主业务30枚订单混用。27张本人原图已按11类存放，原图字节和SHA256保持一致。
+
+| 资料 | 入口及结论 |
+| --- | --- |
+| 截图分类 | [完整分类目录](../evidence/shipping/screenshots/README.md)，含代码3、测试1、部署7、订单/付款6、限制1、发货2、退款1、收货1、最终汇总1、准备1、问题3 |
+| 证据证明范围 | [发货证据总表](../evidence/shipping/README.md)，确认前请求、失败、超时与成功终态分别标注 |
+| 实验验收 | [交付说明](shipping-delivery.md)：A=Completed，B=Refunded，卖家收1枚，最终29/1/0 |
+| 原始机器资料 | [最终核对](../evidence/shipping/final-evidence-audit.json)、[本人最终快照](../evidence/shipping/checkpoints/20261030T023111360218Z/snapshot.json)、[完整性清单](../evidence/shipping/manifest.json) |
+| 报告4.5 | [发货报告素材](report-parts/shipping.md)，与订单时间线素材分开，保留真实作者和AI使用说明 |
+
+权限及已发货超期退款限制图是实际POTOS的eth_call预执行，不记为两笔链上失败交易。B第一次未到期退款是另有回执和gas消耗的实际失败交易，后续超期实际退款成功，问题原图单独分类。

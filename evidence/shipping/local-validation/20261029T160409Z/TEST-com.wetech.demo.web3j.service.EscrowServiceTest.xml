@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.wetech.demo.web3j.service.EscrowServiceTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2026-10-29T16:03:46.042Z" hostname="LAPTOP-P2SN24Q4" time="20.48">
+  <properties/>
+  <testcase name="springSelectsRealGatewayInsteadOfBaselineFallback()" classname="com.wetech.demo.web3j.service.EscrowServiceTest" time="20.065"/>
+  <testcase name="missingStateAndInvalidArgumentsNeverSendTransactions()" classname="com.wetech.demo.web3j.service.EscrowServiceTest" time="0.415"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.wetech.demo.web3j.shipping.ShippingEscrowLocalIntegrationTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2026-10-29T16:09:53.076Z" hostname="LAPTOP-P2SN24Q4" time="1.721">
+  <properties/>
+  <testcase name="reloadChecksShippingVersionAndRejectsLegacyWithoutReplacingState()" classname="com.wetech.demo.web3j.shipping.ShippingEscrowLocalIntegrationTest" time="0.404"/>
+  <testcase name="createdAndAlreadyShippedOrdersCannotBeShipped()" classname="com.wetech.demo.web3j.shipping.ShippingEscrowLocalIntegrationTest" time="0.171"/>
+  <testcase name="shippedOrderCanStillBeDisputedAndArbitrated()" classname="com.wetech.demo.web3j.shipping.ShippingEscrowLocalIntegrationTest" time="0.234"/>
+  <testcase name="sellerCannotShipAfterDeadlineToBlockAnExpiredRefund()" classname="com.wetech.demo.web3j.shipping.ShippingEscrowLocalIntegrationTest" time="0.167"/>
+  <testcase name="buyerStrangerAndArbiterCannotShipForSeller()" classname="com.wetech.demo.web3j.shipping.ShippingEscrowLocalIntegrationTest" time="0.171"/>
+  <testcase name="shippedOrderRejectsExpiredRefundThenCompletesWithHttpTimeline()" classname="com.wetech.demo.web3j.shipping.ShippingEscrowLocalIntegrationTest" time="0.255"/>
+  <testcase name="unshippedOrderRefundsOnlyAfterDeadlineAndReturnsTokens()" classname="com.wetech.demo.web3j.shipping.ShippingEscrowLocalIntegrationTest" time="0.155"/>
+  <testcase name="buyerCannotConfirmBeforeShippingAndOtherAccountsCannotRefund()" classname="com.wetech.demo.web3j.shipping.ShippingEscrowLocalIntegrationTest" time="0.16"/>
+  <system-out><![CDATA[00:09:54.425 [Test worker] INFO org.springframework.mock.web.MockServletContext -- Initializing Spring TestDispatcherServlet ''
+00:09:54.426 [Test worker] INFO org.springframework.test.web.servlet.TestDispatcherServlet -- Initializing Servlet ''
+00:09:54.426 [Test worker] INFO org.springframework.test.web.servlet.TestDispatcherServlet -- Completed initialization in 0 ms
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

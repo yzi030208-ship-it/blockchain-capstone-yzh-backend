@@ -1,0 +1,16 @@
+{
+  "checkedAtUtc": "2026-10-29T16:20:36.543785+00:00",
+  "account": {
+    "httpStatus": 200,
+    "body": {
+      "backendAddress": "0x73705dabcdb0fd57089caecd34c44d0ce9458ed9"
+    }
+  },
+  "context": {
+    "httpStatus": 409,
+    "body": {
+      "error": "Escrow not deployed or loaded; call deploy or load first"
+    }
+  },
+  "scope": "GET-only checks. No deployment or other transaction sent."
+}

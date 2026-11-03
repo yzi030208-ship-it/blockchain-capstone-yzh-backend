@@ -1,0 +1,64 @@
+{
+  "startedAtUtc": "2026-10-30T02:15:26.506558+00:00",
+  "mode": "LIVE_TESTNET_ETH_CALL_NO_TX",
+  "scope": "Caller-specific pre-execution simulation against real deployed code and storage. No wallet signature, transaction hash, broadcast or gas charge.",
+  "contractAddress": "0xbD37ceD07122Fa6b4e4Fe2c1b4Ac5BBc0c63B40E",
+  "caller": "0x28D4cD8504A89249087A5b5480e4960aF68d378d",
+  "checks": [
+    {
+      "label": "EXPIRED_SHIPPED_A_REFUND",
+      "function": "refund(uint256)",
+      "orderId": "0",
+      "result": "REVERTED",
+      "actualReason": "Escrow: wrong status",
+      "rawError": {
+        "code": 16,
+        "data": "0x08c379a000000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000014457363726f773a2077726f6e6720737461747573000000000000000000000000",
+        "message": ""
+      },
+      "callFrom": "0x28D4cD8504A89249087A5b5480e4960aF68d378d",
+      "blockNumber": "2733918"
+    },
+    {
+      "label": "BUYER_SHIP_B",
+      "function": "markShipped(uint256)",
+      "orderId": "1",
+      "result": "REVERTED",
+      "actualReason": "Escrow: caller is not the seller",
+      "rawError": {
+        "code": 16,
+        "data": "0x08c379a000000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000020457363726f773a2063616c6c6572206973206e6f74207468652073656c6c6572",
+        "message": ""
+      },
+      "callFrom": "0x28D4cD8504A89249087A5b5480e4960aF68d378d",
+      "blockNumber": "2733918"
+    }
+  ],
+  "result": "RESTRICTIONS_PASS",
+  "chainId": "60600",
+  "blockNumber": "2733918",
+  "blockHash": "0xfacc2b3f599d236e48dc03ec92a1d9110069d6c6b2aebdf5545df5ea6e8585b0",
+  "blockTimestamp": "1793326514",
+  "orders": {
+    "A": {
+      "id": "0",
+      "buyer": "0x28d4cd8504a89249087a5b5480e4960af68d378d",
+      "seller": "0x6fe3bba93ab02387c4261fef249da3266f1aaa36",
+      "token": "0xe48d6b8037972c2d056ef4aed4352c6027de88ee",
+      "amount": "1000000000000000000",
+      "deadline": "1793326061",
+      "statusCode": 5
+    },
+    "B": {
+      "id": "1",
+      "buyer": "0x28d4cd8504a89249087a5b5480e4960af68d378d",
+      "seller": "0x6fe3bba93ab02387c4261fef249da3266f1aaa36",
+      "token": "0xe48d6b8037972c2d056ef4aed4352c6027de88ee",
+      "amount": "1000000000000000000",
+      "deadline": "1793326900",
+      "statusCode": 1
+    }
+  },
+  "escrowTokenBalanceRaw": "2000000000000000000",
+  "finishedAtUtc": "2026-10-30T02:15:29.432357+00:00"
+}

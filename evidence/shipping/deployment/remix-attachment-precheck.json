@@ -1,0 +1,8 @@
+{
+  "checkedAtUtc": "2026-10-30T01:26:18.065703+00:00",
+  "contractAddress": "0xbD37ceD07122Fa6b4e4Fe2c1b4Ac5BBc0c63B40E",
+  "orderCount": "0",
+  "abiSource": "build/resources/main/solidity/ShippingEscrow.abi",
+  "abiSha256": "073dc043528e9205060148f357a6470eb4cbce4a01254923b93b73be3db48513",
+  "scope": "Read-only preparation for ABI attachment; no wallet connection or transaction performed."
+}

@@ -1,0 +1,34 @@
+{
+  "verifiedAtUtc": "2026-10-30T02:28:36.034792+00:00",
+  "confirmTransactionHash": "0x5bff8401efb274336efba076a3ddcbaa2c9486bbea03094d9389f214716991ae",
+  "confirmBlock": "2734016",
+  "receiptStatus": "0x1",
+  "gasUsed": "62555",
+  "confirmBlockTimestamp": "1793327228",
+  "confirmBlockTimeAsiaShanghai": "2026-10-30T10:27:08+08:00",
+  "from": "0x28D4cD8504A89249087A5b5480e4960aF68d378d",
+  "event": "OrderCompleted",
+  "tokenTransferFrom": "0xbD37ceD07122Fa6b4e4Fe2c1b4Ac5BBc0c63B40E",
+  "tokenTransferTo": "0x6FE3bbA93ab02387c4261Fef249dA3266f1AAa36",
+  "tokenAmountRaw": "1000000000000000000",
+  "stateBlock": "2734029",
+  "states": {
+    "A": {
+      "id": "0",
+      "statusCode": 2,
+      "status": "Completed"
+    },
+    "B": {
+      "id": "1",
+      "statusCode": 3,
+      "status": "Refunded"
+    }
+  },
+  "tokenBalancesRaw": {
+    "buyer": "29000000000000000000",
+    "seller": "1000000000000000000",
+    "arbiter": "0",
+    "escrow": "0"
+  },
+  "scope": "Actual buyer-signed confirm(0), receipt success, OrderCompleted(0), and one token transferred to seller. No transaction was broadcast by this verifier."
+}

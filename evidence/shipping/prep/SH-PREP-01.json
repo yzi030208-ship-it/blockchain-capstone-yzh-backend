@@ -1,0 +1,11 @@
+{
+  "sourceAttachment": "codex-clipboard-31ece05f-4fef-46c8-8686-bf3a80609124.png",
+  "path": "evidence/shipping/prep/SH-PREP-01_ZZL_候选卖家账户零POT.png",
+  "sha256": "7439b709391482a830e3ee82466a0c064738693c92680481e6decc40387c207e",
+  "providedBy": "ZZL",
+  "archivedAtUtc": "2026-10-29T16:01:15.186014+00:00",
+  "observedNetworkLabel": "POTOS Testnet",
+  "observedAddressAbbreviated": "0x48160...486a7",
+  "observedNativeBalance": "0 POT",
+  "status": "Historical candidate only. User supplied two different role addresses; this abbreviated screenshot is not assigned to buyer, seller or arbiter in the active shipping experiment."
+}

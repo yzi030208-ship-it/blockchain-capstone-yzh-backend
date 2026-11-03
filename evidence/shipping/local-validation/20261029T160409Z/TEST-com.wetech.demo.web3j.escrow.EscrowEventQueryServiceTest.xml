@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.wetech.demo.web3j.escrow.EscrowEventQueryServiceTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-10-29T16:03:12.335Z" hostname="LAPTOP-P2SN24Q4" time="6.592">
+  <properties/>
+  <testcase name="scansTenBlockWindowsAndDeduplicatesTimelineLogs()" classname="com.wetech.demo.web3j.escrow.EscrowEventQueryServiceTest" time="6.325"/>
+  <testcase name="reportsRpcErrorsInsteadOfReturningAnEmptyOrderList()" classname="com.wetech.demo.web3j.escrow.EscrowEventQueryServiceTest" time="0.089"/>
+  <testcase name="decodesAllSixEventsAndSortsWithinOneBlockWithoutMixingOrders()" classname="com.wetech.demo.web3j.escrow.EscrowEventQueryServiceTest" time="0.176"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

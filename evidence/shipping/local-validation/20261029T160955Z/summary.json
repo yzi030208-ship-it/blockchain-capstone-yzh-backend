@@ -1,0 +1,57 @@
+{
+  "scope": "Solidity 0.8.20 / Paris + generated wrappers + Java HTTP and real local EVM; NOT testnet",
+  "chainId": "31337",
+  "result": "PASS",
+  "suites": [
+    {
+      "name": "com.wetech.demo.web3j.escrow.EscrowEventQueryServiceTest",
+      "tests": "3",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "name": "com.wetech.demo.web3j.escrow.EscrowTimelineControllerTest",
+      "tests": "3",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "name": "com.wetech.demo.web3j.service.EscrowServiceLocalIntegrationTest",
+      "tests": "1",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "name": "com.wetech.demo.web3j.service.EscrowServiceTest",
+      "tests": "2",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "name": "com.wetech.demo.web3j.shipping.ShippingEscrowControllerTest",
+      "tests": "2",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "name": "com.wetech.demo.web3j.shipping.ShippingEscrowLocalIntegrationTest",
+      "tests": "8",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    }
+  ],
+  "totals": {
+    "tests": 19,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "passed": 19
+  },
+  "contractSourceSha256": "a03314e9667e391959a3c1c657e08c757107f5f142cb5f8d64e22fbc9c69a7c5"
+}

@@ -9,11 +9,13 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.function.Supplier;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import org.springframework.stereotype.Service;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.web3j.abi.EventEncoder;
 import org.web3j.abi.FunctionReturnDecoder;
 import org.web3j.abi.TypeReference;
@@ -57,11 +59,27 @@ public class EscrowEventQueryService {
             .thenComparing(Log::getLogIndex);
 
     private final Web3j web3j;
-    private final EscrowGateway gateway;
+    private final Supplier<EscrowContext> context;
+    private final Map<String, Event> eventTypes;
 
+    @Autowired
     public EscrowEventQueryService(Web3j web3j, EscrowGateway gateway) {
+        this(web3j, gateway::current, false);
+    }
+
+    public static EscrowEventQueryService shipping(Web3j web3j, Supplier<EscrowContext> context) {
+        return new EscrowEventQueryService(web3j, context, true);
+    }
+
+    private EscrowEventQueryService(Web3j web3j, Supplier<EscrowContext> context, boolean shipping) {
         this.web3j = web3j;
-        this.gateway = gateway;
+        this.context = context;
+        Map<String, Event> types = new LinkedHashMap<>(EVENTS);
+        if (shipping) {
+            Event shipped = singleId("OrderShipped");
+            types.put(EventEncoder.encode(shipped), shipped);
+        }
+        this.eventTypes = Map.copyOf(types);
     }
 
     public List<OrderCreatedView> listOrders() {
@@ -85,8 +103,8 @@ public class EscrowEventQueryService {
     public List<TimelineEvent> timeline(BigInteger id) {
         if (id.signum() < 0) throw new IllegalArgumentException("id must be nonnegative");
         List<TimelineEvent> timeline = new ArrayList<>();
-        for (Log log : scan(List.copyOf(EVENTS.keySet()), id)) {
-            Event event = EVENTS.get(log.getTopics().get(0).toLowerCase(Locale.ROOT));
+        for (Log log : scan(List.copyOf(eventTypes.keySet()), id)) {
+            Event event = eventTypes.get(log.getTopics().get(0).toLowerCase(Locale.ROOT));
             if (event == null) continue;
             List<Type> data = decode(log, event);
             Map<String, String> args = new LinkedHashMap<>();
@@ -113,7 +131,7 @@ public class EscrowEventQueryService {
     }
 
     private List<Log> scan(List<String> topic0, BigInteger id) {
-        EscrowContext context = gateway.current();
+        EscrowContext context = this.context.get();
         String address = context.contractAddress();
         if (address == null || !address.matches("(?i)^0x[0-9a-f]{40}$")) {
             throw new IllegalStateException("No valid Escrow contract is loaded");

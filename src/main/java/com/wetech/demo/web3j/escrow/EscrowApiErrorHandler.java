@@ -8,7 +8,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.server.ResponseStatusException;
 
-@RestControllerAdvice(assignableTypes = EscrowController.class)
+@RestControllerAdvice(assignableTypes = {EscrowController.class,
+        com.wetech.demo.web3j.shipping.ShippingEscrowController.class})
 public class EscrowApiErrorHandler {
     @ExceptionHandler(IllegalArgumentException.class)
     public ResponseEntity<Map<String, String>> badRequest(IllegalArgumentException error) {

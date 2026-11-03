@@ -1,0 +1,10 @@
+{
+  "checkedAtUtc": "2026-10-30T01:55:45.610088+00:00",
+  "chainTimestamp": "1793325336",
+  "chainTimeAsiaShanghai": "2026-10-30T09:55:36+08:00",
+  "allowanceRaw": "2000000000000000000",
+  "order0StatusCode": 0,
+  "order0Deadline": "1793326061",
+  "order0RemainingSeconds": 725,
+  "scope": "Read-only check after pending approval screenshot; no approval or deposit sent."
+}
