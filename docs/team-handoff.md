@@ -1,6 +1,6 @@
 # 三人共用阶段交接记录
 
-**GitHub 同步状态（2026-11-03复核）：** 订单时间线 [PR #4](https://github.com/yzi030208-ship-it/blockchain-capstone-yzh-backend/pull/4) 已于北京时间2026-11-02 17:47:04合并至 `main`，代码和证据清单哈希复核通过。卖家发货状态扩展的代码、27张分类原图和说明已保留本机，但尚未提交/推送、无对应PR；独立重入挑战和4C数据也仍在本机。按ZZL最新安排，全部实验结束并检查后再统一上传。详见 [同步核查](github-sync-check-2026-11-03.md)。
+**GitHub 同步状态（2026-11-03最新）：** 订单时间线[PR #4](https://github.com/yzi030208-ship-it/blockchain-capstone-yzh-backend/pull/4)已合并main。卖家发货状态的代码、27张分类原图、实际回执、测试及报告素材已推送至feat/zzl-shipping-status，并创建[PR #5](https://github.com/yzi030208-ship-it/blockchain-capstone-yzh-backend/pull/5)，待组内审查合并main。远端104个证据文件哈希及27张原图已核对一致。独立重入挑战bonus/和4C资料仍仅保留本机，未混入本次PR。
 
 本文件是 DHT、YZH、ZZL **唯一持续更新的交接文档**。每完成一个阶段，由执行人按文末模板追加真实结果，YZH 核对后标明下一位操作者。不要覆盖旧记录、预填未发生的交易，或在文件与截图中写入私钥。当前链上公开参数统一查 [project-config.md](project-config.md)；详细操作与交易留痕查 [experiment-runbook.md](experiment-runbook.md)；截图编号查 [evidence-capture-guide.md](evidence-capture-guide.md)。
 
@@ -210,3 +210,10 @@ ZZL 已提供 T-4-02 Java 构建成功原图，显示 BUILD SUCCESSFUL in 10s。
 ## 订单时间线已推送 GitHub PR #4
 
 提交 71f9ee7 已推送至 feat/zzl-timeline-evidence，创建 PR #4：https://github.com/yzi030208-ship-it/blockchain-capstone-yzh-backend/pull/4。提交包含本轮时间线测试、核验脚本、报告及交接、截图原图、两次只读核验数据、两次测试数据与哈希清单；发布前已核对 68 个证据文件的 Git 暂存字节与清单一致。作者使用本机已登录 GitHub 账号 xunqiu909 对应的 noreply 身份，显示名 ZZL。等待 YZH 审查合并 main，不代替组长直接合并；旧副本 bonus 和独立 4C 数据未纳入该 PR。原有“未提交/推送”的阶段记录均为历史状态，以本条和文首状态为准。
+
+
+## 2026-11-03 ZZL 卖家发货加分项已同步 GitHub
+
+本人明确要求单独同步发货项后，已提交 `3f3358c` 并推送 `feat/zzl-shipping-status`，创建[PR #5](https://github.com/yzi030208-ship-it/blockchain-capstone-yzh-backend/pull/5)，以已合并时间线后的main为基线。本次包含独立ShippingEscrow、封装、后端、含OrderShipped的七事件时间线、更新测试及完整实验资料。发布前完整Solidity编译、封装生成与19项测试通过（0跳过/失败，Shipping EVM8项）；27张本人原图按11类保存，104个证据文件在Git暂存和GitHub远端均逐项核对字节/哈希一致。
+
+A已Completed并向卖家转1枚，B未发货超期Refunded退1枚，最终29/1/0；原始回执、接口、限制预执行、实际失败问题和本人图各自保留。入口见[发货交付说明](shipping-delivery.md)、[截图分类](../evidence/shipping/screenshots/README.md)、[报告素材](report-parts/shipping.md)。发货项已上传但尚未并入main，由YZH审查；多签和正式报告另行进行。

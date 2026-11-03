@@ -26,3 +26,8 @@
 ## 后续发布安排
 
 按ZZL最新指示，后续多签等实验结束、资料整理并检查后，再统一上传GitHub。本次仅核查并更新本地状态说明，没有提前提交、推送或创建PR。独立重入挑战及4C资料不因本次检查改变状态。
+
+
+## 后续更新：本人要求单独同步发货项，现已上传
+
+同日ZZL进一步明确“卖家发货也请你帮我同步”，因此不再等待多签结束再发布发货项。功能提交3f3358c已推送feat/zzl-shipping-status，创建[PR #5](https://github.com/yzi030208-ship-it/blockchain-capstone-yzh-backend/pull/5)，当前未合并main。远端104个证据文件及27张本人原图核对一致，代码/封装/服务接口/测试/脚本/文档均存在。本页前述“未上传”是这次发布前的只读检查时点，不代表最新状态；详见[发货交付说明](shipping-delivery.md)及[发布核对JSON](shipping-github-publication.json)。

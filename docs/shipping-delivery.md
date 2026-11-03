@@ -50,7 +50,9 @@ ZZL本人运行 `scripts\shipping\capture-final.cmd` 的原始记录为 [最终�
 
 ## 发布与协作
 
-发货交付使用独立分支 `feat/zzl-shipping-status`，合并目标为main。订单时间线PR #4已于北京时间2026-11-02 17:47:04合并至main，本次发货提交已对齐该主分支基线。实际提交、PR及远端哈希核对结果在发布后追加于本节；上传分支不等于已合并main。
+2026-11-03已完成GitHub同步：功能提交 `3f3358cee470f23bd313d1063341d516c7ad1f0b` 推送至 `feat/zzl-shipping-status`，创建[PR #5](https://github.com/yzi030208-ship-it/blockchain-capstone-yzh-backend/pull/5)，目标为main，当前open、尚未合并。时间线PR #4此前已合并，本分支基于最新main，PR仅展示本次发货交付及相关说明。
+
+已直接读取GitHub上的提交树及manifest：104个证据文件逐个核对远端Git blob、声明SHA256与字节数，27张本人原图全部存在且一致；合约、生成封装、服务/接口、测试、脚本和文档均在远端。核对结果见[shipping-github-publication.json](shipping-github-publication.json)。发布状态说明的后续提交不改变已验证的功能和证据字节。上传分支不等于已合并main。
 
 独立重入挑战 `bonus/` 和4C材料不属于此次提交，仍保留本机原状态。正式报告排版与多签仲裁实验另行进行。
 

@@ -1,0 +1,22 @@
+{
+  "verifiedAtUtc": "2026-11-03T04:40:36.885328+00:00",
+  "repository": "yzi030208-ship-it/blockchain-capstone-yzh-backend",
+  "branch": "feat/zzl-shipping-status",
+  "featureCommit": "3f3358cee470f23bd313d1063341d516c7ad1f0b",
+  "pullRequest": "https://github.com/yzi030208-ship-it/blockchain-capstone-yzh-backend/pull/5",
+  "base": "main",
+  "state": "open",
+  "merged": false,
+  "remoteTreeSha": "3f3358cee470f23bd313d1063341d516c7ad1f0b",
+  "evidenceManifestSha256": "f359e8b8eb7ad882d9af9b3b2ac0eb908bde60a53beafc622fc6aea413d47508",
+  "evidenceFilesVerified": 104,
+  "originalScreenshotsVerified": 27,
+  "checks": [
+    "Remote GitHub manifest bytes match local manifest",
+    "Every listed remote Git blob ID matches the file with the declared SHA256 and size",
+    "Shipping contract, wrapper, service, controller, tests, scripts and documents present",
+    "19 full local compile/HTTP/EVM tests passed with0 skips",
+    "User testnet events/transfer final evidence remains preserved"
+  ],
+  "scope": "Feature commit and evidence verified against GitHub. Later publication-status documentation commits may advance branch HEAD without changing these evidence bytes. Uploaded branch does not imply merged main."
+}

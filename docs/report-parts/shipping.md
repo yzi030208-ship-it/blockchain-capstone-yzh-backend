@@ -58,3 +58,8 @@ ShippingEscrow 地址为 `0xbD37ceD07122Fa6b4e4Fe2c1b4Ac5BBc0c63B40E`，部署�
 B的首次退款实际发生在10:20:47，比10:21:40截止早53秒，失败回执0x0、gasUsed28021，钱包提示deadline not reached。它是实际链上失败交易，会消耗gas；与只读预执行的两项回滚不同。之后10:23:02退款实际成功，回执0x1。成功后出现额外退款请求的估算失败弹窗，不影响已完成退款，取消额外请求即可。故障原图及说明位于evidence/shipping/issues/。
 
 Codex协助代码、测试、公开链数据核验、操作指导及原图归档。首次测试清理钩子遗漏HttpService.close的异常声明，修正后完整19项通过；WSL首次下载慢，复用本机Gradle缓存完成离线验证。测试网钱包操作和签名由ZZL本人完成。所有用户截图原样复制，SHA256登记在screenshot-receipts.json；manifest.json用于归档完整性核对。未制作替代实验截图，也未将计划输入或预期输出写成实测。
+
+
+## 材料发布状态
+
+2026-11-03代码、27张分类原图、原始数据及本报告素材已推送至feat/zzl-shipping-status，[PR #5](https://github.com/yzi030208-ship-it/blockchain-capstone-yzh-backend/pull/5)待合并main。发布前完整复测19项通过、0跳过/失败；104个证据文件与远端GitHub内容逐项核对一致。正式报告文件尚待按模板排版，多签仲裁另行完成。

@@ -83,6 +83,6 @@ curl -sS -X GET http://127.0.0.1:8080/api/escrow/orders/1/events
 
 ## 验收和报告
 
-2026-10-30，ZZL 的“卖家发货状态”加分项已完成代码、19项测试、POTOS两单对照实验及27张本人原图归档。新合约A已发货并完成，B未发货超期退款，最终买家29枚、卖家1枚、托管0枚。实现、验收、独立接口、截图分类和报告4.5素材统一见 [发货交付说明](docs/shipping-delivery.md)。时间线PR #4已合并main；发货任务按本人2026-11-03最新指示独立同步GitHub，实际提交及PR入口见[发货交付说明](docs/shipping-delivery.md)。此前只读核查记录见[同步核查](docs/github-sync-check-2026-11-03.md)，其中“未上传”为当时状态。
+2026-10-30，ZZL 的“卖家发货状态”加分项已完成代码、19项测试、POTOS两单对照实验及27张本人原图归档。新合约A已发货并完成，B未发货超期退款，最终买家29枚、卖家1枚、托管0枚。实现、验收、独立接口、截图分类和报告4.5素材统一见 [发货交付说明](docs/shipping-delivery.md)。时间线PR #4已合并main；发货任务已于2026-11-03推送至feat/zzl-shipping-status并创建[PR #5](https://github.com/yzi030208-ship-it/blockchain-capstone-yzh-backend/pull/5)，待合并main，实际提交及远端核对见[发货交付说明](docs/shipping-delivery.md)。此前只读核查记录见[同步核查](docs/github-sync-check-2026-11-03.md)，其中“未上传”为当时状态。
 
 真实两单流程、交易索引及截图编号以[共用阶段交接](docs/team-handoff.md)、[实验执行记录](docs/experiment-runbook.md)和[截图指南](docs/evidence-capture-guide.md)为准。YZH 的报告片段见 [`docs/report-parts/YZH.md`](docs/report-parts/YZH.md)。不要把旧实验 3 交易哈希填进本次大作业。
