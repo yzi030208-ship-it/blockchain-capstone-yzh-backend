@@ -1,0 +1,13 @@
+{
+  "checkedAtUtc": "2026-10-30T02:12:12.162466+00:00",
+  "orderId": "1",
+  "statusCode": 0,
+  "deadline": "1793326900",
+  "chainTimestamp": "1793326318",
+  "chainTimeAsiaShanghai": "2026-10-30T10:11:58+08:00",
+  "remainingSeconds": 582,
+  "allowanceRaw": "1000000000000000000",
+  "buyerLatestNonce": 47,
+  "buyerPendingNonce": 47,
+  "scope": "Read-only check after Created screenshot; does not detect an unconfirmed wallet popup that has not been broadcast."
+}

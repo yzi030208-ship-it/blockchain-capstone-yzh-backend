@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.wetech.demo.web3j.escrow.EscrowTimelineControllerTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-10-29T16:03:31.470Z" hostname="LAPTOP-P2SN24Q4" time="2.454">
+  <properties/>
+  <testcase name="reportsUpstreamFailureInsteadOfSuccessfulEmptyTimeline()" classname="com.wetech.demo.web3j.escrow.EscrowTimelineControllerTest" time="1.988"/>
+  <testcase name="rejectsNegativeNonDecimalAndOverflowIdsBeforeQueryingRpc()" classname="com.wetech.demo.web3j.escrow.EscrowTimelineControllerTest" time="0.054"/>
+  <testcase name="exposesTimelineAsDecimalStringsAndPreservesDecodedArguments()" classname="com.wetech.demo.web3j.escrow.EscrowTimelineControllerTest" time="0.299"/>
+  <system-out><![CDATA[00:03:31.367 [Test worker] INFO org.springframework.mock.web.MockServletContext -- Initializing Spring TestDispatcherServlet ''
+00:03:31.383 [Test worker] INFO org.springframework.test.web.servlet.TestDispatcherServlet -- Initializing Servlet ''
+00:03:31.423 [Test worker] INFO org.springframework.test.web.servlet.TestDispatcherServlet -- Completed initialization in 38 ms
+00:03:33.525 [Test worker] INFO org.springframework.mock.web.MockServletContext -- Initializing Spring TestDispatcherServlet ''
+00:03:33.526 [Test worker] INFO org.springframework.test.web.servlet.TestDispatcherServlet -- Initializing Servlet ''
+00:03:33.526 [Test worker] INFO org.springframework.test.web.servlet.TestDispatcherServlet -- Completed initialization in 0 ms
+00:03:33.624 [Test worker] INFO org.springframework.mock.web.MockServletContext -- Initializing Spring TestDispatcherServlet ''
+00:03:33.624 [Test worker] INFO org.springframework.test.web.servlet.TestDispatcherServlet -- Initializing Servlet ''
+00:03:33.625 [Test worker] INFO org.springframework.test.web.servlet.TestDispatcherServlet -- Completed initialization in 1 ms
+]]></system-out>
+  <system-err><![CDATA[WARNING: A Java agent has been loaded dynamically (/home/zzl/.gradle/caches/modules-2/files-2.1/net.bytebuddy/byte-buddy-agent/1.14.12/be4984cb6fd1ef1d11f218a648889dfda44b8a15/byte-buddy-agent-1.14.12.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+]]></system-err>
+</testsuite>

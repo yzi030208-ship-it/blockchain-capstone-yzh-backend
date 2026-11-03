@@ -1,0 +1,14 @@
+{
+  "checkedAtUtc": "2026-10-30T02:04:48.816676+00:00",
+  "orderId": "0",
+  "status": "Shipped",
+  "transactionHash": "0xc2dc02a4ad4e0e054c2fa6d6b76477ef17eb8f92112464a94516653f2c4e66e6",
+  "blockNumber": "2733808",
+  "receiptStatus": "0x1",
+  "from": "0x6FE3bbA93ab02387c4261Fef249dA3266f1AAa36",
+  "event": "OrderShipped",
+  "blockTimestamp": "1793325754",
+  "deadline": "1793326061",
+  "shippedBeforeDeadline": true,
+  "scope": "Independent read-only receipt, sender and block-time verification of user seller transaction."
+}

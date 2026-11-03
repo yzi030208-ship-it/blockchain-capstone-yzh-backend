@@ -1,0 +1,17 @@
+{
+  "checkedAtUtc": "2026-10-29T16:02:13.504313+00:00",
+  "chainId": "60600",
+  "roles": {
+    "buyer": "0x28D4cD8504A89249087A5b5480e4960aF68d378d",
+    "seller": "0x6FE3bbA93ab02387c4261Fef249dA3266f1AAa36",
+    "arbiter": "0x73705dabCDb0fD57089cAEcD34C44d0cE9458Ed9"
+  },
+  "nativeBalancesWei": {
+    "buyer": "1999945602272000",
+    "seller": "0",
+    "arbiter": "0"
+  },
+  "buyerTokenBalanceRaw": "30000000000000000000",
+  "rpcGasPriceWei": "21000",
+  "scope": "Read-only preflight; no transactions sent and no private keys used."
+}

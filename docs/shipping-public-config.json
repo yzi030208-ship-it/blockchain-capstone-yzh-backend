@@ -1,0 +1,59 @@
+{
+  "network": "POTOS Testnet",
+  "chainId": "60600",
+  "rpcUrl": "https://rpc-testnet.potos.hk",
+  "tokenAddress": "0xE48d6b8037972C2D056ef4aEd4352C6027dE88ee",
+  "tokenDecimals": 18,
+  "roles": {
+    "buyer": "0x28D4cD8504A89249087A5b5480e4960aF68d378d",
+    "seller": "0x6FE3bbA93ab02387c4261Fef249dA3266f1AAa36",
+    "arbiter": "0x73705dabCDb0fD57089cAEcD34C44d0cE9458Ed9"
+  },
+  "roleSource": "ZZL explicitly supplied the three public roles. Actual deployment, buyer payments/refund/confirmation, and seller shipping receipts independently prove signing from these roles in this experiment.",
+  "shippingContractAddress": "0xbD37ceD07122Fa6b4e4Fe2c1b4Ac5BBc0c63B40E",
+  "deployBlock": "2729018",
+  "deployTransactionHash": "0x3d9d8578af3e7bd494fc1df62806fd1628a84d57867331e67aadd050365ea5be",
+  "deploymentReceiptStatus": "0x1",
+  "experimentOrders": {
+    "A": {
+      "id": "0",
+      "creationTransactionHash": "0x6d9834ed87e5d0559ee1e32e308a11bafe4e87ed22c70f39bc81a3f44138bc11",
+      "creationBlock": "2733701",
+      "deadline": "1793326061",
+      "amount": "1000000000000000000",
+      "description": "ZZL shipping A",
+      "depositTransactionHash": "0x514b02e7a0f238a71efa343c3d87cf4b2afbb0ee6bcee4a8171a84a2e1f98e92",
+      "depositBlock": "2733777",
+      "shippingTransactionHash": "0xc2dc02a4ad4e0e054c2fa6d6b76477ef17eb8f92112464a94516653f2c4e66e6",
+      "shippingBlock": "2733808",
+      "shippingBlockTimestamp": "1793325754",
+      "confirmTransactionHash": "0x5bff8401efb274336efba076a3ddcbaa2c9486bbea03094d9389f214716991ae",
+      "confirmBlock": "2734016",
+      "confirmBlockTimestamp": "1793327228",
+      "finalStatus": "Completed"
+    },
+    "B": {
+      "id": "1",
+      "creationTransactionHash": "0xe4db36290dbd5e17f4b454ef80f6c22b8ef62dda261f81979ea943b0dbf30b94",
+      "creationBlock": "2733859",
+      "deadline": "1793326900",
+      "amount": "1000000000000000000",
+      "description": "ZZL shipping B unshipped",
+      "depositTransactionHash": "0xdb9201f80b61c98f0e559ce85ef21689ead699844b7fbe9c49aaf947b4ca15a2",
+      "depositBlock": "2733903",
+      "failedRefundTransactions": [
+        "0x432cea4867bee9abc398848e2b2b2c1519beb76d9ff8b2bdd5b7ba237d203c27"
+      ],
+      "refundTransactionHash": "0xd1553b94b32bf331e74b6257ca7017b7eb97e26838ebc10a9b7ed7287fa0a427",
+      "refundBlock": "2733983",
+      "refundBlockTimestamp": "1793326982",
+      "finalStatus": "Refunded"
+    }
+  },
+  "tokenApproval": {
+    "transactionHash": "0xd69d8e09a419c24dbcf1ac60a041c9d058f98934bcc12a0e9eb86d9598535fbd",
+    "blockNumber": "2733741",
+    "amountRaw": "2000000000000000000",
+    "spender": "0xbD37ceD07122Fa6b4e4Fe2c1b4Ac5BBc0c63B40E"
+  }
+}

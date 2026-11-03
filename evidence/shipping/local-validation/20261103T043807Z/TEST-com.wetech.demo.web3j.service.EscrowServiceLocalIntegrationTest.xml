@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.wetech.demo.web3j.service.EscrowServiceLocalIntegrationTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2026-11-03T04:37:27.157Z" hostname="LAPTOP-P2SN24Q4" time="12.296">
+  <properties/>
+  <testcase name="deploymentReloadOrdersArbitrationAndEventsRunOnLocalEvm()" classname="com.wetech.demo.web3j.service.EscrowServiceLocalIntegrationTest" time="12.296"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

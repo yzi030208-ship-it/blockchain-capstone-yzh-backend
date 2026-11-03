@@ -1,0 +1,10 @@
+{
+  "checkedAtUtc": "2026-10-30T02:03:35.598088+00:00",
+  "headBlock": "2733815",
+  "chainTime": "1793325802",
+  "chainTimeAsiaShanghai": "2026-10-30T10:03:22+08:00",
+  "statusCode": 5,
+  "deadline": "1793326061",
+  "remainingSeconds": 259,
+  "scope": "Read-only chain state after seller confirmation screenshot and backend timeout."
+}

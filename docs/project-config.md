@@ -32,3 +32,8 @@
 同日 YZH 从指定 YZHToken 合约向 DHT 买家转入 60 枚，交易哈希 `0x698aa6302106bfe33a9a71ed0e421fead150ccf84b6519883cbfda2c20935f30`，区块 `2672655`，回执 `0x1`。转后 `balanceOf(DHT)=60`、`balanceOf(YZH)=10`；钱包中另一个同名合约 `0x7640f3dee667Ea05CA6c9450cF35b596577025A6` 的余额不能算入本项目。
 
 新 Escrow 的部署截图见 `evidence/4A/4A-5-01_YZH_后端部署新Escrow_地址哈希区块.png`，链上 arbiter 核对截图见 `evidence/4A/4A-5-01b_YZH_新Escrow仲裁人核对.png`。后续仅使用该地址；后端重启应 `load` 原地址与部署区块，不要再次 `deploy`。
+
+
+## ZZL 发货扩展的独立公开配置
+
+本页上方主业务配置保持原样。ShippingEscrow扩展、三个本人角色及实际A/B订单统一见[shipping-public-config.json](shipping-public-config.json)，验收与发布入口见[shipping-delivery.md](shipping-delivery.md)。新扩展地址为 `0xbD37ceD07122Fa6b4e4Fe2c1b4Ac5BBc0c63B40E`、部署区块2729018，查询后端在本人机器127.0.0.1:8081。A已Completed、B已Refunded，不重发交易。

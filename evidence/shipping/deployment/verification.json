@@ -1,0 +1,17 @@
+{
+  "checkedAtUtc": "2026-10-29T16:59:35.280680+00:00",
+  "chainId": "60600",
+  "contractAddress": "0xbD37ceD07122Fa6b4e4Fe2c1b4Ac5BBc0c63B40E",
+  "transactionHash": "0x3d9d8578af3e7bd494fc1df62806fd1628a84d57867331e67aadd050365ea5be",
+  "deployBlock": "2729018",
+  "receiptStatus": "0x1",
+  "from": "0x73705dabCDb0fD57089cAEcD34C44d0cE9458Ed9",
+  "arbiter": "0x73705dabcdb0fd57089caecd34c44d0ce9458ed9",
+  "shippingVersion": 1,
+  "runtimeCodeBytes": 5273,
+  "result": "PASS",
+  "scope": "Independent read-only RPC verification of user deployment, not a repeated deployment.",
+  "deploymentInputMatchesGeneratedBinaryAndArbiter": true,
+  "backendAddressQueryRecovered": true,
+  "backendAddressEvidence": "backend-address.json"
+}

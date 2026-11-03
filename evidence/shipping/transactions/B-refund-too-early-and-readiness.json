@@ -1,0 +1,23 @@
+{
+  "checkedAtUtc": "2026-10-30T02:22:20.449317+00:00",
+  "failedTransactionHash": "0x432cea4867bee9abc398848e2b2b2c1519beb76d9ff8b2bdd5b7ba237d203c27",
+  "failedBlock": "2733962",
+  "receiptStatus": "0x0",
+  "gasUsed": "28021",
+  "failedBlockTimestamp": "1793326847",
+  "failedBlockTimeAsiaShanghai": "2026-10-30T10:20:47+08:00",
+  "deadline": "1793326900",
+  "failedSecondsBeforeDeadline": 53,
+  "currentBlock": "2733976",
+  "currentChainTimestamp": "1793326933",
+  "currentChainTimeAsiaShanghai": "2026-10-30T10:22:13+08:00",
+  "remainingSeconds": -33,
+  "orderBStatusCode": 1,
+  "currentRefundPreflight": {
+    "id": 1,
+    "jsonrpc": "2.0",
+    "result": "0x"
+  },
+  "ready": true,
+  "scope": "One genuine failed transaction verified; latest preflight is read-only and no retry transaction sent."
+}

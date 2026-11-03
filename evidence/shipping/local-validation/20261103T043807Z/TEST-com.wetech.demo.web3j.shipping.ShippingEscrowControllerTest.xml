@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.wetech.demo.web3j.shipping.ShippingEscrowControllerTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2026-11-03T04:38:02.544Z" hostname="LAPTOP-P2SN24Q4" time="0.202">
+  <properties/>
+  <testcase name="missingContextIsReportedInsteadOfFabricatingAnOrder()" classname="com.wetech.demo.web3j.shipping.ShippingEscrowControllerTest" time="0.13"/>
+  <testcase name="returnsShippedTextAndValidatesIdBeforeAnyChainCall()" classname="com.wetech.demo.web3j.shipping.ShippingEscrowControllerTest" time="0.072"/>
+  <system-out><![CDATA[12:38:02.671 [Test worker] INFO org.springframework.mock.web.MockServletContext -- Initializing Spring TestDispatcherServlet ''
+12:38:02.671 [Test worker] INFO org.springframework.test.web.servlet.TestDispatcherServlet -- Initializing Servlet ''
+12:38:02.671 [Test worker] INFO org.springframework.test.web.servlet.TestDispatcherServlet -- Completed initialization in 0 ms
+12:38:02.735 [Test worker] INFO org.springframework.mock.web.MockServletContext -- Initializing Spring TestDispatcherServlet ''
+12:38:02.736 [Test worker] INFO org.springframework.test.web.servlet.TestDispatcherServlet -- Initializing Servlet ''
+12:38:02.736 [Test worker] INFO org.springframework.test.web.servlet.TestDispatcherServlet -- Completed initialization in 0 ms
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

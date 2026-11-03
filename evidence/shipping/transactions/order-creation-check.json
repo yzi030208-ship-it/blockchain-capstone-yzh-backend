@@ -1,0 +1,24 @@
+{
+  "checkedAtUtc": "2026-10-30T01:51:19.350233+00:00",
+  "latestBlock": "2733711",
+  "chainTimestamp": "1793325069",
+  "chainTimeAsiaShanghai": "2026-10-30T09:51:09+08:00",
+  "orderCount": "1",
+  "orders": [
+    {
+      "id": "0",
+      "buyer": "0x28d4cd8504a89249087a5b5480e4960af68d378d",
+      "seller": "0x6fe3bba93ab02387c4261fef249da3266f1aaa36",
+      "token": "0xe48d6b8037972c2d056ef4aed4352c6027de88ee",
+      "amount": "1000000000000000000",
+      "deadline": "1793326061",
+      "statusCode": 0,
+      "description": "ZZL shipping A",
+      "remainingSeconds": 992
+    }
+  ],
+  "creationTransactions": [
+    "0x6d9834ed87e5d0559ee1e32e308a11bafe4e87ed22c70f39bc81a3f44138bc11"
+  ],
+  "scope": "Read-only chain verification after user screenshot; no transaction sent."
+}

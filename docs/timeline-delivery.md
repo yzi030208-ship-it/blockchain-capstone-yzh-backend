@@ -1,6 +1,6 @@
 # 订单时间线加分项交付说明
 
-**GitHub 同步状态：** 已推送至 GitHub 分支 `feat/zzl-timeline-evidence`，并创建 [PR #4](https://github.com/yzi030208-ship-it/blockchain-capstone-yzh-backend/pull/4)；等待 YZH 审查合并至 `main`。订单时间线材料已上传，独立重入挑战代码和 4C 数据仍仅保留本机。
+**GitHub 同步状态（2026-11-03复核）：** [PR #4](https://github.com/yzi030208-ship-it/blockchain-capstone-yzh-backend/pull/4) 已于北京时间2026-11-02 17:47:04合并至 `main`，合并提交为 `cfaf0ce`。远端main的时间线代码、脚本、说明和证据均存在，清单涉及的68个文件SHA256全部匹配。卖家发货扩展和独立重入挑战仍仅保留本机；两项加分内容的同步状态见 [本次核查](github-sync-check-2026-11-03.md)。
 
 2026-10-29，基于 GitHub main `a76515a1516b0ee354f7b9c996b102f42ce8494d` 核验。该版本已经实现订单时间线，并已有两单完成后的真实接口截图。本轮补齐验收测试、只读链上核验脚本和报告证据索引，不重复创建订单或发送交易。
 

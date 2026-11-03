@@ -1,0 +1,80 @@
+{
+  "verifiedAtUtc": "2026-10-30T02:32:02.159353+00:00",
+  "providedBy": "ZZL",
+  "screenshot": "evidence/shipping/screenshots/09-final-summary/SH-10_ZZL_最终两单时间线与余额核验通过.png",
+  "screenshotSha256": "42762cec6c78d6cb42af5b878fc8458f8464275cb5ca49a1e17286f3f2a89256",
+  "snapshot": "evidence/shipping/checkpoints/20261030T023111360218Z/snapshot.json",
+  "snapshotSha256": "9afaac56b60bdebe3a99a7609143e57b0f31d44dfa2e5f86ecda27ad16915375",
+  "chainId": "60600",
+  "blockNumber": "2734053",
+  "blockHash": "0xae70a4539a0b712f5e765b8adc839fc5a0237e95058d8bc5d55064d78a4fbe09",
+  "blockTimestamp": "1793327461",
+  "eventsChecked": [
+    {
+      "orderId": "0",
+      "eventName": "OrderCreated",
+      "transactionHash": "0x6d9834ed87e5d0559ee1e32e308a11bafe4e87ed22c70f39bc81a3f44138bc11",
+      "blockNumber": "2733701",
+      "receiptStatus": "0x1",
+      "logMatches": true
+    },
+    {
+      "orderId": "0",
+      "eventName": "OrderPaid",
+      "transactionHash": "0x514b02e7a0f238a71efa343c3d87cf4b2afbb0ee6bcee4a8171a84a2e1f98e92",
+      "blockNumber": "2733777",
+      "receiptStatus": "0x1",
+      "logMatches": true
+    },
+    {
+      "orderId": "0",
+      "eventName": "OrderShipped",
+      "transactionHash": "0xc2dc02a4ad4e0e054c2fa6d6b76477ef17eb8f92112464a94516653f2c4e66e6",
+      "blockNumber": "2733808",
+      "receiptStatus": "0x1",
+      "logMatches": true
+    },
+    {
+      "orderId": "0",
+      "eventName": "OrderCompleted",
+      "transactionHash": "0x5bff8401efb274336efba076a3ddcbaa2c9486bbea03094d9389f214716991ae",
+      "blockNumber": "2734016",
+      "receiptStatus": "0x1",
+      "logMatches": true
+    },
+    {
+      "orderId": "1",
+      "eventName": "OrderCreated",
+      "transactionHash": "0xe4db36290dbd5e17f4b454ef80f6c22b8ef62dda261f81979ea943b0dbf30b94",
+      "blockNumber": "2733859",
+      "receiptStatus": "0x1",
+      "logMatches": true
+    },
+    {
+      "orderId": "1",
+      "eventName": "OrderPaid",
+      "transactionHash": "0xdb9201f80b61c98f0e559ce85ef21689ead699844b7fbe9c49aaf947b4ca15a2",
+      "blockNumber": "2733903",
+      "receiptStatus": "0x1",
+      "logMatches": true
+    },
+    {
+      "orderId": "1",
+      "eventName": "OrderRefunded",
+      "transactionHash": "0xd1553b94b32bf331e74b6257ca7017b7eb97e26838ebc10a9b7ed7287fa0a427",
+      "blockNumber": "2733983",
+      "receiptStatus": "0x1",
+      "logMatches": true
+    }
+  ],
+  "actualPinnedBlockBalancesRaw": {
+    "0xe48d6b8037972c2d056ef4aed4352c6027de88ee:0x28d4cd8504a89249087a5b5480e4960af68d378d": "29000000000000000000",
+    "0xe48d6b8037972c2d056ef4aed4352c6027de88ee:0x6fe3bba93ab02387c4261fef249da3266f1aaa36": "1000000000000000000",
+    "0xe48d6b8037972c2d056ef4aed4352c6027de88ee:0xbd37ced07122fa6b4e4fe2c1b4ac5bbc0c63b40e": "0"
+  },
+  "result": "ARCHIVE_VERIFIED",
+  "coverage": "SH-01 code; SH-02 user19-pass tests; SH-03 deployment/context; SH-04 paid states; SH-05 non-seller denied and SH-07 expired shipped refund denied via actual eth_call; SH-06 shipped state; SH-08 unshipped refund success; SH-09 completion and seller transfer; SH-10 user final timelines/balances.",
+  "pendingRequiredScreenshots": [],
+  "scope": "Experiment screenshot collection complete. This does not mean the final course report has been written or shipping changes published to GitHub.",
+  "archiveLayoutUpdatedAtUtc": "2026-10-30T02:35:00.144345+00:00"
+}

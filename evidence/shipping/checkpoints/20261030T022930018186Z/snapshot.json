@@ -1,0 +1,126 @@
+{
+  "scope": "Actual shipping API and read-only POTOS RPC; no transaction sent",
+  "capturedAtUtc": "2026-10-30T02:29:30.018186+00:00",
+  "chainId": "60600",
+  "context": {
+    "contractAddress": "0xbD37ceD07122Fa6b4e4Fe2c1b4Ac5BBc0c63B40E",
+    "arbiter": "0x73705dabcdb0fd57089caecd34c44d0ce9458ed9",
+    "deployBlock": "2729018"
+  },
+  "account": {
+    "backendAddress": "0x73705dabcdb0fd57089caecd34c44d0ce9458ed9"
+  },
+  "latestBlock": {
+    "number": "2734038",
+    "timestamp": "1793327363"
+  },
+  "orders": [
+    {
+      "id": "0",
+      "buyer": "0x28d4cd8504a89249087a5b5480e4960af68d378d",
+      "seller": "0x6fe3bba93ab02387c4261fef249da3266f1aaa36",
+      "token": "0xe48d6b8037972c2d056ef4aed4352c6027de88ee",
+      "amount": "1000000000000000000",
+      "deadline": "1793326061",
+      "status": "Completed",
+      "description": "ZZL shipping A"
+    },
+    {
+      "id": "1",
+      "buyer": "0x28d4cd8504a89249087a5b5480e4960af68d378d",
+      "seller": "0x6fe3bba93ab02387c4261fef249da3266f1aaa36",
+      "token": "0xe48d6b8037972c2d056ef4aed4352c6027de88ee",
+      "amount": "1000000000000000000",
+      "deadline": "1793326900",
+      "status": "Refunded",
+      "description": "ZZL shipping B unshipped"
+    }
+  ],
+  "events": {
+    "0": [
+      {
+        "orderId": "0",
+        "eventName": "OrderCreated",
+        "blockNumber": "2733701",
+        "transactionIndex": "0",
+        "logIndex": "0",
+        "transactionHash": "0x6d9834ed87e5d0559ee1e32e308a11bafe4e87ed22c70f39bc81a3f44138bc11",
+        "args": {
+          "buyer": "0x28d4cd8504a89249087a5b5480e4960af68d378d",
+          "seller": "0x6fe3bba93ab02387c4261fef249da3266f1aaa36",
+          "token": "0xe48d6b8037972c2d056ef4aed4352c6027de88ee",
+          "amount": "1000000000000000000",
+          "deadline": "1793326061"
+        }
+      },
+      {
+        "orderId": "0",
+        "eventName": "OrderPaid",
+        "blockNumber": "2733777",
+        "transactionIndex": "0",
+        "logIndex": "1",
+        "transactionHash": "0x514b02e7a0f238a71efa343c3d87cf4b2afbb0ee6bcee4a8171a84a2e1f98e92",
+        "args": {}
+      },
+      {
+        "orderId": "0",
+        "eventName": "OrderShipped",
+        "blockNumber": "2733808",
+        "transactionIndex": "0",
+        "logIndex": "0",
+        "transactionHash": "0xc2dc02a4ad4e0e054c2fa6d6b76477ef17eb8f92112464a94516653f2c4e66e6",
+        "args": {}
+      },
+      {
+        "orderId": "0",
+        "eventName": "OrderCompleted",
+        "blockNumber": "2734016",
+        "transactionIndex": "0",
+        "logIndex": "1",
+        "transactionHash": "0x5bff8401efb274336efba076a3ddcbaa2c9486bbea03094d9389f214716991ae",
+        "args": {}
+      }
+    ],
+    "1": [
+      {
+        "orderId": "1",
+        "eventName": "OrderCreated",
+        "blockNumber": "2733859",
+        "transactionIndex": "0",
+        "logIndex": "0",
+        "transactionHash": "0xe4db36290dbd5e17f4b454ef80f6c22b8ef62dda261f81979ea943b0dbf30b94",
+        "args": {
+          "buyer": "0x28d4cd8504a89249087a5b5480e4960af68d378d",
+          "seller": "0x6fe3bba93ab02387c4261fef249da3266f1aaa36",
+          "token": "0xe48d6b8037972c2d056ef4aed4352c6027de88ee",
+          "amount": "1000000000000000000",
+          "deadline": "1793326900"
+        }
+      },
+      {
+        "orderId": "1",
+        "eventName": "OrderPaid",
+        "blockNumber": "2733903",
+        "transactionIndex": "0",
+        "logIndex": "1",
+        "transactionHash": "0xdb9201f80b61c98f0e559ce85ef21689ead699844b7fbe9c49aaf947b4ca15a2",
+        "args": {}
+      },
+      {
+        "orderId": "1",
+        "eventName": "OrderRefunded",
+        "blockNumber": "2733983",
+        "transactionIndex": "0",
+        "logIndex": "1",
+        "transactionHash": "0xd1553b94b32bf331e74b6257ca7017b7eb97e26838ebc10a9b7ed7287fa0a427",
+        "args": {}
+      }
+    ]
+  },
+  "tokenBalancesRaw": {
+    "0xe48d6b8037972c2d056ef4aed4352c6027de88ee:0x28d4cd8504a89249087a5b5480e4960af68d378d": "29000000000000000000",
+    "0xe48d6b8037972c2d056ef4aed4352c6027de88ee:0x6fe3bba93ab02387c4261fef249da3266f1aaa36": "1000000000000000000",
+    "0xe48d6b8037972c2d056ef4aed4352c6027de88ee:0xbd37ced07122fa6b4e4fe2c1b4ac5bbc0c63b40e": "0"
+  },
+  "result": "FINAL_PASS"
+}

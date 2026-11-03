@@ -1,0 +1,34 @@
+{
+  "verifiedAtUtc": "2026-10-30T02:24:44.605019+00:00",
+  "refundTransactionHash": "0xd1553b94b32bf331e74b6257ca7017b7eb97e26838ebc10a9b7ed7287fa0a427",
+  "refundBlock": "2733983",
+  "receiptStatus": "0x1",
+  "gasUsed": "64669",
+  "refundBlockTimestamp": "1793326982",
+  "refundBlockTimeAsiaShanghai": "2026-10-30T10:23:02+08:00",
+  "deadline": "1793326900",
+  "secondsAfterDeadline": 82,
+  "from": "0x28D4cD8504A89249087A5b5480e4960aF68d378d",
+  "event": "OrderRefunded",
+  "tokenTransferFrom": "0xbD37ceD07122Fa6b4e4Fe2c1b4Ac5BBc0c63B40E",
+  "tokenTransferTo": "0x28D4cD8504A89249087A5b5480e4960aF68d378d",
+  "tokenAmountRaw": "1000000000000000000",
+  "stateBlock": "2733996",
+  "states": {
+    "A": {
+      "id": "0",
+      "statusCode": 5
+    },
+    "B": {
+      "id": "1",
+      "statusCode": 3
+    }
+  },
+  "tokenBalancesRaw": {
+    "buyer": "29000000000000000000",
+    "seller": "0",
+    "arbiter": "0",
+    "escrow": "1000000000000000000"
+  },
+  "scope": "Actual successful signed refund and1-token return after real expiry. Gas-estimation popup is a separate additional request, not failure of this successful tx."
+}

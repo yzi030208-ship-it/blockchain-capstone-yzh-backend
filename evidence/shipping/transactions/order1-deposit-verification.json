@@ -1,0 +1,13 @@
+{
+  "checkedAtUtc": "2026-10-30T02:14:46.518594+00:00",
+  "orderId": "1",
+  "transactionHash": "0xdb9201f80b61c98f0e559ce85ef21689ead699844b7fbe9c49aaf947b4ca15a2",
+  "blockNumber": "2733903",
+  "receiptStatus": "0x1",
+  "from": "0x28D4cD8504A89249087A5b5480e4960aF68d378d",
+  "event": "OrderPaid",
+  "deadline": "1793326900",
+  "latestBlockTimestamp": "1793326481",
+  "chainTimeAsiaShanghai": "2026-10-30T10:14:41+08:00",
+  "remainingSeconds": 419
+}
